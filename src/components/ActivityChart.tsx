@@ -18,7 +18,7 @@ export function ActivityChart({ activities, type }: ActivityChartProps) {
           status: a.status,
         })),
     },
-    mark: 'line',
+    mark: { type: 'line' },
     encoding: {
       x: {
         field: 'date',
