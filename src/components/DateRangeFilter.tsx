@@ -1,30 +1,39 @@
+import { useState, useEffect } from 'react';
 import { DateRange } from '../types';
 
 interface DateRangeFilterProps {
-  dateRange?: DateRange;
+  dateRange?: DateRange | undefined;
   onDateRangeChange: (dateRange?: DateRange) => void;
 }
 
 export function DateRangeFilter({ dateRange, onDateRangeChange }: DateRangeFilterProps): React.JSX.Element {
-  const handleStartDateChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    const start = event.target.value;
-    const end = dateRange?.end ?? '';
+  const [start, setStart] = useState(dateRange?.start ?? '');
+  const [end, setEnd] = useState(dateRange?.end ?? '');
 
-    if (start === '' && end === '') {
+  useEffect(() => {
+    setStart(dateRange?.start ?? '');
+    setEnd(dateRange?.end ?? '');
+  }, [dateRange]);
+
+  const handleStartDateChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    const newStart = event.target.value;
+    setStart(newStart);
+
+    if (newStart === '' && end === '') {
       onDateRangeChange(undefined);
     } else {
-      onDateRangeChange({ start, end });
+      onDateRangeChange({ start: newStart, end });
     }
   };
 
   const handleEndDateChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    const end = event.target.value;
-    const start = dateRange?.start ?? '';
+    const newEnd = event.target.value;
+    setEnd(newEnd);
 
-    if (end === '' && start === '') {
+    if (start === '' && newEnd === '') {
       onDateRangeChange(undefined);
     } else {
-      onDateRangeChange({ start, end });
+      onDateRangeChange({ start, end: newEnd });
     }
   };
 
@@ -37,7 +46,7 @@ export function DateRangeFilter({ dateRange, onDateRangeChange }: DateRangeFilte
         <input
           type="date"
           id="start-date"
-          value={dateRange?.start ?? ''}
+          value={start}
           onChange={handleStartDateChange}
           max={maxDate}
         />
@@ -48,7 +57,7 @@ export function DateRangeFilter({ dateRange, onDateRangeChange }: DateRangeFilte
         <input
           type="date"
           id="end-date"
-          value={dateRange?.end ?? ''}
+          value={end}
           onChange={handleEndDateChange}
           max={maxDate}
         />

@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { VegaLite } from 'react-vega';
-import type { VisualizationSpec } from 'vega-lite';
+
 import { BotActivity, ActivityType } from '../types';
 
 interface ActivityChartProps {
@@ -13,14 +13,14 @@ interface ChartData {
   status: string;
 }
 
-interface ChartSpec extends VisualizationSpec {
+type ChartSpec = {
   $schema: string;
   data: { values: ChartData[] };
   mark: { type: 'line' };
   encoding: {
-    x: { field: string; type: string; title: string };
-    y: { aggregate: string; type: string; title: string };
-    color: { field: string; type: string; title: string };
+    x: { field: 'date'; type: 'temporal'; title: 'Date' };
+    y: { aggregate: 'count'; type: 'quantitative'; title: 'Count' };
+    color: { field: 'status'; type: 'nominal'; title: 'Status' };
   };
   width: number;
   height: number;
@@ -31,10 +31,16 @@ export function ActivityChart({ activities, type }: ActivityChartProps): React.J
   const chartData = useMemo((): ChartData[] => {
     return activities
       .filter(a => a.type === type)
-      .map(a => ({
-        date: a.timestamp.split('T')[0],
-        status: a.status,
-      }));
+      .map(a => {
+        const [date] = a.timestamp.split('T');
+        if (date === undefined || date === '') {
+          throw new Error('Invalid timestamp format');
+        }
+        return {
+          date,
+          status: a.status,
+        };
+      });
   }, [activities, type]);
 
   const spec: ChartSpec = {

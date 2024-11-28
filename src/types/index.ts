@@ -16,9 +16,9 @@ export interface DateRange {
 }
 
 export interface ActivityFilter {
-  type?: ActivityType;
-  status?: ActivityStatus;
-  dateRange?: DateRange;
+  type?: ActivityType | undefined;
+  status?: ActivityStatus | undefined;
+  dateRange?: DateRange | undefined;
 }
 
 export interface AppState {
