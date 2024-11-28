@@ -64,9 +64,9 @@ async function fetchWithAuth<T>(url: string): Promise<GitHubResponse<T>> {
     const links = linkHeader.split(',');
     for (const link of links) {
       const [url, rel] = link.split(';');
-      if (rel.includes('rel="next"')) {
+      if (rel?.includes('rel="next"')) {
         hasNextPage = true;
-        nextUrl = url.trim().slice(1, -1); // Remove < and >
+        nextUrl = url?.trim()?.slice(1, -1) ?? null; // Remove < and >
         break;
       }
     }
