@@ -56,11 +56,11 @@ async function fetchWithAuth<T>(url: string): Promise<GitHubResponse<T>> {
   }
 
   // Parse Link header for pagination
-  const linkHeader = response.headers.get('Link');
+  const linkHeader = response.headers.get('Link') ?? '';
   let hasNextPage = false;
   let nextUrl: string | null = null;
 
-  if (linkHeader) {
+  if (linkHeader !== '') {
     const links = linkHeader.split(',');
     for (const link of links) {
       const [url, rel] = link.split(';');
@@ -81,16 +81,16 @@ async function fetchAllPages<T>(url: string): Promise<T[]> {
   let currentUrl = url;
   let pageCount = 0;
 
-  while (currentUrl) {
+  while (currentUrl !== '') {
     pageCount++;
-    console.log(`Fetching page ${pageCount} from ${currentUrl}`);
+    console.log(`Fetching page ${pageCount.toString()} from ${currentUrl}`);
     const response = await fetchWithAuth<T[]>(currentUrl);
-    console.log(`Got ${response.data.length} items`);
+    console.log(`Got ${response.data.length.toString()} items`);
     allItems.push(...response.data);
     currentUrl = response.nextUrl ?? '';
   }
 
-  console.log(`Total items fetched: ${allItems.length}`);
+  console.log(`Total items fetched: ${allItems.length.toString()}`);
   return allItems;
 }
 

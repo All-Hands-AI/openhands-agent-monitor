@@ -1,20 +1,21 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { fetchBotActivities } from './github';
+import type { BotActivity } from '../types';
 
 describe('GitHub Service', () => {
   beforeEach(() => {
     // Mock the fetch function
-    global.fetch = vi.fn();
+    vi.stubGlobal('fetch', vi.fn());
   });
 
-  function createMockResponse(data: any) {
+  function createMockResponse(data: unknown): Promise<Response> {
     return Promise.resolve({
       ok: true,
       status: 200,
       statusText: 'OK',
       json: () => Promise.resolve(data),
       headers: new Headers()
-    });
+    } as Response);
   }
 
   it('should detect openhands-agent comments in issues', async () => {
@@ -51,7 +52,7 @@ describe('GitHub Service', () => {
     ];
 
     // Mock API responses
-    (global.fetch as any).mockImplementation((url: string) => {
+    const mockFetch = vi.fn().mockImplementation((url: string) => {
       if (url.includes('/issues?')) {
         return createMockResponse(mockIssues);
       } else if (url.includes('/pulls?')) {
@@ -61,15 +62,19 @@ describe('GitHub Service', () => {
       }
       throw new Error(`Unexpected URL: ${url}`);
     });
+    vi.stubGlobal('fetch', mockFetch as unknown as typeof fetch);
 
     const activities = await fetchBotActivities();
     
     expect(activities).toHaveLength(1);
-    expect(activities[0]).toMatchObject({
+    expect(activities[0]).toMatchObject<Partial<BotActivity>>({
       type: 'issue',
       status: 'success',
       id: expect.stringContaining('issue-1'),
     });
+
+    // Restore the original fetch
+    vi.unstubAllGlobals();
   });
 
   it('should detect openhands-agent comments in PRs', async () => {
@@ -106,7 +111,7 @@ describe('GitHub Service', () => {
     ];
 
     // Mock API responses
-    (global.fetch as any).mockImplementation((url: string) => {
+    const mockFetch = vi.fn().mockImplementation((url: string) => {
       if (url.includes('/issues?')) {
         return createMockResponse([]);  // Empty issues
       } else if (url.includes('/pulls?')) {
@@ -116,14 +121,18 @@ describe('GitHub Service', () => {
       }
       throw new Error(`Unexpected URL: ${url}`);
     });
+    vi.stubGlobal('fetch', mockFetch as unknown as typeof fetch);
 
     const activities = await fetchBotActivities();
     
     expect(activities).toHaveLength(1);
-    expect(activities[0]).toMatchObject({
+    expect(activities[0]).toMatchObject<Partial<BotActivity>>({
       type: 'pr',
       status: 'success',
       id: expect.stringContaining('pr-1'),
     });
+
+    // Restore the original fetch
+    vi.unstubAllGlobals();
   });
 });
