@@ -82,7 +82,7 @@ function App(): React.JSX.Element {
         />
       </section>
 
-      {state.loading === true ? (
+      {state.loading ? (
         <LoadingSpinner />
       ) : state.error !== null ? (
         <ErrorMessage

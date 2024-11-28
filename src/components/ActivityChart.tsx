@@ -9,7 +9,7 @@ interface ActivityChartProps {
 }
 
 export function ActivityChart({ activities, type }: ActivityChartProps): React.JSX.Element {
-  const spec: VisualizationSpec = useMemo(() => ({
+  const spec = useMemo((): VisualizationSpec => ({
     $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
     data: {
       values: activities

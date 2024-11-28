@@ -42,6 +42,6 @@
     "allowJs": false,
     "checkJs": false
   },
-  "include": ["src"],
+  "include": ["src", "*.ts"],
   "exclude": ["node_modules"]
 }
