@@ -45,27 +45,43 @@ async function fetchWithAuth<T>(url: string): Promise<T> {
 }
 
 function isStartWorkComment(comment: GitHubComment): boolean {
-  return comment.body.includes('I will help you resolve this issue');
+  const lowerBody = comment.body.toLowerCase();
+  return lowerBody.includes('i will help you') || 
+         lowerBody.includes('i\'ll help you') ||
+         lowerBody.includes('i can help you');
 }
 
 function isSuccessComment(comment: GitHubComment): boolean {
-  return comment.body.includes('I have created a pull request');
+  const lowerBody = comment.body.toLowerCase();
+  return lowerBody.includes('created a pull request') ||
+         lowerBody.includes('opened a pull request') ||
+         lowerBody.includes('submitted a pull request');
 }
 
 function isFailureComment(comment: GitHubComment): boolean {
-  return comment.body.includes('I apologize, but I was unable to resolve this issue');
+  const lowerBody = comment.body.toLowerCase();
+  return (lowerBody.includes('apologize') || lowerBody.includes('sorry')) &&
+         (lowerBody.includes('unable to') || lowerBody.includes('cannot') || lowerBody.includes('can\'t'));
 }
 
 function isPRModificationComment(comment: GitHubComment): boolean {
-  return comment.body.includes('I will help you modify this pull request');
+  const lowerBody = comment.body.toLowerCase();
+  return lowerBody.includes('help you modify') ||
+         lowerBody.includes('help you update') ||
+         lowerBody.includes('help you with the changes');
 }
 
 function isPRModificationSuccessComment(comment: GitHubComment): boolean {
-  return comment.body.includes('I have successfully updated the pull request');
+  const lowerBody = comment.body.toLowerCase();
+  return lowerBody.includes('updated the pull request') ||
+         lowerBody.includes('made the requested changes') ||
+         lowerBody.includes('applied the changes');
 }
 
 function isPRModificationFailureComment(comment: GitHubComment): boolean {
-  return comment.body.includes('I apologize, but I was unable to modify this pull request');
+  const lowerBody = comment.body.toLowerCase();
+  return (lowerBody.includes('apologize') || lowerBody.includes('sorry')) &&
+         (lowerBody.includes('unable to modify') || lowerBody.includes('cannot modify') || lowerBody.includes('can\'t modify'));
 }
 
 async function processIssueComments(issue: GitHubIssue): Promise<BotActivity[]> {
