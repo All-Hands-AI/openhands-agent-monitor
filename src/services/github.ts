@@ -2,13 +2,19 @@ import { BotActivity } from '../types';
 
 const GITHUB_TOKEN = process.env['VITE_GITHUB_TOKEN'] ?? '';
 const REPO_OWNER = 'All-Hands-AI';
-const REPO_NAME = 'OpenHands';
+const REPO_NAME = 'openhands';
+
+interface GitHubUser {
+  login: string;
+  type: string;
+}
 
 interface GitHubComment {
   id: string;
   html_url: string;
   created_at: string;
   body: string;
+  user: GitHubUser;
 }
 
 interface GitHubIssue {
@@ -44,14 +50,22 @@ async function fetchWithAuth<T>(url: string): Promise<T> {
   return response.json() as Promise<T>;
 }
 
+function isBotComment(comment: GitHubComment): boolean {
+  return comment.user.login === 'openhands-agent' || 
+         (comment.user.login === 'github-actions[bot]' && comment.user.type === 'Bot');
+}
+
 function isStartWorkComment(comment: GitHubComment): boolean {
+  if (!isBotComment(comment)) return false;
   const lowerBody = comment.body.toLowerCase();
-  return lowerBody.includes('i will help you') || 
+  return lowerBody.includes('started fixing the issue') || 
+         lowerBody.includes('i will help you') || 
          lowerBody.includes('i\'ll help you') ||
          lowerBody.includes('i can help you');
 }
 
 function isSuccessComment(comment: GitHubComment): boolean {
+  if (!isBotComment(comment)) return false;
   const lowerBody = comment.body.toLowerCase();
   return lowerBody.includes('created a pull request') ||
          lowerBody.includes('opened a pull request') ||
@@ -59,12 +73,16 @@ function isSuccessComment(comment: GitHubComment): boolean {
 }
 
 function isFailureComment(comment: GitHubComment): boolean {
+  if (!isBotComment(comment)) return false;
   const lowerBody = comment.body.toLowerCase();
   return (lowerBody.includes('apologize') || lowerBody.includes('sorry')) &&
-         (lowerBody.includes('unable to') || lowerBody.includes('cannot') || lowerBody.includes('can\'t'));
+         (lowerBody.includes('unable to') || lowerBody.includes('cannot') || lowerBody.includes('can\'t')) ||
+         lowerBody.includes('unsuccessful') ||
+         lowerBody.includes('manual intervention may be required');
 }
 
 function isPRModificationComment(comment: GitHubComment): boolean {
+  if (!isBotComment(comment)) return false;
   const lowerBody = comment.body.toLowerCase();
   return lowerBody.includes('help you modify') ||
          lowerBody.includes('help you update') ||
@@ -72,6 +90,7 @@ function isPRModificationComment(comment: GitHubComment): boolean {
 }
 
 function isPRModificationSuccessComment(comment: GitHubComment): boolean {
+  if (!isBotComment(comment)) return false;
   const lowerBody = comment.body.toLowerCase();
   return lowerBody.includes('updated the pull request') ||
          lowerBody.includes('made the requested changes') ||
@@ -79,9 +98,12 @@ function isPRModificationSuccessComment(comment: GitHubComment): boolean {
 }
 
 function isPRModificationFailureComment(comment: GitHubComment): boolean {
+  if (!isBotComment(comment)) return false;
   const lowerBody = comment.body.toLowerCase();
   return (lowerBody.includes('apologize') || lowerBody.includes('sorry')) &&
-         (lowerBody.includes('unable to modify') || lowerBody.includes('cannot modify') || lowerBody.includes('can\'t modify'));
+         (lowerBody.includes('unable to modify') || lowerBody.includes('cannot modify') || lowerBody.includes('can\'t modify')) ||
+         lowerBody.includes('unsuccessful') ||
+         lowerBody.includes('manual intervention may be required');
 }
 
 async function processIssueComments(issue: GitHubIssue): Promise<BotActivity[]> {
