@@ -7,7 +7,7 @@ on:
     branches: [ main, openhands-workspace ]
 
 jobs:
-  test:
+  verify:
     runs-on: ubuntu-latest
 
     strategy:
@@ -26,8 +26,26 @@ jobs:
     - name: Install dependencies
       run: npm ci
     
+    - name: Run linting
+      run: npm run lint
+      
+    - name: Run type checking
+      run: npm run typecheck
+    
     - name: Run tests
       run: npm test
       env:
         CI: true
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Build verification
+      run: npm run build
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: dist
+        path: dist/
+        retention-days: 7
