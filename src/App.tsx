@@ -5,7 +5,7 @@ import { DateRangeFilter } from './components/DateRangeFilter';
 import { ActivityChart } from './components/ActivityChart';
 import { LoadingSpinner } from './components/LoadingSpinner';
 import { ErrorMessage } from './components/ErrorMessage';
-import { ActivityFilter as FilterType, BotActivity, DateRange, AppState } from './types';
+import { ActivityFilter as FilterType, DateRange, AppState } from './types';
 import { fetchBotActivities } from './services/github';
 import './App.css';
 

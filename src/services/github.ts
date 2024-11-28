@@ -15,7 +15,12 @@ interface GitHubIssue {
   number: number;
   html_url: string;
   comments_url: string;
-  pull_request?: any;
+  pull_request?: {
+    url: string;
+    html_url: string;
+    diff_url: string;
+    patch_url: string;
+  };
 }
 
 interface GitHubPR {
@@ -24,7 +29,7 @@ interface GitHubPR {
   comments_url: string;
 }
 
-async function fetchWithAuth(url: string): Promise<any> {
+async function fetchWithAuth<T>(url: string): Promise<T> {
   const response = await fetch(url, {
     headers: {
       'Authorization': `Bearer ${GITHUB_TOKEN}`,
@@ -65,7 +70,7 @@ function isPRModificationFailureComment(comment: GitHubComment): boolean {
 
 async function processIssueComments(issue: GitHubIssue): Promise<BotActivity[]> {
   const activities: BotActivity[] = [];
-  const comments: GitHubComment[] = await fetchWithAuth(issue.comments_url);
+  const comments = await fetchWithAuth<GitHubComment[]>(issue.comments_url);
 
   for (let i = 0; i < comments.length; i++) {
     const comment = comments[i];
@@ -78,14 +83,16 @@ async function processIssueComments(issue: GitHubIssue): Promise<BotActivity[]> 
 
       if (successComment || failureComment) {
         const resultComment = successComment || failureComment;
-        activities.push({
-          id: `issue-${issue.number}-${comment.id}`,
-          type: 'issue',
-          status: successComment ? 'success' : 'failure',
-          timestamp: comment.created_at,
-          url: resultComment!.html_url,
-          description: resultComment!.body,
-        });
+        if (resultComment) {
+          activities.push({
+            id: `issue-${issue.number}-${comment.id}`,
+            type: 'issue',
+            status: successComment ? 'success' : 'failure',
+            timestamp: comment.created_at,
+            url: resultComment.html_url,
+            description: resultComment.body,
+          });
+        }
       }
     }
   }
@@ -95,7 +102,7 @@ async function processIssueComments(issue: GitHubIssue): Promise<BotActivity[]> 
 
 async function processPRComments(pr: GitHubPR): Promise<BotActivity[]> {
   const activities: BotActivity[] = [];
-  const comments: GitHubComment[] = await fetchWithAuth(pr.comments_url);
+  const comments = await fetchWithAuth<GitHubComment[]>(pr.comments_url);
 
   for (let i = 0; i < comments.length; i++) {
     const comment = comments[i];
@@ -108,14 +115,16 @@ async function processPRComments(pr: GitHubPR): Promise<BotActivity[]> {
 
       if (successComment || failureComment) {
         const resultComment = successComment || failureComment;
-        activities.push({
-          id: `pr-${pr.number}-${comment.id}`,
-          type: 'pr',
-          status: successComment ? 'success' : 'failure',
-          timestamp: comment.created_at,
-          url: resultComment!.html_url,
-          description: resultComment!.body,
-        });
+        if (resultComment) {
+          activities.push({
+            id: `pr-${pr.number}-${comment.id}`,
+            type: 'pr',
+            status: successComment ? 'success' : 'failure',
+            timestamp: comment.created_at,
+            url: resultComment.html_url,
+            description: resultComment.body,
+          });
+        }
       }
     }
   }
@@ -141,7 +150,7 @@ export async function fetchBotActivities(since?: string): Promise<BotActivity[]>
     }
 
     // Fetch issues
-    const issues: GitHubIssue[] = await fetchWithAuth(`${baseUrl}/issues?${params}`);
+    const issues = await fetchWithAuth<GitHubIssue[]>(`${baseUrl}/issues?${params}`);
     for (const issue of issues) {
       if (!issue.pull_request) { // Skip PRs from issues endpoint
         const issueActivities = await processIssueComments(issue);
@@ -150,7 +159,7 @@ export async function fetchBotActivities(since?: string): Promise<BotActivity[]>
     }
 
     // Fetch PRs
-    const prs: GitHubPR[] = await fetchWithAuth(`${baseUrl}/pulls?${params}`);
+    const prs = await fetchWithAuth<GitHubPR[]>(`${baseUrl}/pulls?${params}`);
     for (const pr of prs) {
       const prActivities = await processPRComments(pr);
       activities.push(...prActivities);
