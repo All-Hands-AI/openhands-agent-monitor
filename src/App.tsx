@@ -9,7 +9,7 @@ import { ActivityFilter as FilterType, DateRange, AppState } from './types';
 import { fetchBotActivities } from './services/github';
 import './App.css';
 
-function App() {
+function App(): JSX.Element {
   const [state, setState] = useState<AppState>({
     activities: [],
     loading: true,
@@ -17,7 +17,7 @@ function App() {
     filter: {},
   });
 
-  const loadActivities = useCallback(async () => {
+  const loadActivities = useCallback(async (): Promise<void> => {
     setState(prev => ({ ...prev, loading: true, error: null }));
     try {
       const since = state.filter.dateRange?.start;
@@ -33,14 +33,14 @@ function App() {
   }, [state.filter.dateRange?.start]);
 
   useEffect(() => {
-    loadActivities();
+    void loadActivities();
   }, [loadActivities]);
 
-  const handleFilterChange = (filter: FilterType) => {
+  const handleFilterChange = (filter: FilterType): void => {
     setState(prev => ({ ...prev, filter }));
   };
 
-  const handleDateRangeChange = (dateRange?: DateRange) => {
+  const handleDateRangeChange = (dateRange?: DateRange): void => {
     setState(prev => ({
       ...prev,
       filter: {
@@ -50,10 +50,14 @@ function App() {
     }));
   };
 
+  const handleRetry = (): void => {
+    void loadActivities();
+  };
+
   const filteredActivities = state.activities.filter((activity) => {
     if (state.filter.type && activity.type !== state.filter.type) return false;
     if (state.filter.status && activity.status !== state.filter.status) return false;
-    if (state.filter.dateRange) {
+    if (state.filter.dateRange && state.filter.dateRange.start && state.filter.dateRange.end) {
       const activityDate = new Date(activity.timestamp);
       const startDate = new Date(state.filter.dateRange.start);
       const endDate = new Date(state.filter.dateRange.end);
@@ -83,7 +87,7 @@ function App() {
       ) : state.error ? (
         <ErrorMessage
           message={state.error}
-          onRetry={loadActivities}
+          onRetry={handleRetry}
         />
       ) : (
         <>

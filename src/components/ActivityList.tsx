@@ -4,7 +4,7 @@ interface ActivityListProps {
   activities: BotActivity[];
 }
 
-export function ActivityList({ activities }: ActivityListProps) {
+export function ActivityList({ activities }: ActivityListProps): JSX.Element {
   return (
     <div className="activity-list">
       {activities.map((activity) => (

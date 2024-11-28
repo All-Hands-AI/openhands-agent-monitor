@@ -1,6 +1,6 @@
 import { BotActivity } from '../types';
 
-const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN ?? '';
 const REPO_OWNER = 'All-Hands-AI';
 const REPO_NAME = 'OpenHands';
 
@@ -38,10 +38,10 @@ async function fetchWithAuth<T>(url: string): Promise<T> {
   });
 
   if (!response.ok) {
-    throw new Error(`GitHub API error: ${response.status} ${response.statusText}`);
+    throw new Error(`GitHub API error: ${response.status.toString()} ${response.statusText}`);
   }
 
-  return response.json();
+  return response.json() as Promise<T>;
 }
 
 function isStartWorkComment(comment: GitHubComment): boolean {
@@ -81,13 +81,13 @@ async function processIssueComments(issue: GitHubIssue): Promise<BotActivity[]> 
       const successComment = nextComments.find(isSuccessComment);
       const failureComment = nextComments.find(isFailureComment);
 
-      if (successComment || failureComment) {
-        const resultComment = successComment || failureComment;
-        if (resultComment) {
+      if ((successComment !== undefined || failureComment !== undefined) && issue.number !== undefined) {
+        const resultComment = successComment ?? failureComment;
+        if (resultComment !== undefined) {
           activities.push({
-            id: `issue-${issue.number}-${comment.id}`,
+            id: `issue-${issue.number.toString()}-${comment.id}`,
             type: 'issue',
-            status: successComment ? 'success' : 'failure',
+            status: successComment !== undefined ? 'success' : 'failure',
             timestamp: comment.created_at,
             url: resultComment.html_url,
             description: resultComment.body,
@@ -113,13 +113,13 @@ async function processPRComments(pr: GitHubPR): Promise<BotActivity[]> {
       const successComment = nextComments.find(isPRModificationSuccessComment);
       const failureComment = nextComments.find(isPRModificationFailureComment);
 
-      if (successComment || failureComment) {
-        const resultComment = successComment || failureComment;
-        if (resultComment) {
+      if ((successComment !== undefined || failureComment !== undefined) && pr.number !== undefined) {
+        const resultComment = successComment ?? failureComment;
+        if (resultComment !== undefined) {
           activities.push({
-            id: `pr-${pr.number}-${comment.id}`,
+            id: `pr-${pr.number.toString()}-${comment.id}`,
             type: 'pr',
-            status: successComment ? 'success' : 'failure',
+            status: successComment !== undefined ? 'success' : 'failure',
             timestamp: comment.created_at,
             url: resultComment.html_url,
             description: resultComment.body,
@@ -145,21 +145,21 @@ export async function fetchBotActivities(since?: string): Promise<BotActivity[]>
       per_page: '100',
     });
 
-    if (since) {
+    if (since !== undefined && since !== '') {
       params.append('since', since);
     }
 
     // Fetch issues
-    const issues = await fetchWithAuth<GitHubIssue[]>(`${baseUrl}/issues?${params}`);
+    const issues = await fetchWithAuth<GitHubIssue[]>(`${baseUrl}/issues?${params.toString()}`);
     for (const issue of issues) {
-      if (!issue.pull_request) { // Skip PRs from issues endpoint
+      if (issue.pull_request === undefined) { // Skip PRs from issues endpoint
         const issueActivities = await processIssueComments(issue);
         activities.push(...issueActivities);
       }
     }
 
     // Fetch PRs
-    const prs = await fetchWithAuth<GitHubPR[]>(`${baseUrl}/pulls?${params}`);
+    const prs = await fetchWithAuth<GitHubPR[]>(`${baseUrl}/pulls?${params.toString()}`);
     for (const pr of prs) {
       const prActivities = await processPRComments(pr);
       activities.push(...prActivities);

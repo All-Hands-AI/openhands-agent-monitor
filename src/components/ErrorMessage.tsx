@@ -3,11 +3,11 @@ interface ErrorMessageProps {
   onRetry: () => void;
 }
 
-export function ErrorMessage({ message, onRetry }: ErrorMessageProps) {
+export function ErrorMessage({ message, onRetry }: ErrorMessageProps): JSX.Element {
   return (
     <div className="error-message">
       <p>{message}</p>
-      <button onClick={onRetry}>Retry</button>
+      <button type="button" onClick={onRetry}>Retry</button>
     </div>
   );
 }

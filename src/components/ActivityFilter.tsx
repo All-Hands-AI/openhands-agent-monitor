@@ -5,19 +5,27 @@ interface ActivityFilterProps {
   onFilterChange: (filter: FilterType) => void;
 }
 
-export function ActivityFilter({ filter, onFilterChange }: ActivityFilterProps) {
-  const handleTypeChange = (type: ActivityType | '') => {
+export function ActivityFilter({ filter, onFilterChange }: ActivityFilterProps): JSX.Element {
+  const handleTypeChange = (type: ActivityType | ''): void => {
     onFilterChange({
       ...filter,
-      type: type || undefined,
+      type: type === '' ? undefined : type,
     });
   };
 
-  const handleStatusChange = (status: ActivityStatus | '') => {
+  const handleStatusChange = (status: ActivityStatus | ''): void => {
     onFilterChange({
       ...filter,
-      status: status || undefined,
+      status: status === '' ? undefined : status,
     });
+  };
+
+  const handleTypeSelect = (e: React.ChangeEvent<HTMLSelectElement>): void => {
+    handleTypeChange(e.target.value as ActivityType | '');
+  };
+
+  const handleStatusSelect = (e: React.ChangeEvent<HTMLSelectElement>): void => {
+    handleStatusChange(e.target.value as ActivityStatus | '');
   };
 
   return (
@@ -26,8 +34,8 @@ export function ActivityFilter({ filter, onFilterChange }: ActivityFilterProps) 
         <label htmlFor="type-filter">Type:</label>
         <select
           id="type-filter"
-          value={filter.type || ''}
-          onChange={(e) => handleTypeChange(e.target.value as ActivityType | '')}
+          value={filter.type ?? ''}
+          onChange={handleTypeSelect}
         >
           <option value="">All</option>
           <option value="issue">Issue</option>
@@ -39,8 +47,8 @@ export function ActivityFilter({ filter, onFilterChange }: ActivityFilterProps) 
         <label htmlFor="status-filter">Status:</label>
         <select
           id="status-filter"
-          value={filter.status || ''}
-          onChange={(e) => handleStatusChange(e.target.value as ActivityStatus | '')}
+          value={filter.status ?? ''}
+          onChange={handleStatusSelect}
         >
           <option value="">All</option>
           <option value="success">Success</option>
