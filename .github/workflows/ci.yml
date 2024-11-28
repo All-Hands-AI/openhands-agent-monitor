@@ -24,14 +24,20 @@ jobs:
       
     - name: Type check
       run: npm run typecheck
+      env:
+        VITE_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
     - name: Lint
       run: npm run lint
+      env:
+        VITE_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
     - name: Build
       run: npm run build
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        VITE_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
     - name: Test
       run: npm run test
+      env:
+        VITE_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
