@@ -8,29 +8,33 @@ interface DateRangeFilterProps {
 export function DateRangeFilter({ dateRange, onDateRangeChange }: DateRangeFilterProps) {
   const handleStartDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const start = event.target.value;
-    if (start && dateRange?.end) {
-      onDateRangeChange({ start, end: dateRange.end });
+    const end = dateRange?.end || '';
+
+    if (!start && !end) {
+      onDateRangeChange(undefined);
+    } else if (start && end) {
+      onDateRangeChange({ start, end });
     } else if (start) {
       onDateRangeChange({ start, end: new Date().toISOString().split('T')[0] });
-    } else if (dateRange?.end) {
-      onDateRangeChange({ start: '', end: dateRange.end });
-    } else {
-      onDateRangeChange(undefined);
+    } else if (end) {
+      onDateRangeChange({ start: '', end });
     }
   };
 
   const handleEndDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const end = event.target.value;
-    if (end && dateRange?.start) {
-      onDateRangeChange({ start: dateRange.start, end });
+    const start = dateRange?.start || '';
+
+    if (!end && !start) {
+      onDateRangeChange(undefined);
+    } else if (end && start) {
+      onDateRangeChange({ start, end });
     } else if (end) {
       const thirtyDaysAgo = new Date();
       thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
       onDateRangeChange({ start: thirtyDaysAgo.toISOString().split('T')[0], end });
-    } else if (dateRange?.start) {
-      onDateRangeChange({ start: dateRange.start, end: '' });
-    } else {
-      onDateRangeChange(undefined);
+    } else if (start) {
+      onDateRangeChange({ start, end: '' });
     }
   };
 
