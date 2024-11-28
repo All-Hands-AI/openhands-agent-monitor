@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { VegaLite } from 'react-vega';
-import { VisualizationSpec } from 'vega-lite';
+import type { VisualizationSpec } from 'vega-lite';
 import { BotActivity, ActivityType } from '../types';
 
 interface ActivityChartProps {
@@ -8,18 +8,39 @@ interface ActivityChartProps {
   type: ActivityType;
 }
 
+interface ChartData {
+  date: string;
+  status: string;
+}
+
+interface ChartSpec extends VisualizationSpec {
+  $schema: string;
+  data: { values: ChartData[] };
+  mark: { type: 'line' };
+  encoding: {
+    x: { field: string; type: string; title: string };
+    y: { aggregate: string; type: string; title: string };
+    color: { field: string; type: string; title: string };
+  };
+  width: number;
+  height: number;
+  title: string;
+}
+
 export function ActivityChart({ activities, type }: ActivityChartProps): React.JSX.Element {
-  const spec = useMemo((): VisualizationSpec => ({
+  const chartData = useMemo((): ChartData[] => {
+    return activities
+      .filter(a => a.type === type)
+      .map(a => ({
+        date: a.timestamp.split('T')[0],
+        status: a.status,
+      }));
+  }, [activities, type]);
+
+  const spec: ChartSpec = {
     $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
-    data: {
-      values: activities
-        .filter(a => a.type === type)
-        .map(a => ({
-          date: a.timestamp.split('T')[0],
-          status: a.status,
-        })),
-    },
-    mark: { type: 'line' } as const,
+    data: { values: chartData },
+    mark: { type: 'line' },
     encoding: {
       x: {
         field: 'date',
@@ -40,7 +61,7 @@ export function ActivityChart({ activities, type }: ActivityChartProps): React.J
     width: 500,
     height: 300,
     title: `${type.toUpperCase()} Activity Over Time`,
-  }), [activities, type]);
+  };
 
   return <VegaLite spec={spec} />;
 }
