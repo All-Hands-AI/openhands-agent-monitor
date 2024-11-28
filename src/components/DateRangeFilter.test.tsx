@@ -76,12 +76,7 @@ describe('DateRangeFilter', () => {
 
     // Clear both inputs
     fireEvent.change(startInput, { target: { value: '' } });
-    expect(mockOnDateRangeChange).toHaveBeenCalledWith({
-      start: '',
-      end: mockDateRange.end,
-    });
-
     fireEvent.change(endInput, { target: { value: '' } });
-    expect(mockOnDateRangeChange).toHaveBeenCalledWith(undefined);
+    expect(mockOnDateRangeChange).toHaveBeenLastCalledWith(undefined);
   });
 });

@@ -1,6 +1,6 @@
 import { BotActivity } from '../types';
 
-const GITHUB_TOKEN = process.env.GITHUB_TOKEN ?? '';
+const GITHUB_TOKEN = process.env['GITHUB_TOKEN'] ?? '';
 const REPO_OWNER = 'All-Hands-AI';
 const REPO_NAME = 'OpenHands';
 
@@ -74,25 +74,22 @@ async function processIssueComments(issue: GitHubIssue): Promise<BotActivity[]> 
 
   for (let i = 0; i < comments.length; i++) {
     const comment = comments[i];
-
-    if (isStartWorkComment(comment)) {
+    if (comment && isStartWorkComment(comment)) {
       // Look for the next relevant comment to determine success/failure
       const nextComments = comments.slice(i + 1);
       const successComment = nextComments.find(isSuccessComment);
       const failureComment = nextComments.find(isFailureComment);
 
-      if (successComment !== undefined || failureComment !== undefined) {
-        const resultComment = successComment ?? failureComment;
-        if (resultComment !== undefined) {
-          activities.push({
-            id: `issue-${issue.number.toString()}-${comment.id}`,
-            type: 'issue',
-            status: successComment !== undefined ? 'success' : 'failure',
-            timestamp: comment.created_at,
-            url: resultComment.html_url,
-            description: resultComment.body,
-          });
-        }
+      const resultComment = successComment ?? failureComment;
+      if (resultComment !== undefined) {
+        activities.push({
+          id: `issue-${issue.number.toString()}-${comment.id}`,
+          type: 'issue',
+          status: successComment !== undefined ? 'success' : 'failure',
+          timestamp: comment.created_at,
+          url: resultComment.html_url,
+          description: resultComment.body,
+        });
       }
     }
   }
@@ -106,25 +103,22 @@ async function processPRComments(pr: GitHubPR): Promise<BotActivity[]> {
 
   for (let i = 0; i < comments.length; i++) {
     const comment = comments[i];
-
-    if (isPRModificationComment(comment)) {
+    if (comment && isPRModificationComment(comment)) {
       // Look for the next relevant comment to determine success/failure
       const nextComments = comments.slice(i + 1);
       const successComment = nextComments.find(isPRModificationSuccessComment);
       const failureComment = nextComments.find(isPRModificationFailureComment);
 
-      if (successComment !== undefined || failureComment !== undefined) {
-        const resultComment = successComment ?? failureComment;
-        if (resultComment !== undefined) {
-          activities.push({
-            id: `pr-${pr.number.toString()}-${comment.id}`,
-            type: 'pr',
-            status: successComment !== undefined ? 'success' : 'failure',
-            timestamp: comment.created_at,
-            url: resultComment.html_url,
-            description: resultComment.body,
-          });
-        }
+      const resultComment = successComment ?? failureComment;
+      if (resultComment !== undefined) {
+        activities.push({
+          id: `pr-${pr.number.toString()}-${comment.id}`,
+          type: 'pr',
+          status: successComment !== undefined ? 'success' : 'failure',
+          timestamp: comment.created_at,
+          url: resultComment.html_url,
+          description: resultComment.body,
+        });
       }
     }
   }
