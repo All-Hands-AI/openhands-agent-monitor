@@ -68,7 +68,10 @@ function App(): React.JSX.Element {
 
   return (
     <div className="app">
-      <h1>OpenHands Bot Activity Monitor</h1>
+      <div className="app-header">
+        <img src="/src/assets/logo.png" alt="OpenHands Logo" className="app-logo" />
+        <h1>Bot Activity Monitor</h1>
+      </div>
       
       <section className="filters">
         <h2>Filters</h2>
