@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import { VegaLite } from 'react-vega';
+import { VisualizationSpec } from 'vega-lite';
 import { BotActivity, ActivityType } from '../types';
 
 interface ActivityChartProps {
@@ -8,7 +9,7 @@ interface ActivityChartProps {
 }
 
 export function ActivityChart({ activities, type }: ActivityChartProps) {
-  const spec = useMemo(() => ({
+  const spec: VisualizationSpec = useMemo(() => ({
     $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
     data: {
       values: activities
@@ -18,7 +19,7 @@ export function ActivityChart({ activities, type }: ActivityChartProps) {
           status: a.status,
         })),
     },
-    mark: { type: 'line' },
+    mark: 'line',
     encoding: {
       x: {
         field: 'date',
