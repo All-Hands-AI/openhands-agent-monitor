@@ -69,7 +69,7 @@ function App(): React.JSX.Element {
   return (
     <div className="app">
       <div className="app-header">
-        <img src="/src/assets/logo.png" alt="OpenHands Logo" className="app-logo" />
+        <img src="/logo.png" alt="OpenHands Logo" className="app-logo" />
         <h1>Bot Activity Monitor</h1>
       </div>
       
