@@ -74,11 +74,14 @@ describe('DateRangeFilter', () => {
     const startInput = screen.getByLabelText('From:');
     const endInput = screen.getByLabelText('To:');
 
-    // Clear both inputs at once
+    // Clear both inputs
     fireEvent.change(startInput, { target: { value: '' } });
-    fireEvent.change(endInput, { target: { value: '' } });
+    expect(mockOnDateRangeChange).toHaveBeenCalledWith({
+      start: '',
+      end: mockDateRange.end,
+    });
 
-    // Verify that undefined was called at some point
+    fireEvent.change(endInput, { target: { value: '' } });
     expect(mockOnDateRangeChange).toHaveBeenCalledWith(undefined);
   });
 });

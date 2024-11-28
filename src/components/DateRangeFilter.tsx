@@ -12,12 +12,8 @@ export function DateRangeFilter({ dateRange, onDateRangeChange }: DateRangeFilte
 
     if (!start && !end) {
       onDateRangeChange(undefined);
-    } else if (start && end) {
+    } else {
       onDateRangeChange({ start, end });
-    } else if (start) {
-      onDateRangeChange({ start, end: new Date().toISOString().split('T')[0] });
-    } else if (end) {
-      onDateRangeChange({ start: '', end });
     }
   };
 
@@ -27,14 +23,8 @@ export function DateRangeFilter({ dateRange, onDateRangeChange }: DateRangeFilte
 
     if (!end && !start) {
       onDateRangeChange(undefined);
-    } else if (end && start) {
+    } else {
       onDateRangeChange({ start, end });
-    } else if (end) {
-      const thirtyDaysAgo = new Date();
-      thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
-      onDateRangeChange({ start: thirtyDaysAgo.toISOString().split('T')[0], end });
-    } else if (start) {
-      onDateRangeChange({ start, end: '' });
     }
   };
 
