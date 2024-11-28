@@ -10,11 +10,20 @@ export interface BotActivity {
   description: string;
 }
 
+export interface DateRange {
+  start: string;
+  end: string;
+}
+
 export interface ActivityFilter {
   type?: ActivityType;
   status?: ActivityStatus;
-  dateRange?: {
-    start: string;
-    end: string;
-  };
+  dateRange?: DateRange;
+}
+
+export interface AppState {
+  activities: BotActivity[];
+  loading: boolean;
+  error: string | null;
+  filter: ActivityFilter;
 }
