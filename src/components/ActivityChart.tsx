@@ -8,7 +8,7 @@ interface ActivityChartProps {
   type: ActivityType;
 }
 
-export function ActivityChart({ activities, type }: ActivityChartProps) {
+export function ActivityChart({ activities, type }: ActivityChartProps): JSX.Element {
   const spec: VisualizationSpec = useMemo(() => ({
     $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
     data: {
@@ -19,7 +19,7 @@ export function ActivityChart({ activities, type }: ActivityChartProps) {
           status: a.status,
         })),
     },
-    mark: 'line',
+    mark: { type: 'line' } as const,
     encoding: {
       x: {
         field: 'date',
