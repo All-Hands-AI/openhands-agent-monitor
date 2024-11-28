@@ -1,40 +1,50 @@
-# OpenHands Agent Monitor
+# React + TypeScript + Vite
 
-A web application to monitor and visualize the activity of the OpenHands GitHub bot.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Features
+Currently, two official plugins are available:
 
-### 1. Activity Listing
-- Lists all attempted issue resolutions and PR modifications
-- Entries are sorted by date
-- Each entry shows:
-  - Type (Issue/PR)
-  - Status (Success/Failure)
-  - Timestamp
-  - Link to the relevant GitHub item
-  - Description of the action taken
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-### 2. Filtering Capabilities
-- Filter by activity type:
-  - Issue resolutions
-  - PR modifications
-- Filter by outcome:
-  - Successful attempts
-  - Failed attempts
+## Expanding the ESLint configuration
 
-### 3. Visualization
-- Stacked line charts showing activity over time
-- Separate charts for:
-  - Issue resolutions (successful vs failed attempts)
-  - PR modifications (successful vs failed attempts)
-- Implemented using Vega-Lite for interactive visualization
+If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
 
-## Technical Stack
-- Vite for build tooling and development environment
-- React for UI components
-- TypeScript for type safety
-- Vitest for testing
-- Vega-Lite for data visualization
+- Configure the top-level `parserOptions` property like this:
 
-## Development
-(Instructions for setup and development will be added as the project progresses)
+```js
+export default tseslint.config({
+  languageOptions: {
+    // other options...
+    parserOptions: {
+      project: ['./tsconfig.node.json', './tsconfig.app.json'],
+      tsconfigRootDir: import.meta.dirname,
+    },
+  },
+})
+```
+
+- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
+- Optionally add `...tseslint.configs.stylisticTypeChecked`
+- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+
+```js
+// eslint.config.js
+import react from 'eslint-plugin-react'
+
+export default tseslint.config({
+  // Set the react version
+  settings: { react: { version: '18.3' } },
+  plugins: {
+    // Add the react plugin
+    react,
+  },
+  rules: {
+    // other rules...
+    // Enable its recommended rules
+    ...react.configs.recommended.rules,
+    ...react.configs['jsx-runtime'].rules,
+  },
+})
+```
