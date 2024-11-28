@@ -70,7 +70,7 @@ describe('GitHub Service', () => {
     expect(activities[0]).toMatchObject<Partial<BotActivity>>({
       type: 'issue',
       status: 'success',
-      id: expect.stringContaining('issue-1'),
+      id: expect.stringContaining('issue-1') as string,
     });
 
     // Restore the original fetch
@@ -129,7 +129,7 @@ describe('GitHub Service', () => {
     expect(activities[0]).toMatchObject<Partial<BotActivity>>({
       type: 'pr',
       status: 'success',
-      id: expect.stringContaining('pr-1'),
+      id: expect.stringContaining('pr-1') as string,
     });
 
     // Restore the original fetch
