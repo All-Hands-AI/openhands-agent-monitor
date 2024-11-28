@@ -5,28 +5,30 @@ interface DateRangeFilterProps {
   onDateRangeChange: (dateRange?: DateRange) => void;
 }
 
-export function DateRangeFilter({ dateRange, onDateRangeChange }: DateRangeFilterProps) {
-  const handleStartDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+export function DateRangeFilter({ dateRange, onDateRangeChange }: DateRangeFilterProps): React.JSX.Element {
+  const handleStartDateChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const start = event.target.value;
-    const end = dateRange?.end || '';
+    const end = dateRange?.end ?? '';
 
-    if (!start && !end) {
+    if (start === '' && end === '') {
       onDateRangeChange(undefined);
     } else {
       onDateRangeChange({ start, end });
     }
   };
 
-  const handleEndDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleEndDateChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const end = event.target.value;
-    const start = dateRange?.start || '';
+    const start = dateRange?.start ?? '';
 
-    if (!end && !start) {
+    if (end === '' && start === '') {
       onDateRangeChange(undefined);
     } else {
       onDateRangeChange({ start, end });
     }
   };
+
+  const maxDate = new Date().toISOString().split('T')[0];
 
   return (
     <div className="date-range-filter">
@@ -35,9 +37,9 @@ export function DateRangeFilter({ dateRange, onDateRangeChange }: DateRangeFilte
         <input
           type="date"
           id="start-date"
-          value={dateRange?.start || ''}
+          value={dateRange?.start ?? ''}
           onChange={handleStartDateChange}
-          max={new Date().toISOString().split('T')[0]}
+          max={maxDate}
         />
       </div>
 
@@ -46,9 +48,9 @@ export function DateRangeFilter({ dateRange, onDateRangeChange }: DateRangeFilte
         <input
           type="date"
           id="end-date"
-          value={dateRange?.end || ''}
+          value={dateRange?.end ?? ''}
           onChange={handleEndDateChange}
-          max={new Date().toISOString().split('T')[0]}
+          max={maxDate}
         />
       </div>
     </div>

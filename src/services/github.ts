@@ -81,7 +81,7 @@ async function processIssueComments(issue: GitHubIssue): Promise<BotActivity[]> 
       const successComment = nextComments.find(isSuccessComment);
       const failureComment = nextComments.find(isFailureComment);
 
-      if ((successComment !== undefined || failureComment !== undefined) && issue.number !== undefined) {
+      if (successComment !== undefined || failureComment !== undefined) {
         const resultComment = successComment ?? failureComment;
         if (resultComment !== undefined) {
           activities.push({
@@ -113,7 +113,7 @@ async function processPRComments(pr: GitHubPR): Promise<BotActivity[]> {
       const successComment = nextComments.find(isPRModificationSuccessComment);
       const failureComment = nextComments.find(isPRModificationFailureComment);
 
-      if ((successComment !== undefined || failureComment !== undefined) && pr.number !== undefined) {
+      if (successComment !== undefined || failureComment !== undefined) {
         const resultComment = successComment ?? failureComment;
         if (resultComment !== undefined) {
           activities.push({

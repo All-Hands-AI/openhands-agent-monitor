@@ -3,7 +3,7 @@ interface ErrorMessageProps {
   onRetry: () => void;
 }
 
-export function ErrorMessage({ message, onRetry }: ErrorMessageProps): JSX.Element {
+export function ErrorMessage({ message, onRetry }: ErrorMessageProps): React.JSX.Element {
   return (
     <div className="error-message">
       <p>{message}</p>

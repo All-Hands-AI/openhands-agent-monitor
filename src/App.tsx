@@ -9,7 +9,7 @@ import { ActivityFilter as FilterType, DateRange, AppState } from './types';
 import { fetchBotActivities } from './services/github';
 import './App.css';
 
-function App(): JSX.Element {
+function App(): React.JSX.Element {
   const [state, setState] = useState<AppState>({
     activities: [],
     loading: true,
@@ -82,9 +82,9 @@ function App(): JSX.Element {
         />
       </section>
 
-      {state.loading ? (
+      {state.loading === true ? (
         <LoadingSpinner />
-      ) : state.error ? (
+      ) : state.error !== null ? (
         <ErrorMessage
           message={state.error}
           onRetry={handleRetry}

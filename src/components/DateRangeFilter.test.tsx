@@ -22,8 +22,8 @@ describe('DateRangeFilter', () => {
       />
     );
 
-    const startInput = screen.getByLabelText('From:') as HTMLInputElement;
-    const endInput = screen.getByLabelText('To:') as HTMLInputElement;
+    const startInput = screen.getByLabelText<HTMLInputElement>('From:');
+    const endInput = screen.getByLabelText<HTMLInputElement>('To:');
 
     expect(startInput.value).toBe('2023-11-01');
     expect(endInput.value).toBe('2023-11-30');

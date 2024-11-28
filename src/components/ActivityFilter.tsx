@@ -5,7 +5,7 @@ interface ActivityFilterProps {
   onFilterChange: (filter: FilterType) => void;
 }
 
-export function ActivityFilter({ filter, onFilterChange }: ActivityFilterProps): JSX.Element {
+export function ActivityFilter({ filter, onFilterChange }: ActivityFilterProps): React.JSX.Element {
   const handleTypeChange = (type: ActivityType | ''): void => {
     onFilterChange({
       ...filter,
