@@ -4,7 +4,7 @@ import type { BotActivity } from '../types';
 
 describe('GitHub Service Integration Tests', () => {
   // Skip these tests if VITE_GITHUB_TOKEN is not set
-  const runTest = process.env.VITE_GITHUB_TOKEN !== undefined && process.env.VITE_GITHUB_TOKEN !== '' ? it : it.skip;
+  const runTest = import.meta.env['VITE_GITHUB_TOKEN'] !== undefined && import.meta.env['VITE_GITHUB_TOKEN'] !== '' ? it : it.skip;
 
   runTest('should fetch real bot activities from OpenHands repository', async () => {
     const activities = await fetchBotActivities();
