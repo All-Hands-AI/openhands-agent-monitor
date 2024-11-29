@@ -1,8 +1,12 @@
 import { BotActivity } from '../types';
+import { Cache } from './cache';
 
 const GITHUB_TOKEN = import.meta.env['VITE_GITHUB_TOKEN'] ?? '';
 const REPO_OWNER = 'All-Hands-AI';
 const REPO_NAME = 'OpenHands';
+const CACHE_TTL = 5 * 60 * 1000; // 5 minutes cache TTL
+
+const cache = Cache.getInstance();
 
 interface GitHubUser {
   login: string;
@@ -44,6 +48,12 @@ interface GitHubResponse<T> {
 }
 
 async function fetchWithAuth<T>(url: string): Promise<GitHubResponse<T>> {
+  const cacheKey = `github:${url}`;
+  const cachedResponse = cache.get<GitHubResponse<T>>(cacheKey);
+  if (cachedResponse) {
+    return cachedResponse;
+  }
+
   const response = await fetch(url, {
     headers: {
       'Authorization': `Bearer ${GITHUB_TOKEN as string}`,
@@ -73,7 +83,9 @@ async function fetchWithAuth<T>(url: string): Promise<GitHubResponse<T>> {
   }
 
   const data = await response.json() as T;
-  return { data, hasNextPage, nextUrl };
+  const result = { data, hasNextPage, nextUrl };
+  cache.set(cacheKey, result, CACHE_TTL);
+  return result;
 }
 
 async function fetchAllPages<T>(url: string): Promise<T[]> {
@@ -216,6 +228,12 @@ async function processPRComments(pr: GitHubPR): Promise<BotActivity[]> {
 
 export async function fetchBotActivities(since?: string): Promise<BotActivity[]> {
   try {
+    const cacheKey = `bot-activities:${since ?? 'default'}`;
+    const cachedActivities = cache.get<BotActivity[]>(cacheKey);
+    if (cachedActivities) {
+      return cachedActivities;
+    }
+
     const activities: BotActivity[] = [];
     const baseUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}`;
     
@@ -258,9 +276,12 @@ export async function fetchBotActivities(since?: string): Promise<BotActivity[]>
     }
 
     // Sort by timestamp in descending order
-    return activities.sort((a, b) => 
+    const sortedActivities = activities.sort((a, b) => 
       new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
     );
+
+    cache.set(cacheKey, sortedActivities, CACHE_TTL);
+    return sortedActivities;
   } catch (error) {
     console.error('Error fetching bot activities:', error);
     throw error;
