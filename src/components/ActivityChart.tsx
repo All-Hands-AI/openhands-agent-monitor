@@ -20,7 +20,15 @@ type ChartSpec = {
   encoding: {
     x: { field: 'date'; type: 'temporal'; title: 'Date' };
     y: { aggregate: 'count'; type: 'quantitative'; title: 'Count' };
-    color: { field: 'status'; type: 'nominal'; title: 'Status' };
+    color: {
+      field: 'status';
+      type: 'nominal';
+      title: 'Status';
+      scale?: {
+        domain: string[];
+        range: string[];
+      };
+    };
   };
   width: number;
   height: number;
