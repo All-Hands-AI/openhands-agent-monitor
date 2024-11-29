@@ -113,7 +113,10 @@ function isSuccessComment(comment: GitHubComment): boolean {
   const lowerBody = comment.body.toLowerCase();
   return lowerBody.includes('created a pull request') ||
          lowerBody.includes('opened a pull request') ||
-         lowerBody.includes('submitted a pull request');
+         lowerBody.includes('submitted a pull request') ||
+         lowerBody.includes('successfully fixed') ||
+         lowerBody.includes('completed the changes') ||
+         lowerBody.includes('implemented the changes');
 }
 
 function isFailureComment(comment: GitHubComment): boolean {
@@ -138,7 +141,10 @@ function isPRModificationSuccessComment(comment: GitHubComment): boolean {
   const lowerBody = comment.body.toLowerCase();
   return lowerBody.includes('updated the pull request') ||
          lowerBody.includes('made the requested changes') ||
-         lowerBody.includes('applied the changes');
+         lowerBody.includes('applied the changes') ||
+         lowerBody.includes('pushed the changes') ||
+         lowerBody.includes('committed the changes') ||
+         lowerBody.includes('implemented the requested changes');
 }
 
 function isPRModificationFailureComment(comment: GitHubComment): boolean {
@@ -230,21 +236,24 @@ export async function fetchBotActivities(since?: string): Promise<BotActivity[]>
       params.append('since', thirtyDaysAgo.toISOString());
     }
 
-    // Fetch issues
-    const issues = await fetchAllPages<GitHubIssue>(`${baseUrl}/issues?${params.toString()}`);
-    for (const issue of issues) {
-      if (issue.pull_request === undefined && issue.comments > 0) { // Skip PRs and issues without comments
-        const issueActivities = await processIssueComments(issue);
-        activities.push(...issueActivities);
-      }
-    }
-
-    // Fetch PRs
-    const prs = await fetchAllPages<GitHubPR>(`${baseUrl}/pulls?${params.toString()}`);
-    for (const pr of prs) {
-      if (pr.comments > 0) { // Skip PRs without comments
-        const prActivities = await processPRComments(pr);
-        activities.push(...prActivities);
+    // Fetch issues and PRs
+    const items = await fetchAllPages<GitHubIssue>(`${baseUrl}/issues?${params.toString()}`);
+    for (const item of items) {
+      if (item.comments > 0) {
+        if (item.pull_request === undefined) {
+          // Process regular issues
+          const issueActivities = await processIssueComments(item);
+          activities.push(...issueActivities);
+        } else {
+          // Process PRs through the issue comments endpoint to catch all activity
+          const prActivities = await processPRComments({
+            number: item.number,
+            html_url: item.html_url,
+            comments_url: item.comments_url,
+            comments: item.comments
+          });
+          activities.push(...prActivities);
+        }
       }
     }
 
