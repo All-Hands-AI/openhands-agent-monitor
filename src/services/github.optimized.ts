@@ -15,6 +15,7 @@ interface GitHubComment {
   created_at: string;
   body: string;
   user: GitHubUser;
+  issue_url?: string;
 }
 
 interface GitHubIssue {
@@ -43,37 +44,48 @@ interface GitHubResponse<T> {
   nextUrl: string | null;
 }
 
-async function fetchWithAuth<T>(url: string): Promise<GitHubResponse<T>> {
-  const response = await fetch(url, {
-    headers: {
-      'Authorization': `Bearer ${GITHUB_TOKEN as string}`,
-      'Accept': 'application/vnd.github.v3+json',
-    },
-  });
+async function fetchWithRetry<T>(url: string, retries = 3, delay = 1000): Promise<GitHubResponse<T>> {
+  let lastError: Error | null = null;
+  for (let i = 0; i < retries; i++) {
+    try {
+      const response = await fetch(url, {
+        headers: {
+          'Authorization': `Bearer ${GITHUB_TOKEN as string}`,
+          'Accept': 'application/vnd.github.v3+json',
+        },
+      });
 
-  if (!response.ok) {
-    throw new Error(`GitHub API error: ${response.status.toString()} ${response.statusText}`);
-  }
+      if (!response.ok) {
+        throw new Error(`GitHub API error: ${response.status.toString()} ${response.statusText}`);
+      }
 
-  // Parse Link header for pagination
-  const linkHeader = response.headers.get('Link') ?? '';
-  let hasNextPage = false;
-  let nextUrl: string | null = null;
+      // Parse Link header for pagination
+      const linkHeader = response.headers.get('Link') ?? '';
+      let hasNextPage = false;
+      let nextUrl: string | null = null;
 
-  if (linkHeader !== '') {
-    const links = linkHeader.split(',');
-    for (const link of links) {
-      const [url, rel] = link.split(';');
-      if (rel?.includes('rel="next"')) {
-        hasNextPage = true;
-        nextUrl = url?.trim()?.slice(1, -1) ?? null; // Remove < and >
-        break;
+      if (linkHeader !== '') {
+        const links = linkHeader.split(',');
+        for (const link of links) {
+          const [url, rel] = link.split(';');
+          if (rel?.includes('rel="next"')) {
+            hasNextPage = true;
+            nextUrl = url?.trim()?.slice(1, -1) ?? null; // Remove < and >
+            break;
+          }
+        }
+      }
+
+      const data = await response.json() as T;
+      return { data, hasNextPage, nextUrl };
+    } catch (error) {
+      lastError = error as Error;
+      if (i < retries - 1) {
+        await new Promise(resolve => setTimeout(resolve, delay * (i + 1))); // Exponential backoff
       }
     }
   }
-
-  const data = await response.json() as T;
-  return { data, hasNextPage, nextUrl };
+  throw lastError;
 }
 
 async function fetchAllPages<T>(url: string): Promise<T[]> {
@@ -84,10 +96,13 @@ async function fetchAllPages<T>(url: string): Promise<T[]> {
   while (currentUrl !== '') {
     pageCount++;
     console.log(`Fetching page ${pageCount.toString()} from ${currentUrl}`);
-    const response = await fetchWithAuth<T[]>(currentUrl);
+    const response = await fetchWithRetry<T[]>(currentUrl);
     console.log(`Got ${response.data.length.toString()} items`);
     allItems.push(...response.data);
     currentUrl = response.nextUrl ?? '';
+    if (currentUrl !== '') {
+      await new Promise(resolve => setTimeout(resolve, 500)); // Wait 500ms between pages
+    }
   }
 
   console.log(`Total items fetched: ${allItems.length.toString()}`);
@@ -156,52 +171,28 @@ function isPRModificationFailureComment(comment: GitHubComment): boolean {
          lowerBody.includes('manual intervention may be required');
 }
 
-async function processIssueComments(issue: GitHubIssue): Promise<BotActivity[]> {
+function processComments(comments: GitHubComment[], itemNumber: number, type: 'issue' | 'pr'): BotActivity[] {
   const activities: BotActivity[] = [];
-  const comments = await fetchAllPages<GitHubComment>(issue.comments_url);
 
   for (let i = 0; i < comments.length; i++) {
     const comment = comments[i];
-    if (comment && isStartWorkComment(comment)) {
+    const isStart = type === 'issue' ? isStartWorkComment(comment) : isPRModificationComment(comment);
+    
+    if (isStart) {
       // Look for the next relevant comment to determine success/failure
       const nextComments = comments.slice(i + 1);
-      const successComment = nextComments.find(isSuccessComment);
-      const failureComment = nextComments.find(isFailureComment);
+      const successComment = nextComments.find(
+        type === 'issue' ? isSuccessComment : isPRModificationSuccessComment
+      );
+      const failureComment = nextComments.find(
+        type === 'issue' ? isFailureComment : isPRModificationFailureComment
+      );
 
       const resultComment = successComment ?? failureComment;
       if (resultComment !== undefined) {
         activities.push({
-          id: `issue-${issue.number.toString()}-${comment.id}`,
-          type: 'issue',
-          status: successComment !== undefined ? 'success' : 'failure',
-          timestamp: comment.created_at,
-          url: resultComment.html_url,
-          description: resultComment.body,
-        });
-      }
-    }
-  }
-
-  return activities;
-}
-
-async function processPRComments(pr: GitHubPR): Promise<BotActivity[]> {
-  const activities: BotActivity[] = [];
-  const comments = await fetchAllPages<GitHubComment>(pr.comments_url);
-
-  for (let i = 0; i < comments.length; i++) {
-    const comment = comments[i];
-    if (comment && isPRModificationComment(comment)) {
-      // Look for the next relevant comment to determine success/failure
-      const nextComments = comments.slice(i + 1);
-      const successComment = nextComments.find(isPRModificationSuccessComment);
-      const failureComment = nextComments.find(isPRModificationFailureComment);
-
-      const resultComment = successComment ?? failureComment;
-      if (resultComment !== undefined) {
-        activities.push({
-          id: `pr-${pr.number.toString()}-${comment.id}`,
-          type: 'pr',
+          id: `${type}-${itemNumber.toString()}-${comment.id}`,
+          type,
           status: successComment !== undefined ? 'success' : 'failure',
           timestamp: comment.created_at,
           url: resultComment.html_url,
@@ -216,10 +207,9 @@ async function processPRComments(pr: GitHubPR): Promise<BotActivity[]> {
 
 export async function fetchBotActivities(since?: string): Promise<BotActivity[]> {
   try {
-    const activities: BotActivity[] = [];
     const baseUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}`;
     
-    // Fetch issues and PRs with comments
+    // Set up parameters for fetching issues and PRs
     const params = new URLSearchParams({
       state: 'all',
       sort: 'updated',
@@ -236,31 +226,74 @@ export async function fetchBotActivities(since?: string): Promise<BotActivity[]>
       params.append('since', thirtyDaysAgo.toISOString());
     }
 
-    // Fetch issues and PRs
+    // Fetch all issues and PRs in parallel with their comments
     const items = await fetchAllPages<GitHubIssue>(`${baseUrl}/issues?${params.toString()}`);
-    for (const item of items) {
-      if (item.comments > 0) {
-        if (item.pull_request === undefined) {
-          // Process regular issues
-          const issueActivities = await processIssueComments(item);
-          activities.push(...issueActivities);
-        } else {
-          // Process PRs through the issue comments endpoint to catch all activity
-          const prActivities = await processPRComments({
-            number: item.number,
-            html_url: item.html_url,
-            comments_url: item.comments_url,
-            comments: item.comments
-          });
-          activities.push(...prActivities);
-        }
-      }
-    }
+    
+    // Filter items with comments and group by type
+    const itemsWithComments = items.filter(item => item.comments > 0);
+    const issues = itemsWithComments.filter(item => !item.pull_request);
+    const prs = itemsWithComments.filter(item => item.pull_request);
 
-    // Sort by timestamp in descending order
-    return activities.sort((a, b) => 
-      new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
-    );
+    // Fetch comments for each type in parallel
+    const [issueComments, prComments] = await Promise.all([
+      // Fetch issue comments in batches
+      (async () => {
+        const commentsByIssue = new Map<number, GitHubComment[]>();
+        const batchSize = 5;
+        for (let i = 0; i < issues.length; i += batchSize) {
+          const batch = issues.slice(i, i + batchSize);
+          await Promise.all(
+            batch.map(async item => {
+              const comments = await fetchAllPages<GitHubComment>(item.comments_url);
+              commentsByIssue.set(item.number, comments);
+            })
+          );
+          if (i + batchSize < issues.length) {
+            await new Promise(resolve => setTimeout(resolve, 1000));
+          }
+        }
+        return commentsByIssue;
+      })(),
+      // Fetch PR comments in batches
+      (async () => {
+        const commentsByPR = new Map<number, GitHubComment[]>();
+        const batchSize = 5;
+        for (let i = 0; i < prs.length; i += batchSize) {
+          const batch = prs.slice(i, i + batchSize);
+          await Promise.all(
+            batch.map(async item => {
+              const comments = await fetchAllPages<GitHubComment>(item.comments_url);
+              commentsByPR.set(item.number, comments);
+            })
+          );
+          if (i + batchSize < prs.length) {
+            await new Promise(resolve => setTimeout(resolve, 1000));
+          }
+        }
+        return commentsByPR;
+      })()
+    ]);
+
+    // Process issues and PRs in parallel
+    const [issueActivities, prActivities] = await Promise.all([
+      Promise.all(
+        issues.map(async item => {
+          const comments = issueComments.get(item.number) ?? [];
+          return processComments(comments, item.number, 'issue');
+        })
+      ),
+      Promise.all(
+        prs.map(async item => {
+          const comments = prComments.get(item.number) ?? [];
+          return processComments(comments, item.number, 'pr');
+        })
+      )
+    ]);
+
+    // Flatten and sort activities
+    return [...issueActivities.flat(), ...prActivities.flat()]
+      .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
+
   } catch (error) {
     console.error('Error fetching bot activities:', error);
     throw error;
