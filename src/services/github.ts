@@ -1,6 +1,6 @@
 import { BotActivity } from '../types';
 
-const GITHUB_TOKEN = import.meta.env.VITE_GITHUB_TOKEN ?? '';
+const GITHUB_TOKEN = import.meta.env['VITE_GITHUB_TOKEN'] ?? '';
 const REPO_OWNER = 'All-Hands-AI';
 const REPO_NAME = 'OpenHands';
 
