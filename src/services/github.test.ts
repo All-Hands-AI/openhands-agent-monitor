@@ -91,12 +91,18 @@ describe('GitHub Service', () => {
   });
 
   it('should detect openhands-agent comments in PRs', async () => {
-    const mockPRs = [
+    const mockIssues = [
       {
         number: 1,
         html_url: 'https://github.com/All-Hands-AI/OpenHands/pull/1',
-        comments_url: 'https://api.github.com/repos/All-Hands-AI/OpenHands/pulls/1/comments',
-        comments: 2
+        comments_url: 'https://api.github.com/repos/All-Hands-AI/OpenHands/issues/1/comments',
+        comments: 2,
+        pull_request: {
+          url: 'https://api.github.com/repos/All-Hands-AI/OpenHands/pulls/1',
+          html_url: 'https://github.com/All-Hands-AI/OpenHands/pull/1',
+          diff_url: 'https://github.com/All-Hands-AI/OpenHands/pull/1.diff',
+          patch_url: 'https://github.com/All-Hands-AI/OpenHands/pull/1.patch'
+        }
       }
     ];
 
@@ -126,10 +132,8 @@ describe('GitHub Service', () => {
     // Mock API responses
     const mockFetch = vi.fn().mockImplementation((url: string) => {
       if (url.includes('/issues?')) {
-        return createMockResponse([]);  // Empty issues
-      } else if (url.includes('/pulls?')) {
-        return createMockResponse(mockPRs);
-      } else if (url.includes('/pulls/1/comments')) {
+        return createMockResponse(mockIssues);
+      } else if (url.includes('/issues/1/comments')) {
         return createMockResponse(mockComments);
       }
       throw new Error(`Unexpected URL: ${url}`);
