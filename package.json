@@ -9,9 +9,10 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "preview": "vite preview",
-    "test": "vitest run",
-    "test:watch": "vitest",
-    "test:coverage": "vitest run --coverage",
+    "test": "vitest run --exclude '**/__integration_tests__/**'",
+    "test:watch": "vitest --exclude '**/__integration_tests__/**'",
+    "test:coverage": "vitest run --coverage --exclude '**/__integration_tests__/**'",
+    "test:integration": "vitest run '**/__integration_tests__/**'",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

@@ -1,3 +1,16 @@
+/**
+ * Unit tests for the GitHub service.
+ * 
+ * These tests use mocked API responses to verify the service's behavior
+ * without making actual network requests. They focus on testing:
+ * 
+ * 1. Comment detection logic for both issues and PRs
+ * 2. Success/failure status determination
+ * 3. Activity data structure and formatting
+ * 
+ * The tests use Vitest's mocking capabilities to simulate GitHub API responses.
+ */
+
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { fetchBotActivities } from './github';
 import type { BotActivity } from '../types';
@@ -33,7 +46,7 @@ describe('GitHub Service', () => {
         id: '1',
         html_url: 'https://github.com/All-Hands-AI/OpenHands/issues/1#comment-1',
         created_at: '2023-11-28T00:00:00Z',
-        body: 'Hello! I will help you resolve this issue.',
+        body: 'I will help you fix this issue.',
         user: {
           login: 'openhands-agent',
           type: 'User'
@@ -102,7 +115,7 @@ describe('GitHub Service', () => {
         id: '2',
         html_url: 'https://github.com/All-Hands-AI/OpenHands/pull/1#comment-2',
         created_at: '2023-11-28T00:01:00Z',
-        body: 'I have successfully updated the pull request.',
+        body: 'I have updated the pull request with the requested changes.',
         user: {
           login: 'openhands-agent',
           type: 'User'

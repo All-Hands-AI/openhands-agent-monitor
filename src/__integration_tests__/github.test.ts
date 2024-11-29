@@ -1,5 +1,25 @@
+/**
+ * Integration tests for the GitHub service.
+ * 
+ * These tests interact with the real GitHub API and require authentication.
+ * They are not meant to be run in CI, but rather locally or in a controlled environment.
+ * 
+ * Prerequisites:
+ * - A valid GitHub token with repo scope must be set in VITE_GITHUB_TOKEN environment variable
+ * - The token must have access to the All-Hands-AI/OpenHands repository
+ * 
+ * To run these tests:
+ * 1. Create a .env file in the project root with:
+ *    VITE_GITHUB_TOKEN=your_github_token
+ * 2. Run the integration tests:
+ *    npm run test:integration
+ * 
+ * Note: These tests may take longer to run due to API rate limits and network latency.
+ * They also depend on the actual state of the repository, so results may vary.
+ */
+
 import { describe, it, expect } from 'vitest';
-import { fetchBotActivities } from './github';
+import { fetchBotActivities } from '../services/github';
 import type { BotActivity } from '../types';
 
 describe('GitHub Service Integration Tests', () => {
