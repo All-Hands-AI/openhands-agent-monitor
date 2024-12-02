@@ -4,7 +4,7 @@ export async function fetchBotActivities(since?: string): Promise<BotActivity[]>
   try {
     const response = await fetch('/cache/bot-activities.json');
     if (!response.ok) {
-      throw new Error(`Failed to load cached data: ${response.status} ${response.statusText}`);
+      throw new Error(`Failed to load cached data: ${response.status.toString()} ${response.statusText}`);
     }
 
     const data = await response.json();
