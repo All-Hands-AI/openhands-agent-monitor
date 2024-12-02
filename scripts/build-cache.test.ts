@@ -1,5 +1,6 @@
-import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach, vi, type MockInstance } from 'vitest';
 import path from 'path';
+import { BotActivity } from '../src/types';
 
 // Mock environment variables
 const originalEnv = process.env;
@@ -8,7 +9,11 @@ const originalEnv = process.env;
 import * as fs from 'fs';
 vi.mock('fs');
 
-const mockFs = fs as jest.Mocked<typeof fs>;
+const mockFs = fs as unknown as {
+  existsSync: MockInstance;
+  mkdirSync: MockInstance;
+  writeFileSync: MockInstance;
+};
 
 // Mock fetch
 const mockFetch = vi.fn().mockResolvedValue({
@@ -23,7 +28,7 @@ const mockFetch = vi.fn().mockResolvedValue({
 vi.stubGlobal('fetch', mockFetch);
 
 // Mock the github service
-const mockActivities = [{
+const mockActivities: BotActivity[] = [{
   id: 'test-1',
   type: 'issue',
   status: 'success',
@@ -72,8 +77,8 @@ describe('Cache Building Script', () => {
 
     // Mock writeFileSync to capture the written data
     let writtenData: string | undefined;
-    mockFs.writeFileSync.mockImplementation((_path, data) => {
-      writtenData = data as string;
+    mockFs.writeFileSync.mockImplementation((_path: string, data: string) => {
+      writtenData = data;
     });
 
     // Mock fetchBotActivities to return our mock data
