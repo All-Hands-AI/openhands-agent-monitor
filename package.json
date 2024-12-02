@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
-    "build:cache": "cd scripts && tsc && cd .. && npm run cache-data",
+    "build": "tsc -b && vite build --mode production",
+    "build:cache": "cd scripts && npx tsc && node dist/scripts/github-api.js",
     "build:all": "npm run build:cache && npm run build",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
