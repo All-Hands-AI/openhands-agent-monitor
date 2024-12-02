@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import fs from 'fs';
 import path from 'path';
-import { BotActivity } from '../src/types';
+
 
 // Mock environment variables
 const originalEnv = process.env;
@@ -94,7 +94,7 @@ describe('Cache Building Script', () => {
       expect(cacheContent).toHaveProperty('timestamp');
       expect(cacheContent).toHaveProperty('activities');
       expect(cacheContent.activities).toEqual(mockActivities);
-      expect(new Date(cacheContent.timestamp)).toBeInstanceOf(Date);
+      expect(new Date(cacheContent.timestamp as string)).toBeInstanceOf(Date);
     }
     expect(result).toBe(true);
   });
