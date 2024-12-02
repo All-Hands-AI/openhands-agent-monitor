@@ -1,0 +1,333 @@
+{
+  "activities": [
+    {
+      "id": "issue-5341-2509794989",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-12-01T14:32:27Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5341#issuecomment-2509798915",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-5341' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-5341). Manual intervention may be required."
+    },
+    {
+      "id": "issue-5315-2506470512",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-11-28T16:26:21Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5315#issuecomment-2506497456",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-5315' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-5315). Manual intervention may be required."
+    },
+    {
+      "id": "issue-5299-2506225964",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-11-28T14:16:06Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5299#issuecomment-2506234953",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-5299' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-5299). Manual intervention may be required."
+    },
+    {
+      "id": "issue-5299-2506211358",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-11-28T14:08:50Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5299#issuecomment-2506218716",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-5299' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-5299). Manual intervention may be required."
+    },
+    {
+      "id": "issue-4819-2504973353",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-11-27T23:27:19Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4819#issuecomment-2505029729",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-4819-try2' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-4819-try2). Manual intervention may be required."
+    },
+    {
+      "id": "issue-5234-2502452335",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-11-27T01:39:13Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5234#issuecomment-2502467549",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-5234' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-5234). Manual intervention may be required."
+    },
+    {
+      "id": "issue-5257-2498109860",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-11-25T14:04:06Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5257#issuecomment-2498161676",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-5257' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-5257). Manual intervention may be required."
+    },
+    {
+      "id": "issue-2947-2496600387",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-11-25T03:25:43Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/2947#issuecomment-2496615880",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-2947' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-2947). Manual intervention may be required."
+    },
+    {
+      "id": "issue-5015-2496303049",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-11-24T22:53:27Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5015#issuecomment-2496306399",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-5015' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-5015). Manual intervention may be required."
+    },
+    {
+      "id": "issue-5219-2495791779",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-11-24T04:04:56Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5219#issuecomment-2495793669",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-5219-try2' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-5219-try2). Manual intervention may be required."
+    },
+    {
+      "id": "issue-5229-2495521927",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-11-23T15:57:07Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5229#issuecomment-2495522602",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-5229' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-5229). Manual intervention may be required."
+    },
+    {
+      "id": "issue-5219-2495302587",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-11-23T04:35:37Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5219#issuecomment-2495313419",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-5219' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-5219). Manual intervention may be required."
+    },
+    {
+      "id": "issue-5185-2492157670",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-11-21T20:04:24Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5185#issuecomment-2492210186",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-5185' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-5185). Manual intervention may be required."
+    },
+    {
+      "id": "issue-5162-2489951095",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-11-21T02:43:33Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5162#issuecomment-2489953661",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-5162' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-5162). Manual intervention may be required."
+    },
+    {
+      "id": "issue-5102-2483630936",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-11-18T17:10:55Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5102#issuecomment-2483638959",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-5102' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-5102). Manual intervention may be required."
+    },
+    {
+      "id": "issue-5086-2480659757",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-11-16T16:45:27Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5086#issuecomment-2480665428",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-5086' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-5086). Manual intervention may be required."
+    },
+    {
+      "id": "issue-4939-2471162962",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-11-12T17:33:20Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4939#issuecomment-2471170932",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-4939' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-4939). Manual intervention may be required."
+    },
+    {
+      "id": "issue-4896-2470231250",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-11-12T11:02:24Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4896#issuecomment-2470241791",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-4896-try2' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-4896-try2). Manual intervention may be required."
+    },
+    {
+      "id": "issue-4901-2468885609",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-11-11T19:30:02Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4901#issuecomment-2468893791",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-4901' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-4901). Manual intervention may be required."
+    },
+    {
+      "id": "issue-4896-2468474595",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-11-11T15:42:15Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4896#issuecomment-2468516466",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-4896' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-4896). Manual intervention may be required."
+    },
+    {
+      "id": "issue-4884-2467453705",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-11-11T07:50:17Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4884#issuecomment-2467461488",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-4884' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-4884). Manual intervention may be required."
+    },
+    {
+      "id": "issue-4876-2466835942",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-11-10T18:23:36Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4876#issuecomment-2466838965",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-4876' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-4876). Manual intervention may be required."
+    },
+    {
+      "id": "issue-4866-2466258231",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-11-09T15:29:49Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4866#issuecomment-2466259972",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-4866' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-4866). Manual intervention may be required."
+    },
+    {
+      "id": "issue-4842-2465012382",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-11-08T15:16:08Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4842#issuecomment-2465028563",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-4842' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-4842). Manual intervention may be required."
+    },
+    {
+      "id": "issue-4827-2462853914",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-11-07T17:37:45Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4827#issuecomment-2462864570",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-4827' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-4827). Manual intervention may be required."
+    },
+    {
+      "id": "issue-4819-2462285441",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-11-07T13:48:09Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4819#issuecomment-2505029729",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-4819-try2' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-4819-try2). Manual intervention may be required."
+    },
+    {
+      "id": "issue-4583-2461220194",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-11-07T03:04:28Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4583#issuecomment-2461227875",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-4583' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-4583). Manual intervention may be required."
+    },
+    {
+      "id": "issue-4809-2461146053",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-11-07T01:43:30Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4809#issuecomment-2461152418",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-4809' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-4809). Manual intervention may be required."
+    },
+    {
+      "id": "issue-4769-2458390348",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-11-05T23:17:48Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4769#issuecomment-2458397249",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-4769' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-4769). Manual intervention may be required."
+    },
+    {
+      "id": "issue-4739-2455626705",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-11-04T20:21:32Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4739#issuecomment-2455636174",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-4739' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-4739). Manual intervention may be required."
+    },
+    {
+      "id": "issue-4254-2407294400",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-10-11T12:18:26Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4254#issuecomment-2407347210",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-4254' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-4254). Manual intervention may be required."
+    },
+    {
+      "id": "issue-4254-2398839410",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-10-08T04:59:01Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4254#issuecomment-2407347210",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-4254' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-4254). Manual intervention may be required."
+    },
+    {
+      "id": "issue-4254-2398823690",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-10-08T04:44:29Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4254#issuecomment-2407347210",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-4254' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-4254). Manual intervention may be required."
+    },
+    {
+      "id": "issue-4254-2398800022",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-10-08T04:25:30Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4254#issuecomment-2407347210",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-4254' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-4254). Manual intervention may be required."
+    },
+    {
+      "id": "issue-4254-2397848351",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-10-07T20:38:24Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4254#issuecomment-2407347210",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-4254' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-4254). Manual intervention may be required."
+    },
+    {
+      "id": "issue-4196-2391879959",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-10-03T16:50:11Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4196#issuecomment-2391896319",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-4196' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-4196). Manual intervention may be required."
+    },
+    {
+      "id": "issue-4184-2391198261",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-10-03T11:36:36Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4184#issuecomment-2391212519",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-4184' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-4184). Manual intervention may be required."
+    },
+    {
+      "id": "issue-4184-2390457010",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-10-03T03:45:37Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4184#issuecomment-2391212519",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-4184' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-4184). Manual intervention may be required."
+    },
+    {
+      "id": "issue-4157-2387573407",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-10-02T03:50:27Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4157#issuecomment-2387576303",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-4157' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-4157). Manual intervention may be required."
+    },
+    {
+      "id": "issue-3325-2386104667",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-10-01T14:19:11Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/3325#issuecomment-2386118152",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-3325' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-3325). Manual intervention may be required."
+    },
+    {
+      "id": "issue-3913-2384055144",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-09-30T20:07:48Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/3913#issuecomment-2384069818",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-3913' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-3913). Manual intervention may be required."
+    }
+  ],
+  "lastUpdated": "2024-12-02T18:16:35.401Z"
+}
