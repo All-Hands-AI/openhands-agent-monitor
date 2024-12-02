@@ -32,9 +32,7 @@ describe('GitHub Service', () => {
   }
 
   it('should detect openhands-agent comments in issues', async () => {
-
-
-    // Mock cache response
+    // Mock cache response for issue success
     const mockFetch = vi.fn().mockImplementation((url: string) => {
       if (url === '/cache/bot-activities.json') {
         return createMockResponse({
@@ -44,7 +42,7 @@ describe('GitHub Service', () => {
             status: 'success',
             timestamp: '2023-11-28T00:01:00Z',
             url: 'https://github.com/All-Hands-AI/OpenHands/issues/1#comment-2',
-            description: 'I have created a pull request at https://github.com/All-Hands-AI/OpenHands/pull/2'
+            description: 'A potential fix has been generated and a draft PR #2 has been created. Please review the changes.'
           }],
           lastUpdated: '2023-11-28T00:01:00Z'
         });
@@ -66,10 +64,74 @@ describe('GitHub Service', () => {
     vi.unstubAllGlobals();
   });
 
+  it('should detect openhands-agent failure comments in issues', async () => {
+    // Mock cache response for issue failure
+    const mockFetch = vi.fn().mockImplementation((url: string) => {
+      if (url === '/cache/bot-activities.json') {
+        return createMockResponse({
+          activities: [{
+            id: 'issue-1-2',
+            type: 'issue',
+            status: 'failure',
+            timestamp: '2023-11-28T00:01:00Z',
+            url: 'https://github.com/All-Hands-AI/OpenHands/issues/1#comment-2',
+            description: 'The workflow to fix this issue encountered an error. Openhands failed to create any code changes.'
+          }],
+          lastUpdated: '2023-11-28T00:01:00Z'
+        });
+      }
+      throw new Error(`Unexpected URL: ${url}`);
+    });
+    vi.stubGlobal('fetch', mockFetch as unknown as typeof fetch);
+
+    const activities = await fetchBotActivities();
+    
+    expect(activities).toHaveLength(1);
+    expect(activities[0]).toMatchObject<Partial<BotActivity>>({
+      type: 'issue',
+      status: 'failure',
+      id: expect.stringContaining('issue-1') as string,
+    });
+
+    // Restore the original fetch
+    vi.unstubAllGlobals();
+  });
+
+  it('should detect openhands-agent failure comments in PRs', async () => {
+    // Mock cache response for PR failure
+    const mockFetch = vi.fn().mockImplementation((url: string) => {
+      if (url === '/cache/bot-activities.json') {
+        return createMockResponse({
+          activities: [{
+            id: 'pr-1-2',
+            type: 'pr',
+            status: 'failure',
+            timestamp: '2023-11-28T00:01:00Z',
+            url: 'https://github.com/All-Hands-AI/OpenHands/pull/1#comment-2',
+            description: 'The workflow to fix this issue encountered an error. Openhands failed to create any code changes.'
+          }],
+          lastUpdated: '2023-11-28T00:01:00Z'
+        });
+      }
+      throw new Error(`Unexpected URL: ${url}`);
+    });
+    vi.stubGlobal('fetch', mockFetch as unknown as typeof fetch);
+
+    const activities = await fetchBotActivities();
+    
+    expect(activities).toHaveLength(1);
+    expect(activities[0]).toMatchObject<Partial<BotActivity>>({
+      type: 'pr',
+      status: 'failure',
+      id: expect.stringContaining('pr-1') as string,
+    });
+
+    // Restore the original fetch
+    vi.unstubAllGlobals();
+  });
+
   it('should detect openhands-agent comments in PRs', async () => {
-
-
-    // Mock cache response
+    // Mock cache response for PR success
     const mockFetch = vi.fn().mockImplementation((url: string) => {
       if (url === '/cache/bot-activities.json') {
         return createMockResponse({
@@ -79,7 +141,7 @@ describe('GitHub Service', () => {
             status: 'success',
             timestamp: '2023-11-28T00:01:00Z',
             url: 'https://github.com/All-Hands-AI/OpenHands/pull/1#comment-2',
-            description: 'I have updated the pull request with the requested changes.'
+            description: 'OpenHands made the following changes to resolve the issues:\n\n- Fixed the bug in the code\n\nUpdated pull request https://github.com/All-Hands-AI/OpenHands/pull/1 with new patches.'
           }],
           lastUpdated: '2023-11-28T00:01:00Z'
         });

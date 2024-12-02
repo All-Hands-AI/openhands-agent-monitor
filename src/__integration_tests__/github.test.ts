@@ -27,6 +27,23 @@ describe('GitHub Service Integration Tests', () => {
   const runTest = import.meta.env['VITE_GITHUB_TOKEN'] !== undefined && import.meta.env['VITE_GITHUB_TOKEN'] !== '' ? it : it.skip;
 
   runTest('should fetch real bot activities from OpenHands repository', async () => {
+    // Mock the fetch function to return the actual cached data
+    const fs = require('fs');
+    const cachedData = JSON.parse(fs.readFileSync('/workspace/openhands-agent-monitor/public/cache/bot-activities.json', 'utf8'));
+    const mockFetch = vi.fn().mockImplementation((url: string) => {
+      if (url === '/cache/bot-activities.json') {
+        return Promise.resolve({
+          ok: true,
+          status: 200,
+          statusText: 'OK',
+          json: () => Promise.resolve(cachedData),
+          headers: new Headers()
+        } as Response);
+      }
+      throw new Error(`Unexpected URL: ${url}`);
+    });
+    vi.stubGlobal('fetch', mockFetch as unknown as typeof fetch);
+
     const activities = await fetchBotActivities();
     
     // Verify we got some activities

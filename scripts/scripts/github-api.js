@@ -52,58 +52,46 @@ function isStartWorkComment(comment) {
     if (!isBotComment(comment))
         return false;
     const lowerBody = comment.body.toLowerCase();
-    return lowerBody.includes('started fixing the issue') ||
-        lowerBody.includes('i will help you') ||
-        lowerBody.includes('i\'ll help you') ||
-        lowerBody.includes('i can help you');
+    return lowerBody.includes('started fixing the') ||
+        lowerBody.includes('openhands started fixing');
 }
 function isSuccessComment(comment) {
     if (!isBotComment(comment))
         return false;
     const lowerBody = comment.body.toLowerCase();
-    return lowerBody.includes('created a pull request') ||
-        lowerBody.includes('opened a pull request') ||
-        lowerBody.includes('submitted a pull request') ||
-        lowerBody.includes('successfully fixed') ||
-        lowerBody.includes('completed the changes') ||
-        lowerBody.includes('implemented the changes');
+    return lowerBody.includes('a potential fix has been generated and a draft pr') ||
+        lowerBody.includes('openhands made the following changes to resolve the issues') ||
+        lowerBody.includes('successfully fixed');
 }
 function isFailureComment(comment) {
     if (!isBotComment(comment))
         return false;
     const lowerBody = comment.body.toLowerCase();
-    return (lowerBody.includes('apologize') || lowerBody.includes('sorry')) &&
-        (lowerBody.includes('unable to') || lowerBody.includes('cannot') || lowerBody.includes('can\'t')) ||
-        lowerBody.includes('unsuccessful') ||
-        lowerBody.includes('manual intervention may be required');
+    return lowerBody.includes('the workflow to fix this issue encountered an error') ||
+        lowerBody.includes('openhands failed to create any code changes') ||
+        lowerBody.includes('an attempt was made to automatically fix this issue, but it was unsuccessful');
 }
 function isPRModificationComment(comment) {
     if (!isBotComment(comment))
         return false;
     const lowerBody = comment.body.toLowerCase();
-    return lowerBody.includes('help you modify') ||
-        lowerBody.includes('help you update') ||
-        lowerBody.includes('help you with the changes');
+    return lowerBody.includes('started fixing the') ||
+        lowerBody.includes('openhands started fixing');
 }
 function isPRModificationSuccessComment(comment) {
     if (!isBotComment(comment))
         return false;
     const lowerBody = comment.body.toLowerCase();
-    return lowerBody.includes('updated the pull request') ||
-        lowerBody.includes('made the requested changes') ||
-        lowerBody.includes('applied the changes') ||
-        lowerBody.includes('pushed the changes') ||
-        lowerBody.includes('committed the changes') ||
-        lowerBody.includes('implemented the requested changes');
+    return lowerBody.includes('openhands made the following changes to resolve the issues') ||
+        lowerBody.includes('updated pull request');
 }
 function isPRModificationFailureComment(comment) {
     if (!isBotComment(comment))
         return false;
     const lowerBody = comment.body.toLowerCase();
-    return (lowerBody.includes('apologize') || lowerBody.includes('sorry')) &&
-        (lowerBody.includes('unable to modify') || lowerBody.includes('cannot modify') || lowerBody.includes('can\'t modify')) ||
-        lowerBody.includes('unsuccessful') ||
-        lowerBody.includes('manual intervention may be required');
+    return lowerBody.includes('the workflow to fix this issue encountered an error') ||
+        lowerBody.includes('openhands failed to create any code changes') ||
+        lowerBody.includes('an attempt was made to automatically fix this issue, but it was unsuccessful');
 }
 async function processIssueComments(issue) {
     const activities = [];
