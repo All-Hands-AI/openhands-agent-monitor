@@ -1,0 +1,5 @@
+{
+  "buildCommand": "npm run build:all",
+  "devCommand": "npm run dev",
+  "installCommand": "npm install"
+}
