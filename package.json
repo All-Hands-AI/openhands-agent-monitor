@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "npm run cache-data && tsc -b && vite build",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "preview": "vite preview",
@@ -13,7 +13,8 @@
     "test:watch": "vitest --exclude '**/__integration_tests__/**'",
     "test:coverage": "vitest run --coverage --exclude '**/__integration_tests__/**'",
     "test:integration": "vitest run '**/__integration_tests__/**'",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "cache-data": "node scripts/cache-github-data.js"
   },
   "dependencies": {
     "@nextui-org/react": "^2.4.8",
