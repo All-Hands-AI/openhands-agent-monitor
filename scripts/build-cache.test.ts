@@ -70,7 +70,7 @@ describe('Cache Building Script', () => {
 
     // Mock writeFileSync to capture the written data
     let writtenData: string | undefined;
-    vi.mocked(fs.writeFileSync).mockImplementation((path, data) => {
+    vi.mocked(fs.writeFileSync).mockImplementation((_path, data) => {
       writtenData = data as string;
     });
 

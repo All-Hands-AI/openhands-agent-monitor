@@ -50,8 +50,8 @@ describe('GitHub Service Cache', () => {
 
     // Reset environment
     process.env = { ...originalEnv };
-    process.env.VITE_GITHUB_TOKEN = 'test-token';
-    process.env.VITE_USE_CACHE = 'true';
+    process.env['VITE_GITHUB_TOKEN'] = 'test-token';
+    process.env['VITE_USE_CACHE'] = 'true';
   });
 
   afterEach(() => {
@@ -61,7 +61,7 @@ describe('GitHub Service Cache', () => {
   describe('Cache Usage', () => {
     it('should use cache when VITE_USE_CACHE is true and valid cache exists', async () => {
       // Enable cache
-      process.env.VITE_USE_CACHE = 'true';
+      process.env['VITE_USE_CACHE'] = 'true';
 
       // Mock cache file existence
       vi.mocked(fs.existsSync).mockReturnValue(true);
@@ -87,7 +87,7 @@ describe('GitHub Service Cache', () => {
       vi.resetAllMocks();
 
       // Disable cache
-      process.env.VITE_USE_CACHE = 'false';
+      process.env['VITE_USE_CACHE'] = 'false';
 
       // Mock API response
       mockFetch.mockResolvedValueOnce({
@@ -108,7 +108,7 @@ describe('GitHub Service Cache', () => {
 
     it('should fallback to API when cache is expired', async () => {
       // Enable cache
-      process.env.VITE_USE_CACHE = 'true';
+      process.env['VITE_USE_CACHE'] = 'true';
 
       // Mock cache file existence
       vi.mocked(fs.existsSync).mockReturnValue(true);
@@ -141,7 +141,7 @@ describe('GitHub Service Cache', () => {
 
     it('should handle missing cache file', async () => {
       // Enable cache
-      process.env.VITE_USE_CACHE = 'true';
+      process.env['VITE_USE_CACHE'] = 'true';
 
       // Mock cache file not existing
       vi.mocked(fs.existsSync).mockReturnValue(false);
@@ -165,7 +165,7 @@ describe('GitHub Service Cache', () => {
 
     it('should handle invalid cache JSON', async () => {
       // Enable cache
-      process.env.VITE_USE_CACHE = 'true';
+      process.env['VITE_USE_CACHE'] = 'true';
 
       // Mock cache file existence
       vi.mocked(fs.existsSync).mockReturnValue(true);

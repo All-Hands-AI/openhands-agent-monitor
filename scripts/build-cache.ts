@@ -1,4 +1,4 @@
-import { fetchBotActivities } from '../src/services/github';
+import { fetchBotActivities } from './github';
 import fs from 'fs';
 import path from 'path';
 

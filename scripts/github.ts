@@ -1,8 +1,8 @@
-import { BotActivity } from '../types';
+import { BotActivity } from '../src/types';
 import fs from 'fs';
 import path from 'path';
 
-import { env } from '../env';
+import { env } from '../src/env';
 
 const GITHUB_TOKEN = env.GITHUB_TOKEN;
 const USE_CACHE = env.USE_CACHE;

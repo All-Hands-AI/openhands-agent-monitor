@@ -8,8 +8,8 @@ vi.mock('../scripts/build-cache', () => ({
 }));
 
 describe('Rebuild Cache API', () => {
-  let mockJson: jest.Mock;
-  let mockStatus: jest.Mock;
+  let mockJson: ReturnType<typeof vi.fn>;
+  let mockStatus: ReturnType<typeof vi.fn>;
   let mockRes: VercelResponse;
 
   beforeEach(() => {
