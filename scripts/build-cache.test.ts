@@ -1,5 +1,4 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
-import type { VercelResponse } from '@vercel/node';
 import path from 'path';
 
 // Mock environment variables
