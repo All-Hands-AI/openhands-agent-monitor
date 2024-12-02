@@ -1,6 +1,9 @@
 import { BotActivity } from '../types';
+import fs from 'fs';
+import path from 'path';
 
 const GITHUB_TOKEN = import.meta.env['VITE_GITHUB_TOKEN'] ?? '';
+const USE_CACHE = import.meta.env['VITE_USE_CACHE'] === 'true';
 const REPO_OWNER = 'All-Hands-AI';
 const REPO_NAME = 'OpenHands';
 
@@ -214,53 +217,96 @@ async function processPRComments(pr: GitHubPR): Promise<BotActivity[]> {
   return activities;
 }
 
-export async function fetchBotActivities(since?: string): Promise<BotActivity[]> {
-  try {
-    const activities: BotActivity[] = [];
-    const baseUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}`;
-    
-    // Fetch issues and PRs with comments
-    const params = new URLSearchParams({
-      state: 'all',
-      sort: 'updated',
-      direction: 'desc',
-      per_page: '100',
-    });
+interface CacheData {
+  timestamp: string;
+  activities: BotActivity[];
+}
 
-    if (since !== undefined && since !== '') {
-      params.append('since', since);
-    } else {
-      // Default to last 30 days if no since parameter
-      const thirtyDaysAgo = new Date();
-      thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
-      params.append('since', thirtyDaysAgo.toISOString());
-    }
+async function fetchFromGitHub(since?: string): Promise<BotActivity[]> {
+  const activities: BotActivity[] = [];
+  const baseUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}`;
+  
+  // Fetch issues and PRs with comments
+  const params = new URLSearchParams({
+    state: 'all',
+    sort: 'updated',
+    direction: 'desc',
+    per_page: '100',
+  });
 
-    // Fetch issues and PRs
-    const items = await fetchAllPages<GitHubIssue>(`${baseUrl}/issues?${params.toString()}`);
-    for (const item of items) {
-      if (item.comments > 0) {
-        if (item.pull_request === undefined) {
-          // Process regular issues
-          const issueActivities = await processIssueComments(item);
-          activities.push(...issueActivities);
-        } else {
-          // Process PRs through the issue comments endpoint to catch all activity
-          const prActivities = await processPRComments({
-            number: item.number,
-            html_url: item.html_url,
-            comments_url: item.comments_url,
-            comments: item.comments
-          });
-          activities.push(...prActivities);
-        }
+  if (since !== undefined && since !== '') {
+    params.append('since', since);
+  } else {
+    // Default to last 30 days if no since parameter
+    const thirtyDaysAgo = new Date();
+    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+    params.append('since', thirtyDaysAgo.toISOString());
+  }
+
+  // Fetch issues and PRs
+  const items = await fetchAllPages<GitHubIssue>(`${baseUrl}/issues?${params.toString()}`);
+  for (const item of items) {
+    if (item.comments > 0) {
+      if (item.pull_request === undefined) {
+        // Process regular issues
+        const issueActivities = await processIssueComments(item);
+        activities.push(...issueActivities);
+      } else {
+        // Process PRs through the issue comments endpoint to catch all activity
+        const prActivities = await processPRComments({
+          number: item.number,
+          html_url: item.html_url,
+          comments_url: item.comments_url,
+          comments: item.comments
+        });
+        activities.push(...prActivities);
       }
     }
+  }
 
-    // Sort by timestamp in descending order
-    return activities.sort((a, b) => 
-      new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
-    );
+  // Sort by timestamp in descending order
+  return activities.sort((a, b) => 
+    new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
+  );
+}
+
+function loadFromCache(): BotActivity[] | null {
+  try {
+    const cacheFile = path.join(process.cwd(), '.cache', 'github-activities.json');
+    if (!fs.existsSync(cacheFile)) {
+      return null;
+    }
+
+    const cacheData = JSON.parse(fs.readFileSync(cacheFile, 'utf-8')) as CacheData;
+    const cacheAge = new Date().getTime() - new Date(cacheData.timestamp).getTime();
+    const maxCacheAge = 24 * 60 * 60 * 1000; // 24 hours
+
+    if (cacheAge > maxCacheAge) {
+      console.log('Cache is older than 24 hours, ignoring it');
+      return null;
+    }
+
+    return cacheData.activities;
+  } catch (error) {
+    console.error('Error loading cache:', error);
+    return null;
+  }
+}
+
+export async function fetchBotActivities(since?: string): Promise<BotActivity[]> {
+  try {
+    if (!USE_CACHE) {
+      console.log('Cache disabled, fetching from GitHub');
+      return await fetchFromGitHub(since);
+    }
+
+    const cachedActivities = loadFromCache();
+    if (cachedActivities !== null) {
+      console.log('Using cached activities');
+      return cachedActivities;
+    }
+    console.log('No valid cache found, fetching from GitHub');
+    return await fetchFromGitHub(since);
   } catch (error) {
     console.error('Error fetching bot activities:', error);
     throw error;

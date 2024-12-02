@@ -22,3 +22,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Cache
+.cache/
+
+# Environment variables
+.env
+.env.local

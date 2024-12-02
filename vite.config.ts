@@ -7,4 +7,5 @@ export default defineConfig({
   define: {
     'process.env': JSON.stringify(process.env),
   },
+  envPrefix: ['VITE_'],
 });
