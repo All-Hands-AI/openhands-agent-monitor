@@ -18,7 +18,7 @@
  * They also depend on the actual state of the repository, so results may vary.
  */
 
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { fetchBotActivities } from '../services/github';
 import type { BotActivity } from '../types';
 import * as fs from 'fs';
