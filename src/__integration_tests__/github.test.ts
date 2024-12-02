@@ -21,6 +21,7 @@
 import { describe, it, expect } from 'vitest';
 import { fetchBotActivities } from '../services/github';
 import type { BotActivity } from '../types';
+import * as fs from 'fs';
 
 describe('GitHub Service Integration Tests', () => {
   // Skip these tests if VITE_GITHUB_TOKEN is not set
@@ -28,8 +29,7 @@ describe('GitHub Service Integration Tests', () => {
 
   runTest('should fetch real bot activities from OpenHands repository', async () => {
     // Mock the fetch function to return the actual cached data
-    const fs = require('fs');
-    const cachedData = JSON.parse(fs.readFileSync('/workspace/openhands-agent-monitor/public/cache/bot-activities.json', 'utf8'));
+    const cachedData = JSON.parse(fs.readFileSync('/workspace/openhands-agent-monitor/public/cache/bot-activities.json', 'utf8')) as BotActivity[];
     const mockFetch = vi.fn().mockImplementation((url: string) => {
       if (url === '/cache/bot-activities.json') {
         return Promise.resolve({
