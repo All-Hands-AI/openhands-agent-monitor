@@ -36,10 +36,15 @@ A web application to monitor and visualize the activity of the OpenHands GitHub 
 
 ## Environment Variables
 
-Create a `.env` file in the root directory with the following variables:
+The application uses environment variables for configuration:
 
+### Build Time
+- `GITHUB_TOKEN` - GitHub Personal Access Token (required for cache generation)
+  - Required scopes: `repo` for repository access, `read:org` for organization repositories
+  - Only needed during cache generation, not at runtime
+
+You can set this in a `.env` file for local development:
 ```env
-# Required: GitHub Personal Access Token
 GITHUB_TOKEN=your_github_token_here
 ```
 
@@ -60,12 +65,20 @@ npm install
 
 ## Development
 
-1. Start the development server:
+1. Generate the data cache:
+```bash
+# Make sure GITHUB_TOKEN is set in your .env file
+npm run build:cache
+```
+
+2. Start the development server:
 ```bash
 npm run dev
 ```
 
-2. Open your browser and navigate to `http://localhost:5173`
+3. Open your browser and navigate to `http://localhost:5173`
+
+Note: The cache is static during development. Run `npm run build:cache` again to refresh the data.
 
 ## Testing
 
@@ -78,44 +91,67 @@ npm run test
 npm run test:coverage
 ```
 
-## Building for Production
+## Building and Deployment
 
-1. Create a production build:
-```bash
-npm run build
-```
+The application uses a caching mechanism to improve performance and security. Instead of making GitHub API calls from the frontend, the data is pre-fetched and cached during the build process.
 
-2. Preview the production build locally:
-```bash
-npm run preview
-```
+### Build Commands
 
-The production build will be in the `dist` directory.
+- `npm run build` - Build the frontend application only
+- `npm run build:cache` - Generate the GitHub data cache
+- `npm run build:all` - Generate cache and build the application
 
-## Deployment
+### Deployment Process
+
+1. Set up environment:
+   ```bash
+   # Clone repository and install dependencies
+   git clone https://github.com/All-Hands-AI/openhands-agent-monitor.git
+   cd openhands-agent-monitor
+   npm install
+   ```
+
+2. Generate cache and build:
+   ```bash
+   # Set GitHub token for cache generation
+   export GITHUB_TOKEN=your_github_token_here
+
+   # Generate cache and build application
+   npm run build:all
+   ```
+
+3. Deploy the `dist` directory to your hosting provider.
+
+Note: The GitHub token is only needed during the build process to generate the cache. The frontend application reads from this cache and does not need the token at runtime.
 
 ### Static Hosting (e.g., GitHub Pages, Netlify)
 
-1. Build the application:
-```bash
-npm run build
-```
+1. Set up deployment:
+   ```bash
+   # Add build command in your hosting provider
+   npm run build
 
-2. Deploy the contents of the `dist` directory to your hosting provider.
+   # Add cache generation to your build pipeline
+   npm run build:cache
+   ```
 
-3. Make sure to set the `GITHUB_TOKEN` environment variable in your hosting provider's configuration.
+2. Configure environment variables:
+   - Set `GITHUB_TOKEN` in your CI/CD environment
+   - No environment variables needed in the hosting environment
 
 ### Docker Deployment
 
 1. Build the Docker image:
-```bash
-docker build -t openhands-monitor .
-```
+   ```bash
+   # Build with cache generation
+   docker build --build-arg GITHUB_TOKEN=your_token_here -t openhands-monitor .
+   ```
 
 2. Run the container:
-```bash
-docker run -p 8080:80 -e GITHUB_TOKEN=your_token_here openhands-monitor
-```
+   ```bash
+   # No token needed at runtime
+   docker run -p 8080:80 openhands-monitor
+   ```
 
 The app will be available at `http://localhost:8080`.
 
@@ -132,17 +168,23 @@ const REPO_NAME = 'your-repo-name';
 
 ### Common Issues
 
-1. **API Rate Limiting**
-   - Symptom: Error message about rate limiting
-   - Solution: Use a GitHub token with appropriate permissions
+1. **Cache Generation Fails**
+   - Symptom: Error during `npm run build:cache`
+   - Solution: 
+     - Verify `GITHUB_TOKEN` is set and has correct permissions
+     - Check for GitHub API rate limiting
+     - Ensure repository configuration is correct
 
-2. **Loading Forever**
-   - Symptom: Spinner never stops
-   - Solution: Check browser console for errors and verify GitHub token
-
-3. **No Data Showing**
+2. **No Data Showing**
    - Symptom: Empty activity list
-   - Solution: Verify date range filter settings and check repository configuration
+   - Solution: 
+     - Verify cache was generated successfully
+     - Check date range filter settings
+     - Run `npm run build:cache` to refresh data
+
+3. **Development Server Shows Old Data**
+   - Symptom: Changes in GitHub not reflected
+   - Solution: Run `npm run build:cache` to update the cache
 
 ### Getting Help
 
