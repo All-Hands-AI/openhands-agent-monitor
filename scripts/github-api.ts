@@ -46,7 +46,7 @@ interface GitHubResponse<T> {
 async function fetchWithAuth<T>(url: string): Promise<GitHubResponse<T>> {
   const response = await fetch(url, {
     headers: {
-      'Authorization': `Bearer ${GITHUB_TOKEN as string}`,
+      'Authorization': `Bearer ${GITHUB_TOKEN}`,
       'Accept': 'application/vnd.github.v3+json',
     },
   });
