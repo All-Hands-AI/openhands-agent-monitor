@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "cd scripts && tsc && cd .. && npm run cache-data && tsc -b && vite build",
+    "build": "tsc -b && vite build",
+    "build:cache": "cd scripts && tsc && cd .. && npm run cache-data",
+    "build:all": "npm run build:cache && npm run build",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "preview": "vite preview",
