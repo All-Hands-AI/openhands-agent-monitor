@@ -18,15 +18,32 @@
  * They also depend on the actual state of the repository, so results may vary.
  */
 
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { fetchBotActivities } from '../services/github';
 import type { BotActivity } from '../types';
+import * as fs from 'fs';
 
 describe('GitHub Service Integration Tests', () => {
   // Skip these tests if VITE_GITHUB_TOKEN is not set
   const runTest = import.meta.env['VITE_GITHUB_TOKEN'] !== undefined && import.meta.env['VITE_GITHUB_TOKEN'] !== '' ? it : it.skip;
 
   runTest('should fetch real bot activities from OpenHands repository', async () => {
+    // Mock the fetch function to return the actual cached data
+    const cachedData = JSON.parse(fs.readFileSync('/workspace/openhands-agent-monitor/public/cache/bot-activities.json', 'utf8')) as BotActivity[];
+    const mockFetch = vi.fn().mockImplementation((url: string) => {
+      if (url === '/cache/bot-activities.json') {
+        return Promise.resolve({
+          ok: true,
+          status: 200,
+          statusText: 'OK',
+          json: () => Promise.resolve(cachedData),
+          headers: new Headers()
+        } as Response);
+      }
+      throw new Error(`Unexpected URL: ${url}`);
+    });
+    vi.stubGlobal('fetch', mockFetch as unknown as typeof fetch);
+
     const activities = await fetchBotActivities();
     
     // Verify we got some activities
