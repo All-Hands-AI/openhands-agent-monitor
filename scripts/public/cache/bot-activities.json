@@ -1,0 +1,1101 @@
+{
+  "activities": [
+    {
+      "id": "issue-5363-2511693488",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-12-02T14:28:44Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5363#issuecomment-2511702756",
+      "description": "A potential fix has been generated and a draft PR #5364 has been created. Please review the changes."
+    },
+    {
+      "id": "issue-5086-2510476754",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-12-02T03:15:20Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5086#issuecomment-2510485632",
+      "description": "A potential fix has been generated and a draft PR #5357 has been created. Please review the changes."
+    },
+    {
+      "id": "pr-5351-2510419049",
+      "type": "pr",
+      "status": "failure",
+      "timestamp": "2024-12-02T02:13:32Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/pull/5351#issuecomment-2510421088",
+      "description": "The workflow to fix this issue encountered an error. Please check the [workflow logs](https://github.com/All-Hands-AI/OpenHands/actions/runs/12111412793) for more information."
+    },
+    {
+      "id": "pr-5351-2510413009",
+      "type": "pr",
+      "status": "failure",
+      "timestamp": "2024-12-02T02:07:48Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/pull/5351#issuecomment-2510415815",
+      "description": "The workflow to fix this issue encountered an error. Please check the [workflow logs](https://github.com/All-Hands-AI/OpenHands/actions/runs/12111362562) for more information."
+    },
+    {
+      "id": "issue-5263-2510195753",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-12-01T18:21:48Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5263#issuecomment-2510196545",
+      "description": "A potential fix has been generated and a draft PR #5349 has been created. Please review the changes."
+    },
+    {
+      "id": "issue-5343-2509892427",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-12-01T16:07:31Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5343#issuecomment-2509919118",
+      "description": "A potential fix has been generated and a draft PR #5344 has been created. Please review the changes."
+    },
+    {
+      "id": "pr-5340-2509797873",
+      "type": "pr",
+      "status": "failure",
+      "timestamp": "2024-12-01T14:40:09Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/pull/5340#issuecomment-2509800029",
+      "description": "The workflow to fix this issue encountered an error. Please check the [workflow logs](https://github.com/All-Hands-AI/OpenHands/actions/runs/12106410837) for more information."
+    },
+    {
+      "id": "issue-5341-2509794989",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-12-01T14:32:27Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5341#issuecomment-2509798915",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-5341' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-5341). Manual intervention may be required."
+    },
+    {
+      "id": "issue-5086-2509779401",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-12-01T13:52:12Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5086#issuecomment-2510485632",
+      "description": "A potential fix has been generated and a draft PR #5357 has been created. Please review the changes."
+    },
+    {
+      "id": "pr-5332-2509492299",
+      "type": "pr",
+      "status": "failure",
+      "timestamp": "2024-12-01T00:26:08Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/pull/5332#issuecomment-2509498863",
+      "description": "The workflow to fix this issue encountered an error. Please check the [workflow logs](https://github.com/All-Hands-AI/OpenHands/actions/runs/12100625685) for more information."
+    },
+    {
+      "id": "pr-5284-2509489022",
+      "type": "pr",
+      "status": "failure",
+      "timestamp": "2024-12-01T00:18:14Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/pull/5284#issuecomment-2509509888",
+      "description": "The workflow to fix this issue encountered an error. Please check the [workflow logs](https://github.com/All-Hands-AI/OpenHands/actions/runs/12100564961) for more information."
+    },
+    {
+      "id": "issue-5337-2509081895",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-11-30T17:28:38Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5337#issuecomment-2509082742",
+      "description": "A potential fix has been generated and a draft PR #5338 has been created. Please review the changes."
+    },
+    {
+      "id": "pr-5284-2509025424",
+      "type": "pr",
+      "status": "failure",
+      "timestamp": "2024-11-30T16:28:56Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/pull/5284#issuecomment-2509509888",
+      "description": "The workflow to fix this issue encountered an error. Please check the [workflow logs](https://github.com/All-Hands-AI/OpenHands/actions/runs/12100564961) for more information."
+    },
+    {
+      "id": "issue-4484-2508749854",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-11-30T00:19:34Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4484#issuecomment-2508754819",
+      "description": "A potential fix has been generated and a draft PR #5333 has been created. Please review the changes."
+    },
+    {
+      "id": "issue-4864-2508743594",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-11-30T00:04:13Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4864#issuecomment-2508752338",
+      "description": "A potential fix has been generated and a draft PR #5332 has been created. Please review the changes."
+    },
+    {
+      "id": "pr-5284-2508709941",
+      "type": "pr",
+      "status": "failure",
+      "timestamp": "2024-11-29T22:30:16Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/pull/5284#issuecomment-2509509888",
+      "description": "The workflow to fix this issue encountered an error. Please check the [workflow logs](https://github.com/All-Hands-AI/OpenHands/actions/runs/12100564961) for more information."
+    },
+    {
+      "id": "issue-5277-2508678179",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-11-29T21:29:17Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5277#issuecomment-2508682736",
+      "description": "A potential fix has been generated and a draft PR #5330 has been created. Please review the changes."
+    },
+    {
+      "id": "pr-5284-2507055044",
+      "type": "pr",
+      "status": "failure",
+      "timestamp": "2024-11-29T04:06:19Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/pull/5284#issuecomment-2509509888",
+      "description": "The workflow to fix this issue encountered an error. Please check the [workflow logs](https://github.com/All-Hands-AI/OpenHands/actions/runs/12100564961) for more information."
+    },
+    {
+      "id": "issue-5257-2507037476",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-11-29T03:43:05Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5257#issuecomment-2507048357",
+      "description": "A potential fix has been generated and a draft PR #5323 has been created. Please review the changes."
+    },
+    {
+      "id": "issue-5320-2507035283",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-11-29T03:39:51Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5320#issuecomment-2507047094",
+      "description": "A potential fix has been generated and a draft PR #5322 has been created. Please review the changes."
+    },
+    {
+      "id": "issue-5315-2506470512",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-11-28T16:26:21Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5315#issuecomment-2506497456",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-5315' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-5315). Manual intervention may be required."
+    },
+    {
+      "id": "issue-5299-2506225964",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-11-28T14:16:06Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5299#issuecomment-2506234953",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-5299' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-5299). Manual intervention may be required."
+    },
+    {
+      "id": "issue-5299-2506211358",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-11-28T14:08:50Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5299#issuecomment-2506218716",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-5299' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-5299). Manual intervention may be required."
+    },
+    {
+      "id": "issue-4819-2504973353",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-11-27T23:27:19Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4819#issuecomment-2505029729",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-4819-try2' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-4819-try2). Manual intervention may be required."
+    },
+    {
+      "id": "issue-5112-2504963369",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-11-27T23:14:14Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5112#issuecomment-2504967807",
+      "description": "A potential fix has been generated and a draft PR #5308 has been created. Please review the changes."
+    },
+    {
+      "id": "issue-5234-2502452335",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-11-27T01:39:13Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5234#issuecomment-2502467549",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-5234' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-5234). Manual intervention may be required."
+    },
+    {
+      "id": "pr-5284-2501338361",
+      "type": "pr",
+      "status": "failure",
+      "timestamp": "2024-11-26T16:29:55Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/pull/5284#issuecomment-2509509888",
+      "description": "The workflow to fix this issue encountered an error. Please check the [workflow logs](https://github.com/All-Hands-AI/OpenHands/actions/runs/12100564961) for more information."
+    },
+    {
+      "id": "pr-5181-2498266323",
+      "type": "pr",
+      "status": "failure",
+      "timestamp": "2024-11-25T15:03:22Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/pull/5181#issuecomment-2498282366",
+      "description": "The workflow to fix this issue encountered an error. Please check the [workflow logs](https://github.com/All-Hands-AI/OpenHands/actions/runs/12012831857) for more information."
+    },
+    {
+      "id": "issue-5257-2498109860",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-11-25T14:04:06Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5257#issuecomment-2507048357",
+      "description": "A potential fix has been generated and a draft PR #5323 has been created. Please review the changes."
+    },
+    {
+      "id": "issue-2947-2496600387",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-11-25T03:25:43Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/2947#issuecomment-2496615880",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-2947' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-2947). Manual intervention may be required."
+    },
+    {
+      "id": "issue-5015-2496303049",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-11-24T22:53:27Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5015#issuecomment-2496306399",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-5015' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-5015). Manual intervention may be required."
+    },
+    {
+      "id": "issue-5219-2495791779",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-11-24T04:04:56Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5219#issuecomment-2495793669",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-5219-try2' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-5219-try2). Manual intervention may be required."
+    },
+    {
+      "id": "issue-5154-2495788641",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-11-24T03:56:35Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5154#issuecomment-2495791202",
+      "description": "A potential fix has been generated and a draft PR #5231 has been created. Please review the changes."
+    },
+    {
+      "id": "pr-5223-2495669033",
+      "type": "pr",
+      "status": "failure",
+      "timestamp": "2024-11-23T22:08:11Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/pull/5223#issuecomment-2495670128",
+      "description": "The workflow to fix this issue encountered an error. Please check the [workflow logs](https://github.com/All-Hands-AI/OpenHands/actions/runs/11990773677) for more information."
+    },
+    {
+      "id": "pr-5223-2495661882",
+      "type": "pr",
+      "status": "failure",
+      "timestamp": "2024-11-23T21:37:18Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/pull/5223#issuecomment-2495663256",
+      "description": "The workflow to fix this issue encountered an error. Please check the [workflow logs](https://github.com/All-Hands-AI/OpenHands/actions/runs/11990606202) for more information."
+    },
+    {
+      "id": "pr-5223-2495653665",
+      "type": "pr",
+      "status": "failure",
+      "timestamp": "2024-11-23T21:01:09Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/pull/5223#issuecomment-2495654249",
+      "description": "The workflow to fix this issue encountered an error. Please check the [workflow logs](https://github.com/All-Hands-AI/OpenHands/actions/runs/11990371377) for more information."
+    },
+    {
+      "id": "pr-5181-2495645768",
+      "type": "pr",
+      "status": "failure",
+      "timestamp": "2024-11-23T20:28:23Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/pull/5181#issuecomment-2495646774",
+      "description": "The workflow to fix this issue encountered an error. Please check the [workflow logs](https://github.com/All-Hands-AI/OpenHands/actions/runs/11990190317) for more information."
+    },
+    {
+      "id": "pr-5223-2495638282",
+      "type": "pr",
+      "status": "failure",
+      "timestamp": "2024-11-23T20:01:20Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/pull/5223#issuecomment-2495640581",
+      "description": "The workflow to fix this issue encountered an error. Please check the [workflow logs](https://github.com/All-Hands-AI/OpenHands/actions/runs/11990011865) for more information."
+    },
+    {
+      "id": "pr-5223-2495630894",
+      "type": "pr",
+      "status": "failure",
+      "timestamp": "2024-11-23T19:32:06Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/pull/5223#issuecomment-2495631720",
+      "description": "The workflow to fix this issue encountered an error. Please check the [workflow logs](https://github.com/All-Hands-AI/OpenHands/actions/runs/11989852644) for more information."
+    },
+    {
+      "id": "pr-5223-2495627157",
+      "type": "pr",
+      "status": "failure",
+      "timestamp": "2024-11-23T19:19:40Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/pull/5223#issuecomment-2495631720",
+      "description": "The workflow to fix this issue encountered an error. Please check the [workflow logs](https://github.com/All-Hands-AI/OpenHands/actions/runs/11989852644) for more information."
+    },
+    {
+      "id": "pr-5223-2495621958",
+      "type": "pr",
+      "status": "failure",
+      "timestamp": "2024-11-23T18:59:37Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/pull/5223#issuecomment-2495622826",
+      "description": "The workflow to fix this issue encountered an error. Please check the [workflow logs](https://github.com/All-Hands-AI/OpenHands/actions/runs/11989641390) for more information."
+    },
+    {
+      "id": "pr-5226-2495596128",
+      "type": "pr",
+      "status": "failure",
+      "timestamp": "2024-11-23T18:32:40Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/pull/5226#issuecomment-2495609874",
+      "description": "The workflow to fix this issue encountered an error. Please check the [workflow logs](https://github.com/All-Hands-AI/OpenHands/actions/runs/11989479205) for more information."
+    },
+    {
+      "id": "issue-5229-2495521927",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-11-23T15:57:07Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5229#issuecomment-2495522602",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-5229' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-5229). Manual intervention may be required."
+    },
+    {
+      "id": "issue-5186-2495495630",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-11-23T14:22:24Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5186#issuecomment-2495496450",
+      "description": "A potential fix has been generated and a draft PR #5226 has been created. Please review the changes."
+    },
+    {
+      "id": "issue-5195-2495495143",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-11-23T14:20:29Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5195#issuecomment-2495496472",
+      "description": "A potential fix has been generated and a draft PR #5227 has been created. Please review the changes."
+    },
+    {
+      "id": "issue-5222-2495475822",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-11-23T13:12:43Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5222#issuecomment-2495476729",
+      "description": "A potential fix has been generated and a draft PR #5223 has been created. Please review the changes."
+    },
+    {
+      "id": "issue-5219-2495302587",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-11-23T04:35:37Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5219#issuecomment-2495313419",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-5219' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-5219). Manual intervention may be required."
+    },
+    {
+      "id": "pr-5181-2494828301",
+      "type": "pr",
+      "status": "failure",
+      "timestamp": "2024-11-22T21:17:29Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/pull/5181#issuecomment-2495646774",
+      "description": "The workflow to fix this issue encountered an error. Please check the [workflow logs](https://github.com/All-Hands-AI/OpenHands/actions/runs/11990190317) for more information."
+    },
+    {
+      "id": "pr-5181-2494759158",
+      "type": "pr",
+      "status": "failure",
+      "timestamp": "2024-11-22T20:40:04Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/pull/5181#issuecomment-2494766867",
+      "description": "The workflow to fix this issue encountered an error. Please check the [workflow logs](https://github.com/All-Hands-AI/OpenHands/actions/runs/11979811040) for more information."
+    },
+    {
+      "id": "issue-5185-2492157670",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-11-21T20:04:24Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5185#issuecomment-2492210186",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-5185' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-5185). Manual intervention may be required."
+    },
+    {
+      "id": "pr-5181-2492013164",
+      "type": "pr",
+      "status": "failure",
+      "timestamp": "2024-11-21T18:49:25Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/pull/5181#issuecomment-2492019403",
+      "description": "The workflow to fix this issue encountered an error. Please check the [workflow logs](https://github.com/All-Hands-AI/OpenHands/actions/runs/11959700226) for more information."
+    },
+    {
+      "id": "pr-5181-2492011778",
+      "type": "pr",
+      "status": "failure",
+      "timestamp": "2024-11-21T18:48:42Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/pull/5181#issuecomment-2492019403",
+      "description": "The workflow to fix this issue encountered an error. Please check the [workflow logs](https://github.com/All-Hands-AI/OpenHands/actions/runs/11959700226) for more information."
+    },
+    {
+      "id": "issue-5179-2491992408",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-11-21T18:38:17Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5179#issuecomment-2492005864",
+      "description": "A potential fix has been generated and a draft PR #5181 has been created. Please review the changes."
+    },
+    {
+      "id": "pr-5161-2489972680",
+      "type": "pr",
+      "status": "failure",
+      "timestamp": "2024-11-21T03:06:54Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/pull/5161#issuecomment-2489977539",
+      "description": "The workflow to fix this issue encountered an error. Openhands failed to create any code changes."
+    },
+    {
+      "id": "issue-5155-2489958778",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-11-21T02:51:58Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5155#issuecomment-2489961369",
+      "description": "A potential fix has been generated and a draft PR #5163 has been created. Please review the changes."
+    },
+    {
+      "id": "pr-5161-2489953192",
+      "type": "pr",
+      "status": "failure",
+      "timestamp": "2024-11-21T02:45:50Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/pull/5161#issuecomment-2489960941",
+      "description": "The workflow to fix this issue encountered an error. Please check the [workflow logs](https://github.com/All-Hands-AI/OpenHands/actions/runs/11945624814) for more information."
+    },
+    {
+      "id": "issue-5162-2489951095",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-11-21T02:43:33Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5162#issuecomment-2489953661",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-5162' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-5162). Manual intervention may be required."
+    },
+    {
+      "id": "issue-5159-2489904716",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-11-21T01:55:52Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5159#issuecomment-2489908234",
+      "description": "A potential fix has been generated and a draft PR #5160 has been created. Please review the changes."
+    },
+    {
+      "id": "pr-5118-2485559424",
+      "type": "pr",
+      "status": "failure",
+      "timestamp": "2024-11-19T12:17:44Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/pull/5118#issuecomment-2485587713",
+      "description": "The workflow to fix this issue encountered an error. Please check the [workflow logs](https://github.com/All-Hands-AI/OpenHands/actions/runs/11912863168) for more information."
+    },
+    {
+      "id": "issue-5112-2484768514",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-11-19T05:55:36Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5112#issuecomment-2484777977",
+      "description": "A potential fix has been generated and a draft PR #5118 has been created. Please review the changes."
+    },
+    {
+      "id": "pr-5098-2484151455",
+      "type": "pr",
+      "status": "failure",
+      "timestamp": "2024-11-18T21:18:28Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/pull/5098#issuecomment-2484158442",
+      "description": "The workflow to fix this issue encountered an error. Openhands failed to create any code changes."
+    },
+    {
+      "id": "pr-5098-2484140200",
+      "type": "pr",
+      "status": "failure",
+      "timestamp": "2024-11-18T21:12:11Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/pull/5098#issuecomment-2484158442",
+      "description": "The workflow to fix this issue encountered an error. Openhands failed to create any code changes."
+    },
+    {
+      "id": "issue-5102-2483630936",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-11-18T17:10:55Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5102#issuecomment-2483638959",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-5102' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-5102). Manual intervention may be required."
+    },
+    {
+      "id": "issue-5099-2483449840",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-11-18T15:55:15Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5099#issuecomment-2483461729",
+      "description": "A potential fix has been generated and a draft PR #5100 has been created. Please review the changes."
+    },
+    {
+      "id": "issue-5086-2480659757",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-11-16T16:45:27Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5086#issuecomment-2510485632",
+      "description": "A potential fix has been generated and a draft PR #5357 has been created. Please review the changes."
+    },
+    {
+      "id": "issue-5080-2480389294",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-11-16T04:16:13Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5080#issuecomment-2480391109",
+      "description": "A potential fix has been generated and a draft PR #5081 has been created. Please review the changes."
+    },
+    {
+      "id": "pr-5058-2480377226",
+      "type": "pr",
+      "status": "failure",
+      "timestamp": "2024-11-16T03:50:09Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/pull/5058#issuecomment-2480385683",
+      "description": "The workflow to fix this issue encountered an error. Please check the [workflow logs](https://github.com/All-Hands-AI/OpenHands/actions/runs/11866962141) for more information."
+    },
+    {
+      "id": "pr-5058-2480353687",
+      "type": "pr",
+      "status": "failure",
+      "timestamp": "2024-11-16T02:54:58Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/pull/5058#issuecomment-2480359186",
+      "description": "The workflow to fix this issue encountered an error. Please check the [workflow logs](https://github.com/All-Hands-AI/OpenHands/actions/runs/11866592189) for more information."
+    },
+    {
+      "id": "pr-5058-2480341534",
+      "type": "pr",
+      "status": "failure",
+      "timestamp": "2024-11-16T02:35:26Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/pull/5058#issuecomment-2480359186",
+      "description": "The workflow to fix this issue encountered an error. Please check the [workflow logs](https://github.com/All-Hands-AI/OpenHands/actions/runs/11866592189) for more information."
+    },
+    {
+      "id": "issue-5070-2480246106",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-11-16T00:59:51Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5070#issuecomment-2480248452",
+      "description": "A potential fix has been generated and a draft PR #5078 has been created. Please review the changes."
+    },
+    {
+      "id": "issue-5076-2480228170",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-11-16T00:35:27Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5076#issuecomment-2480233224",
+      "description": "A potential fix has been generated and a draft PR #5077 has been created. Please review the changes."
+    },
+    {
+      "id": "issue-5070-2480101235",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-11-15T23:00:46Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5070#issuecomment-2480104862",
+      "description": "A potential fix has been generated and a draft PR #5072 has been created. Please review the changes."
+    },
+    {
+      "id": "issue-5025-2479899652",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-11-15T20:47:05Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5025#issuecomment-2479904925",
+      "description": "A potential fix has been generated and a draft PR #5067 has been created. Please review the changes."
+    },
+    {
+      "id": "issue-5064-2479813459",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-11-15T19:51:17Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5064#issuecomment-2479818477",
+      "description": "A potential fix has been generated and a draft PR #5065 has been created. Please review the changes."
+    },
+    {
+      "id": "issue-5059-2479771918",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-11-15T19:27:21Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5059#issuecomment-2479791260",
+      "description": "A potential fix has been generated and a draft PR #5062 has been created. Please review the changes."
+    },
+    {
+      "id": "pr-5058-2479699433",
+      "type": "pr",
+      "status": "failure",
+      "timestamp": "2024-11-15T18:42:36Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/pull/5058#issuecomment-2480359186",
+      "description": "The workflow to fix this issue encountered an error. Please check the [workflow logs](https://github.com/All-Hands-AI/OpenHands/actions/runs/11866592189) for more information."
+    },
+    {
+      "id": "issue-5025-2479041018",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-11-15T14:41:11Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5025#issuecomment-2479904925",
+      "description": "A potential fix has been generated and a draft PR #5067 has been created. Please review the changes."
+    },
+    {
+      "id": "issue-5021-2478695400",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-11-15T12:20:37Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5021#issuecomment-2478704148",
+      "description": "A potential fix has been generated and a draft PR #5022 has been created. Please review the changes."
+    },
+    {
+      "id": "issue-4985-2474923953",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-11-13T22:08:17Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4985#issuecomment-2474931499",
+      "description": "A potential fix has been generated and a draft PR #4986 has been created. Please review the changes."
+    },
+    {
+      "id": "pr-4822-2472012916",
+      "type": "pr",
+      "status": "failure",
+      "timestamp": "2024-11-13T00:28:54Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/pull/4822#issuecomment-2472018021",
+      "description": "The workflow to fix this issue encountered an error. Please check the workflow logs for more information."
+    },
+    {
+      "id": "issue-4944-2471325137",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-11-12T18:57:00Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4944#issuecomment-2471330631",
+      "description": "A potential fix has been generated and a draft PR #4946 has been created. Please review the changes."
+    },
+    {
+      "id": "issue-4941-2471317547",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-11-12T18:52:48Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4941#issuecomment-2471327103",
+      "description": "A potential fix has been generated and a draft PR #4945 has been created. Please review the changes."
+    },
+    {
+      "id": "issue-4941-2471247370",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-11-12T18:15:04Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4941#issuecomment-2471278336",
+      "description": "A potential fix has been generated and a draft PR #4942 has been created. Please review the changes."
+    },
+    {
+      "id": "issue-4939-2471162962",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-11-12T17:33:20Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4939#issuecomment-2471170932",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-4939' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-4939). Manual intervention may be required."
+    },
+    {
+      "id": "issue-4912-2470915646",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-11-12T15:58:07Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4912#issuecomment-2470924341",
+      "description": "A potential fix has been generated and a draft PR #4937 has been created. Please review the changes."
+    },
+    {
+      "id": "issue-4931-2470700499",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-11-12T14:34:20Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4931#issuecomment-2470723674",
+      "description": "A potential fix has been generated and a draft PR #4932 has been created. Please review the changes."
+    },
+    {
+      "id": "issue-4896-2470231250",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-11-12T11:02:24Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4896#issuecomment-2470241791",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-4896-try2' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-4896-try2). Manual intervention may be required."
+    },
+    {
+      "id": "issue-4842-2469923574",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-11-12T08:46:47Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4842#issuecomment-2469934269",
+      "description": "A potential fix has been generated and a draft PR #4922 has been created. Please review the changes."
+    },
+    {
+      "id": "issue-4901-2468885609",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-11-11T19:30:02Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4901#issuecomment-2468893791",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-4901' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-4901). Manual intervention may be required."
+    },
+    {
+      "id": "issue-4896-2468474595",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-11-11T15:42:15Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4896#issuecomment-2468516466",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-4896' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-4896). Manual intervention may be required."
+    },
+    {
+      "id": "issue-4884-2467480194",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-11-11T08:05:59Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4884#issuecomment-2467522622",
+      "description": "A potential fix has been generated and a draft PR #4885 has been created. Please review the changes."
+    },
+    {
+      "id": "issue-4884-2467453705",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-11-11T07:50:17Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4884#issuecomment-2467522622",
+      "description": "A potential fix has been generated and a draft PR #4885 has been created. Please review the changes."
+    },
+    {
+      "id": "issue-4876-2466835942",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-11-10T18:23:36Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4876#issuecomment-2466838965",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-4876' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-4876). Manual intervention may be required."
+    },
+    {
+      "id": "pr-4658-2466259051",
+      "type": "pr",
+      "status": "failure",
+      "timestamp": "2024-11-09T15:31:58Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/pull/4658#issuecomment-2466260243",
+      "description": "The workflow to fix this issue encountered an error. Please check the workflow logs for more information."
+    },
+    {
+      "id": "pr-4658-2466258250",
+      "type": "pr",
+      "status": "failure",
+      "timestamp": "2024-11-09T15:29:53Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/pull/4658#issuecomment-2466260243",
+      "description": "The workflow to fix this issue encountered an error. Please check the workflow logs for more information."
+    },
+    {
+      "id": "issue-4866-2466258231",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-11-09T15:29:49Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4866#issuecomment-2466259972",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-4866' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-4866). Manual intervention may be required."
+    },
+    {
+      "id": "issue-4859-2466076412",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-11-09T06:28:19Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4859#issuecomment-2466078293",
+      "description": "A potential fix has been generated and a draft PR #4861 has been created. Please review the changes."
+    },
+    {
+      "id": "issue-4842-2465012382",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-11-08T15:16:08Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4842#issuecomment-2469934269",
+      "description": "A potential fix has been generated and a draft PR #4922 has been created. Please review the changes."
+    },
+    {
+      "id": "pr-4832-2463499887",
+      "type": "pr",
+      "status": "failure",
+      "timestamp": "2024-11-08T00:39:13Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/pull/4832#issuecomment-2463501166",
+      "description": "The workflow to fix this issue encountered an error. Please check the workflow logs for more information."
+    },
+    {
+      "id": "pr-4832-2463488085",
+      "type": "pr",
+      "status": "failure",
+      "timestamp": "2024-11-08T00:31:45Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/pull/4832#issuecomment-2463501166",
+      "description": "The workflow to fix this issue encountered an error. Please check the workflow logs for more information."
+    },
+    {
+      "id": "pr-4832-2463206932",
+      "type": "pr",
+      "status": "failure",
+      "timestamp": "2024-11-07T21:01:19Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/pull/4832#issuecomment-2463219661",
+      "description": "The workflow to fix this issue encountered an error. Please check the workflow logs for more information."
+    },
+    {
+      "id": "pr-4832-2463186386",
+      "type": "pr",
+      "status": "failure",
+      "timestamp": "2024-11-07T20:50:56Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/pull/4832#issuecomment-2463195686",
+      "description": "The workflow to fix this issue encountered an error. Please check the workflow logs for more information."
+    },
+    {
+      "id": "issue-4830-2462887353",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-11-07T17:55:44Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4830#issuecomment-2462906319",
+      "description": "A potential fix has been generated and a draft PR #4832 has been created. Please review the changes."
+    },
+    {
+      "id": "issue-4828-2462874019",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-11-07T17:48:35Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4828#issuecomment-2462891889",
+      "description": "A potential fix has been generated and a draft PR #4831 has been created. Please review the changes."
+    },
+    {
+      "id": "issue-4827-2462853914",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-11-07T17:37:45Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4827#issuecomment-2462864570",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-4827' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-4827). Manual intervention may be required."
+    },
+    {
+      "id": "pr-4658-2462596367",
+      "type": "pr",
+      "status": "failure",
+      "timestamp": "2024-11-07T15:55:23Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/pull/4658#issuecomment-2466260243",
+      "description": "The workflow to fix this issue encountered an error. Please check the workflow logs for more information."
+    },
+    {
+      "id": "pr-4822-2462412429",
+      "type": "pr",
+      "status": "failure",
+      "timestamp": "2024-11-07T14:43:07Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/pull/4822#issuecomment-2472018021",
+      "description": "The workflow to fix this issue encountered an error. Please check the workflow logs for more information."
+    },
+    {
+      "id": "pr-4822-2462369723",
+      "type": "pr",
+      "status": "failure",
+      "timestamp": "2024-11-07T14:24:58Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/pull/4822#issuecomment-2472018021",
+      "description": "The workflow to fix this issue encountered an error. Please check the workflow logs for more information."
+    },
+    {
+      "id": "issue-4820-2462320610",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-11-07T14:03:58Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4820#issuecomment-2462337807",
+      "description": "A potential fix has been generated and a draft PR #4822 has been created. Please review the changes."
+    },
+    {
+      "id": "issue-4819-2462285441",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-11-07T13:48:09Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4819#issuecomment-2462316986",
+      "description": "A potential fix has been generated and a draft PR #4821 has been created. Please review the changes."
+    },
+    {
+      "id": "issue-4583-2461220194",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-11-07T03:04:28Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4583#issuecomment-2461227875",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-4583' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-4583). Manual intervention may be required."
+    },
+    {
+      "id": "issue-4809-2461146053",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-11-07T01:43:30Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4809#issuecomment-2461152418",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-4809' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-4809). Manual intervention may be required."
+    },
+    {
+      "id": "issue-4776-2460483938",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-11-06T18:24:34Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4776#issuecomment-2460494787",
+      "description": "A potential fix has been generated and a draft PR #4795 has been created. Please review the changes."
+    },
+    {
+      "id": "issue-4783-2459414843",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-11-06T10:46:53Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4783#issuecomment-2459431246",
+      "description": "A potential fix has been generated and a draft PR #4784 has been created. Please review the changes."
+    },
+    {
+      "id": "issue-4780-2459082234",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-11-06T09:13:53Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4780#issuecomment-2459099164",
+      "description": "A potential fix has been generated and a draft PR #4781 has been created. Please review the changes."
+    },
+    {
+      "id": "issue-4774-2458457708",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-11-06T00:20:44Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4774#issuecomment-2458466968",
+      "description": "A potential fix has been generated and a draft PR #4775 has been created. Please review the changes."
+    },
+    {
+      "id": "issue-4769-2458390348",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-11-05T23:17:48Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4769#issuecomment-2458397249",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-4769' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-4769). Manual intervention may be required."
+    },
+    {
+      "id": "issue-4756-2457412719",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-11-05T15:03:32Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4756#issuecomment-2457424701",
+      "description": "A potential fix has been generated and a draft PR #4757 has been created. Please review the changes."
+    },
+    {
+      "id": "issue-4739-2455626705",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-11-04T20:21:32Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4739#issuecomment-2455636174",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-4739' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-4739). Manual intervention may be required."
+    },
+    {
+      "id": "issue-4735-2455118002",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-11-04T16:09:33Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4735#issuecomment-2455135871",
+      "description": "A potential fix has been generated and a draft PR #4736 has been created. Please review the changes."
+    },
+    {
+      "id": "issue-4653-2449967126",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-10-31T14:13:54Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4653#issuecomment-2449987243",
+      "description": "A potential fix has been generated and a draft PR #4658 has been created. Please review the changes."
+    },
+    {
+      "id": "issue-4466-2421336774",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-10-18T04:40:22Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4466#issuecomment-2421359261",
+      "description": "A potential fix has been generated and a draft PR #4467 has been created. Please review the changes."
+    },
+    {
+      "id": "issue-4254-2407294400",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-10-11T12:18:26Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4254#issuecomment-2407347210",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-4254' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-4254). Manual intervention may be required."
+    },
+    {
+      "id": "issue-4254-2398839410",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-10-08T04:59:01Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4254#issuecomment-2407347210",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-4254' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-4254). Manual intervention may be required."
+    },
+    {
+      "id": "issue-4254-2398823690",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-10-08T04:44:29Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4254#issuecomment-2407347210",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-4254' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-4254). Manual intervention may be required."
+    },
+    {
+      "id": "issue-4254-2398800022",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-10-08T04:25:30Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4254#issuecomment-2407347210",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-4254' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-4254). Manual intervention may be required."
+    },
+    {
+      "id": "issue-4254-2397848351",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-10-07T20:38:24Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4254#issuecomment-2407347210",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-4254' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-4254). Manual intervention may be required."
+    },
+    {
+      "id": "issue-4024-2392648582",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-10-04T02:03:23Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4024#issuecomment-2392654740",
+      "description": "A potential fix has been generated and a draft PR #4204 has been created. Please review the changes."
+    },
+    {
+      "id": "issue-4196-2391879959",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-10-03T16:50:11Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4196#issuecomment-2391896319",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-4196' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-4196). Manual intervention may be required."
+    },
+    {
+      "id": "issue-4184-2391198261",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-10-03T11:36:36Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4184#issuecomment-2391212519",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-4184' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-4184). Manual intervention may be required."
+    },
+    {
+      "id": "issue-4184-2390457010",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-10-03T03:45:37Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4184#issuecomment-2391212519",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-4184' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-4184). Manual intervention may be required."
+    },
+    {
+      "id": "issue-4157-2387573407",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-10-02T03:50:27Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4157#issuecomment-2387576303",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-4157' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-4157). Manual intervention may be required."
+    },
+    {
+      "id": "issue-3325-2386104667",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-10-01T14:19:11Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/3325#issuecomment-2386118152",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-3325' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-3325). Manual intervention may be required."
+    },
+    {
+      "id": "issue-4127-2384308121",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-09-30T22:46:57Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4127#issuecomment-2384311921",
+      "description": "A potential fix has been generated and a draft PR #4129 has been created. Please review the changes."
+    },
+    {
+      "id": "issue-4127-2384280328",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-09-30T22:18:55Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4127#issuecomment-2384311921",
+      "description": "A potential fix has been generated and a draft PR #4129 has been created. Please review the changes."
+    },
+    {
+      "id": "issue-4127-2384135150",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-09-30T20:59:43Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4127#issuecomment-2384311921",
+      "description": "A potential fix has been generated and a draft PR #4129 has been created. Please review the changes."
+    },
+    {
+      "id": "issue-3913-2384055144",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-09-30T20:07:48Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/3913#issuecomment-2384069818",
+      "description": "An attempt was made to automatically fix this issue, but it was unsuccessful. A branch named 'openhands-fix-issue-3913' has been created with the attempted changes. You can view the branch [here](https://github.com/All-Hands-AI/OpenHands/tree/openhands-fix-issue-3913). Manual intervention may be required."
+    }
+  ],
+  "lastUpdated": "2024-12-02T22:05:24.188Z"
+}
