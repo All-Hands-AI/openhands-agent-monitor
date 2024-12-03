@@ -16,10 +16,30 @@ interface ChartData {
 type ChartSpec = {
   $schema: string;
   data: { values: ChartData[] };
-  mark: { type: 'line' };
+  mark: { type: 'bar' };
   encoding: {
-    x: { field: 'date'; type: 'temporal'; title: 'Date' };
-    y: { aggregate: 'count'; type: 'quantitative'; title: 'Count' };
+    x: {
+      field: 'date';
+      type: 'temporal';
+      title: 'Date';
+      axis?: {
+        labelColor: string;
+        titleColor: string;
+        gridColor: string;
+        domainColor: string;
+      };
+    };
+    y: {
+      aggregate: 'count';
+      type: 'quantitative';
+      title: 'Count';
+      axis?: {
+        labelColor: string;
+        titleColor: string;
+        gridColor: string;
+        domainColor: string;
+      };
+    };
     color: {
       field: 'status';
       type: 'nominal';
@@ -28,11 +48,21 @@ type ChartSpec = {
         domain: string[];
         range: string[];
       };
+      legend?: {
+        labelColor: string;
+        titleColor: string;
+      };
     };
   };
   width: number;
   height: number;
-  title: string;
+  title: string | { text: string; color: string };
+  background?: string;
+  config?: {
+    view: {
+      stroke: string;
+    };
+  };
 }
 
 export function ActivityChart({ activities, type }: ActivityChartProps): React.JSX.Element {
@@ -54,17 +84,29 @@ export function ActivityChart({ activities, type }: ActivityChartProps): React.J
   const spec: ChartSpec = {
     $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
     data: { values: chartData },
-    mark: { type: 'line' },
+    mark: { type: 'bar' },
     encoding: {
       x: {
         field: 'date',
         type: 'temporal',
         title: 'Date',
+        axis: {
+          labelColor: '#C4CBDA',
+          titleColor: '#C4CBDA',
+          gridColor: '#3c3c4a',
+          domainColor: '#3c3c4a'
+        }
       },
       y: {
         aggregate: 'count',
         type: 'quantitative',
         title: 'Count',
+        axis: {
+          labelColor: '#C4CBDA',
+          titleColor: '#C4CBDA',
+          gridColor: '#3c3c4a',
+          domainColor: '#3c3c4a'
+        }
       },
       color: {
         field: 'status',
@@ -73,12 +115,25 @@ export function ActivityChart({ activities, type }: ActivityChartProps): React.J
         scale: {
           domain: ['success', 'failure'],
           range: ['#22c55e', '#ef4444']  // Green for success, Red for failure
+        },
+        legend: {
+          labelColor: '#C4CBDA',
+          titleColor: '#C4CBDA'
         }
       },
     },
-    width: 500,
+    width: 400,
     height: 300,
-    title: `${type.toUpperCase()} Activity Over Time`,
+    background: '#1f2228',
+    title: {
+      text: `${type.toUpperCase()} Activity Over Time`,
+      color: '#C4CBDA'
+    },
+    config: {
+      view: {
+        stroke: 'transparent'
+      }
+    }
   };
 
   return <VegaLite spec={spec} />;
