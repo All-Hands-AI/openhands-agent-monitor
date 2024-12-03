@@ -262,7 +262,7 @@ export async function fetchBotActivities(since?: string): Promise<Activity[]> {
 
     return sortedActivities;
   } catch (error) {
-    console.error('Error fetching bot activities:', error);
+    console.error('Error fetching bot activities:', String(error));
     const totalTime = (performance.now() - startTime) / 1000;
     console.log(`Total execution time: ${totalTime.toFixed(2)}s (failed)`);
     throw error;
