@@ -58,54 +58,45 @@ async function fetchAllPages<T>(url: string): Promise<T[]> {
   return allItems;
 }
 
-function isBotComment(comment: GitHubComment): boolean {
+export function isBotComment(comment: GitHubComment): boolean {
   return comment.user.login === 'openhands-agent' ||
     (comment.user.login === 'github-actions[bot]' && comment.user.type === 'Bot');
 }
 
-function isStartWorkComment(comment: GitHubComment): boolean {
+export function isStartWorkComment(comment: GitHubComment): boolean {
   if (!isBotComment(comment)) return false;
   const lowerBody = comment.body.toLowerCase();
   return lowerBody.includes('started fixing the') ||
     lowerBody.includes('openhands started fixing');
 }
 
-function isSuccessComment(comment: GitHubComment): boolean {
+export function isSuccessComment(comment: GitHubComment): boolean {
   if (!isBotComment(comment)) return false;
   const lowerBody = comment.body.toLowerCase();
   return lowerBody.includes('a potential fix has been generated and a draft pr') ||
     lowerBody.includes('openhands made the following changes to resolve the issues') ||
-    lowerBody.includes('successfully fixed');
-}
-
-function isFailureComment(comment: GitHubComment): boolean {
-  if (!isBotComment(comment)) return false;
-  const lowerBody = comment.body.toLowerCase();
-  return lowerBody.includes('the workflow to fix this issue encountered an error') ||
-    lowerBody.includes('openhands failed to create any code changes') ||
-    lowerBody.includes('an attempt was made to automatically fix this issue, but it was unsuccessful');
-}
-
-function isPRModificationComment(comment: GitHubComment): boolean {
-  if (!isBotComment(comment)) return false;
-  const lowerBody = comment.body.toLowerCase();
-  return lowerBody.includes('started fixing the') ||
-    lowerBody.includes('openhands started fixing');
-}
-
-function isPRModificationSuccessComment(comment: GitHubComment): boolean {
-  if (!isBotComment(comment)) return false;
-  const lowerBody = comment.body.toLowerCase();
-  return lowerBody.includes('openhands made the following changes to resolve the issues') ||
+    lowerBody.includes('successfully fixed') ||
     lowerBody.includes('updated pull request');
 }
 
-function isPRModificationFailureComment(comment: GitHubComment): boolean {
+export function isFailureComment(comment: GitHubComment): boolean {
   if (!isBotComment(comment)) return false;
   const lowerBody = comment.body.toLowerCase();
   return lowerBody.includes('the workflow to fix this issue encountered an error') ||
     lowerBody.includes('openhands failed to create any code changes') ||
     lowerBody.includes('an attempt was made to automatically fix this issue, but it was unsuccessful');
+}
+
+export function isPRModificationComment(comment: GitHubComment): boolean {
+  return isStartWorkComment(comment);
+}
+
+export function isPRModificationSuccessComment(comment: GitHubComment): boolean {
+  return isSuccessComment(comment);
+}
+
+export function isPRModificationFailureComment(comment: GitHubComment): boolean {
+  return isFailureComment(comment);
 }
 
 async function processIssueComments(issue: GitHubIssue): Promise<Activity[]> {
@@ -126,7 +117,7 @@ async function processIssueComments(issue: GitHubIssue): Promise<Activity[]> {
           id: `issue-${String(issue.number)}-${String(comment.id)}`,
           type: 'issue',
           status: successComment !== undefined ? 'success' : 'failure',
-          timestamp: comment.created_at,
+          timestamp: resultComment.created_at,
           url: resultComment.html_url,
           description: resultComment.body,
         });
@@ -155,7 +146,7 @@ async function processPRComments(pr: GitHubPR): Promise<Activity[]> {
           id: `pr-${String(pr.number)}-${String(comment.id)}`,
           type: 'pr',
           status: successComment !== undefined ? 'success' : 'failure',
-          timestamp: comment.created_at,
+          timestamp: resultComment.created_at,
           url: resultComment.html_url,
           description: resultComment.body,
         });
@@ -200,10 +191,10 @@ export async function fetchBotActivities(since?: string): Promise<Activity[]> {
     if (since !== undefined && since !== '') {
       params.append('since', since);
     } else {
-      // Default to last 30 days if no since parameter
-      const thirtyDaysAgo = new Date();
-      thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
-      params.append('since', thirtyDaysAgo.toISOString());
+      // Default to last 90 days if no since parameter
+      const ninetyDaysAgo = new Date();
+      ninetyDaysAgo.setDate(ninetyDaysAgo.getDate() - 90);
+      params.append('since', ninetyDaysAgo.toISOString());
     }
 
     // Fetch issues and PRs
