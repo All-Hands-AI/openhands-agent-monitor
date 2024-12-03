@@ -193,7 +193,8 @@ export async function fetchBotActivities(since?: string): Promise<Activity[]> {
       params.append('since', since);
     } else {
       // Default to last 90 days if no since parameter
-      const ninetyDaysAgo = new Date();
+      const now = new Date();
+      const ninetyDaysAgo = new Date(now);
       ninetyDaysAgo.setDate(ninetyDaysAgo.getDate() - 90);
       params.append('since', ninetyDaysAgo.toISOString());
     }
