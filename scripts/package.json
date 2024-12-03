@@ -1,0 +1,12 @@
+{
+  "name": "openhands-agent-monitor-scripts",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  },
+  "devDependencies": {
+    "@types/node-fetch": "^2.6.11"
+  }
+}
