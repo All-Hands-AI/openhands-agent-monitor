@@ -7,4 +7,8 @@ export default defineConfig({
   define: {
     'process.env': JSON.stringify(process.env),
   },
+  build: {
+    outDir: 'dist',
+    sourcemap: true,
+  },
 });
