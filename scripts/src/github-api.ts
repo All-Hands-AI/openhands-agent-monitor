@@ -76,7 +76,8 @@ export function isSuccessComment(comment: GitHubComment): boolean {
   return lowerBody.includes('a potential fix has been generated and a draft pr') ||
     lowerBody.includes('openhands made the following changes to resolve the issues') ||
     lowerBody.includes('successfully fixed') ||
-    lowerBody.includes('updated pull request');
+    lowerBody.includes('updated pull request') ||
+    lowerBody.includes('has been created. please review the changes');
 }
 
 export function isFailureComment(comment: GitHubComment): boolean {
