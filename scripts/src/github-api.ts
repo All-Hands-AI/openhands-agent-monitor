@@ -1,5 +1,6 @@
 import type { GitHubComment, GitHubIssue, GitHubPR, ApiResponse, Activity } from './types';
 import fetch from 'node-fetch';
+import { performance } from 'node:perf_hooks';
 
 const GITHUB_TOKEN = process.env['GITHUB_TOKEN'] ?? '';
 const REPO_OWNER = 'All-Hands-AI';

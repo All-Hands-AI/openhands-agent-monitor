@@ -7,6 +7,8 @@
     "node-fetch": "^3.3.2"
   },
   "devDependencies": {
-    "@types/node-fetch": "^2.6.11"
+    "@types/node": "^20.10.4",
+    "@types/node-fetch": "^2.6.11",
+    "typescript": "^5.3.3"
   }
 }
