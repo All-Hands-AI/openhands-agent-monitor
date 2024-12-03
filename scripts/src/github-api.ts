@@ -13,7 +13,8 @@ async function fetchWithAuth(url: string): Promise<ApiResponse> {
   });
 
   if (!response.ok) {
-    throw new Error(`GitHub API error: ${response.status.toString()} ${response.statusText}`);
+    const errorBody = await response.text();
+    throw new Error(`GitHub API error: ${response.status.toString()} ${response.statusText}\n${errorBody}`);
   }
 
   // Parse Link header for pagination
@@ -163,8 +164,26 @@ async function processPRComments(pr: GitHubPR): Promise<Activity[]> {
   return activities;
 }
 
+const startTime = performance.now();
+
+async function main() {
+  try {
+    await fetchBotActivities();
+  } catch (error) {
+    process.stderr.write(`${error}\n`);
+    process.exit(1);
+  }
+}
+
+main();
+
 export async function fetchBotActivities(since?: string): Promise<Activity[]> {
   try {
+    if (!GITHUB_TOKEN || GITHUB_TOKEN === 'placeholder') {
+      process.stderr.write('Error: GITHUB_TOKEN environment variable is not set or invalid\n');
+      throw new Error('Invalid GITHUB_TOKEN');
+    }
+    console.log('Starting bot activities fetch...');
     const activities: Activity[] = [];
     const baseUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}`;
 
@@ -186,31 +205,64 @@ export async function fetchBotActivities(since?: string): Promise<Activity[]> {
     }
 
     // Fetch issues and PRs
+    console.log('Fetching issues and PRs...');
+    const fetchStartTime = performance.now();
     const items = await fetchAllPages<GitHubIssue>(`${baseUrl}/issues?${params.toString()}`);
+    console.log(`Fetched ${items.length} items in ${((performance.now() - fetchStartTime) / 1000).toFixed(2)}s`);
 
-    for (const item of items) {
-      if (item.comments > 0) {
+    console.log('Processing items...');
+    const processStartTime = performance.now();
+    // Filter items that have comments
+  const itemsWithComments = items.filter(item => item.comments > 0);
+  console.log(`Processing ${itemsWithComments.length} items with comments in parallel...`);
+
+  // Process items in parallel
+  const batchSize = 10; // Process 10 items at a time to avoid rate limiting
+  const results = [];
+  
+  for (let i = 0; i < itemsWithComments.length; i += batchSize) {
+    const batch = itemsWithComments.slice(i, i + batchSize);
+    console.log(`Processing batch ${Math.floor(i/batchSize) + 1}/${Math.ceil(itemsWithComments.length/batchSize)}...`);
+    
+    const batchResults = await Promise.all(
+      batch.map(async item => {
         if (item.pull_request === undefined) {
           // Process regular issues
-          const issueActivities = await processIssueComments(item);
-          activities.push(...issueActivities);
+          return processIssueComments(item);
         } else {
           // Process PRs through the issue comments endpoint to catch all activity
-          const prActivities = await processPRComments({
+          return processPRComments({
             number: item.number,
             html_url: item.html_url,
             comments_url: item.comments_url,
             comments: item.comments
           });
-          activities.push(...prActivities);
         }
-      }
-    }
+      })
+    );
+    
+    results.push(...batchResults);
+  }
+
+  // Flatten results and add to activities
+  activities.push(...results.flat());
+
+    console.log(`Processed all items in ${((performance.now() - processStartTime) / 1000).toFixed(2)}s`);
 
     // Sort by timestamp in descending order
-    return activities.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
+    console.log('Sorting activities...');
+    const sortStartTime = performance.now();
+    const sortedActivities = activities.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
+    console.log(`Sorted ${activities.length} activities in ${((performance.now() - sortStartTime) / 1000).toFixed(2)}s`);
+
+    const totalTime = (performance.now() - startTime) / 1000;
+    console.log(`Total execution time: ${totalTime.toFixed(2)}s`);
+
+    return sortedActivities;
   } catch (error) {
     console.error('Error fetching bot activities:', error);
+    const totalTime = (performance.now() - startTime) / 1000;
+    console.log(`Total execution time: ${totalTime.toFixed(2)}s (failed)`);
     throw error;
   }
 }
