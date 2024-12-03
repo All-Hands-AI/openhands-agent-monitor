@@ -6,7 +6,12 @@ const GITHUB_TOKEN = process.env['GITHUB_TOKEN'] ?? '';
 const REPO_OWNER = 'All-Hands-AI';
 const REPO_NAME = 'OpenHands';
 
+import fs from 'fs';
+
 async function fetchWithAuth(url: string): Promise<ApiResponse> {
+  // Log the request
+  fs.appendFileSync('github-api.log', `\n[${new Date().toISOString()}] REQUEST: ${url}\n`);
+  
   const response = await fetch(url, {
     headers: {
       'Authorization': `Bearer ${GITHUB_TOKEN}`,
@@ -16,6 +21,7 @@ async function fetchWithAuth(url: string): Promise<ApiResponse> {
 
   if (!response.ok) {
     const errorBody = await response.text();
+    fs.appendFileSync('github-api.log', `[${new Date().toISOString()}] ERROR: ${String(response.status)} ${String(response.statusText)}\n${String(errorBody)}\n`);
     throw new Error(`GitHub API error: ${String(response.status)} ${String(response.statusText)}\n${String(errorBody)}`);
   }
 
@@ -37,6 +43,8 @@ async function fetchWithAuth(url: string): Promise<ApiResponse> {
   }
 
   const data = await response.json();
+  // Log the response
+  fs.appendFileSync('github-api.log', `[${new Date().toISOString()}] RESPONSE: ${JSON.stringify(data, null, 2)}\n`);
   return { data, hasNextPage, nextUrl };
 }
 
@@ -71,12 +79,17 @@ export function isStartWorkComment(comment: GitHubComment): boolean {
 }
 
 export function isSuccessComment(comment: GitHubComment): boolean {
-  if (!isBotComment(comment)) return false;
+  if (!isBotComment(comment)) {
+    fs.appendFileSync('github-api.log', `[${new Date().toISOString()}] COMMENT CHECK: Not a bot comment - ${comment.user.login}\n`);
+    return false;
+  }
   const lowerBody = comment.body.toLowerCase();
-  return lowerBody.includes('a potential fix has been generated and a draft pr') ||
+  const isSuccess = lowerBody.includes('a potential fix has been generated') ||
     lowerBody.includes('openhands made the following changes to resolve the issues') ||
     lowerBody.includes('successfully fixed') ||
     lowerBody.includes('updated pull request');
+  fs.appendFileSync('github-api.log', `[${new Date().toISOString()}] COMMENT CHECK: Bot comment - Success: ${isSuccess}\nBody: ${comment.body}\n`);
+  return isSuccess;
 }
 
 export function isFailureComment(comment: GitHubComment): boolean {
@@ -157,20 +170,22 @@ async function processPRComments(pr: GitHubPR): Promise<Activity[]> {
   return activities;
 }
 
-const startTime = performance.now();
-
-async function main() {
-  try {
-    await fetchBotActivities();
-  } catch (error) {
-    process.stderr.write(String(error) + '\n');
-    process.exit(1);
+// Only run main() if this file is being run directly
+if (require.main === module) {
+  const startTime = performance.now();
+  async function main() {
+    try {
+      await fetchBotActivities();
+    } catch (error) {
+      process.stderr.write(String(error) + '\n');
+      process.exit(1);
+    }
   }
+  main();
 }
 
-main();
-
 export async function fetchBotActivities(since?: string): Promise<Activity[]> {
+  const startTime = performance.now();
   try {
     if (!GITHUB_TOKEN || GITHUB_TOKEN === 'placeholder') {
       process.stderr.write('Error: GITHUB_TOKEN environment variable is not set or invalid\n');
@@ -191,10 +206,10 @@ export async function fetchBotActivities(since?: string): Promise<Activity[]> {
     if (since !== undefined && since !== '') {
       params.append('since', since);
     } else {
-      // Default to last 90 days if no since parameter
-      const ninetyDaysAgo = new Date();
-      ninetyDaysAgo.setDate(ninetyDaysAgo.getDate() - 90);
-      params.append('since', ninetyDaysAgo.toISOString());
+      // Default to last 7 days if no since parameter
+      const sevenDaysAgo = new Date();
+      sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+      params.append('since', sevenDaysAgo.toISOString());
     }
 
     // Fetch issues and PRs

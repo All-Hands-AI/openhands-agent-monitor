@@ -6,7 +6,8 @@ export default defineConfig({
   plugins: [react()],
   test: {
     globals: true,
-    environment: 'jsdom',
+    environment: process.env.TEST_ENV === 'integration' ? 'node' : 'jsdom',
     setupFiles: ['./src/setupTests.ts'],
+    include: process.env.TEST_ENV === 'integration' ? ['**/__integration_tests__/**/*.{test,spec}.?(c|m)[jt]s?(x)'] : undefined,
   },
 });
