@@ -1,7 +1,7 @@
-import { fetchBotActivities } from './github-api.js';
+import { fetchBotActivities } from './github-api';
 import fs from 'fs/promises';
 import path from 'path';
-import type { Activity } from './types.js';
+import type { Activity } from './types';
 
 interface CacheData {
   activities: Activity[];
