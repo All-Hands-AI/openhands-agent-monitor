@@ -10,11 +10,22 @@ import { fetchBotActivities } from './services/github';
 import './App.css';
 
 function App(): React.JSX.Element {
-  const [state, setState] = useState<AppState>({
-    activities: [],
-    loading: true,
-    error: null,
-    filter: {},
+  const [state, setState] = useState<AppState>(() => {
+    // Default to last 7 days
+    const end = new Date();
+    const start = new Date();
+    start.setDate(start.getDate() - 7);
+    return {
+      activities: [],
+      loading: true,
+      error: null,
+      filter: {
+        dateRange: {
+          start: start.toISOString(),
+          end: end.toISOString()
+        }
+      },
+    };
   });
 
   const loadActivities = useCallback(async (): Promise<void> => {
