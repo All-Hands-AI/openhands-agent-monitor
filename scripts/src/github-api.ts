@@ -14,7 +14,7 @@ async function fetchWithAuth(url: string): Promise<ApiResponse> {
 
   if (!response.ok) {
     const errorBody = await response.text();
-    throw new Error(`GitHub API error: ${response.status.toString()} ${response.statusText}\n${errorBody}`);
+    throw new Error(`GitHub API error: ${String(response.status)} ${String(response.statusText)}\n${String(errorBody)}`);
   }
 
   // Parse Link header for pagination
