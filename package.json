@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build --mode production",
-    "build:cache": "echo 'Building cache...' && cd scripts && echo 'Installing dependencies...' && npm install && echo 'Compiling TypeScript...' && npx tsc && echo 'Generating GitHub data cache...' && node dist/github-api.js && echo 'Cache generation complete'",
+    "build:cache": "echo 'Building cache...' && cd scripts && echo 'Installing dependencies...' && npm install && echo 'Compiling TypeScript...' && npx tsc && echo 'Generating GitHub data cache...' && node dist/cache-github-data.js && echo 'Cache generation complete'",
     "build:all": "npm run build:cache && npm run build",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
