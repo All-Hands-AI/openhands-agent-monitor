@@ -1,49 +1,10 @@
-import { BotActivity } from '../src/types';
+import type { GitHubComment, GitHubIssue, GitHubPR, ApiResponse, Activity } from './types';
 
 const GITHUB_TOKEN = process.env['GITHUB_TOKEN'] ?? '';
 const REPO_OWNER = 'All-Hands-AI';
 const REPO_NAME = 'OpenHands';
 
-interface GitHubUser {
-  login: string;
-  type: string;
-}
-
-interface GitHubComment {
-  id: string;
-  html_url: string;
-  created_at: string;
-  body: string;
-  user: GitHubUser;
-}
-
-interface GitHubIssue {
-  number: number;
-  html_url: string;
-  comments_url: string;
-  comments: number;
-  pull_request?: {
-    url: string;
-    html_url: string;
-    diff_url: string;
-    patch_url: string;
-  };
-}
-
-interface GitHubPR {
-  number: number;
-  html_url: string;
-  comments_url: string;
-  comments: number;
-}
-
-interface GitHubResponse<T> {
-  data: T;
-  hasNextPage: boolean;
-  nextUrl: string | null;
-}
-
-async function fetchWithAuth<T>(url: string): Promise<GitHubResponse<T>> {
+async function fetchWithAuth(url: string): Promise<ApiResponse> {
   const response = await fetch(url, {
     headers: {
       'Authorization': `Bearer ${GITHUB_TOKEN}`,
@@ -72,7 +33,7 @@ async function fetchWithAuth<T>(url: string): Promise<GitHubResponse<T>> {
     }
   }
 
-  const data = await response.json() as T;
+  const data = await response.json();
   return { data, hasNextPage, nextUrl };
 }
 
@@ -84,9 +45,9 @@ async function fetchAllPages<T>(url: string): Promise<T[]> {
   while (currentUrl !== '') {
     pageCount++;
     console.log(`Fetching page ${pageCount.toString()} from ${currentUrl}`);
-    const response = await fetchWithAuth<T[]>(currentUrl);
+    const response = await fetchWithAuth(currentUrl);
     console.log(`Got ${response.data.length.toString()} items`);
-    allItems.push(...response.data);
+    allItems.push(...(response.data as T[]));
     currentUrl = response.nextUrl ?? '';
   }
 
@@ -95,57 +56,57 @@ async function fetchAllPages<T>(url: string): Promise<T[]> {
 }
 
 function isBotComment(comment: GitHubComment): boolean {
-  return comment.user.login === 'openhands-agent' || 
-         (comment.user.login === 'github-actions[bot]' && comment.user.type === 'Bot');
+  return comment.user.login === 'openhands-agent' ||
+    (comment.user.login === 'github-actions[bot]' && comment.user.type === 'Bot');
 }
 
 function isStartWorkComment(comment: GitHubComment): boolean {
   if (!isBotComment(comment)) return false;
   const lowerBody = comment.body.toLowerCase();
-  return lowerBody.includes('started fixing the') || 
-         lowerBody.includes('openhands started fixing');
+  return lowerBody.includes('started fixing the') ||
+    lowerBody.includes('openhands started fixing');
 }
 
 function isSuccessComment(comment: GitHubComment): boolean {
   if (!isBotComment(comment)) return false;
   const lowerBody = comment.body.toLowerCase();
   return lowerBody.includes('a potential fix has been generated and a draft pr') ||
-         lowerBody.includes('openhands made the following changes to resolve the issues') ||
-         lowerBody.includes('successfully fixed');
+    lowerBody.includes('openhands made the following changes to resolve the issues') ||
+    lowerBody.includes('successfully fixed');
 }
 
 function isFailureComment(comment: GitHubComment): boolean {
   if (!isBotComment(comment)) return false;
   const lowerBody = comment.body.toLowerCase();
   return lowerBody.includes('the workflow to fix this issue encountered an error') ||
-         lowerBody.includes('openhands failed to create any code changes') ||
-         lowerBody.includes('an attempt was made to automatically fix this issue, but it was unsuccessful');
+    lowerBody.includes('openhands failed to create any code changes') ||
+    lowerBody.includes('an attempt was made to automatically fix this issue, but it was unsuccessful');
 }
 
 function isPRModificationComment(comment: GitHubComment): boolean {
   if (!isBotComment(comment)) return false;
   const lowerBody = comment.body.toLowerCase();
   return lowerBody.includes('started fixing the') ||
-         lowerBody.includes('openhands started fixing');
+    lowerBody.includes('openhands started fixing');
 }
 
 function isPRModificationSuccessComment(comment: GitHubComment): boolean {
   if (!isBotComment(comment)) return false;
   const lowerBody = comment.body.toLowerCase();
   return lowerBody.includes('openhands made the following changes to resolve the issues') ||
-         lowerBody.includes('updated pull request');
+    lowerBody.includes('updated pull request');
 }
 
 function isPRModificationFailureComment(comment: GitHubComment): boolean {
   if (!isBotComment(comment)) return false;
   const lowerBody = comment.body.toLowerCase();
   return lowerBody.includes('the workflow to fix this issue encountered an error') ||
-         lowerBody.includes('openhands failed to create any code changes') ||
-         lowerBody.includes('an attempt was made to automatically fix this issue, but it was unsuccessful');
+    lowerBody.includes('openhands failed to create any code changes') ||
+    lowerBody.includes('an attempt was made to automatically fix this issue, but it was unsuccessful');
 }
 
-async function processIssueComments(issue: GitHubIssue): Promise<BotActivity[]> {
-  const activities: BotActivity[] = [];
+async function processIssueComments(issue: GitHubIssue): Promise<Activity[]> {
+  const activities: Activity[] = [];
   const comments = await fetchAllPages<GitHubComment>(issue.comments_url);
 
   for (let i = 0; i < comments.length; i++) {
@@ -155,11 +116,11 @@ async function processIssueComments(issue: GitHubIssue): Promise<BotActivity[]> 
       const nextComments = comments.slice(i + 1);
       const successComment = nextComments.find(isSuccessComment);
       const failureComment = nextComments.find(isFailureComment);
-
       const resultComment = successComment ?? failureComment;
+
       if (resultComment !== undefined) {
         activities.push({
-          id: `issue-${issue.number.toString()}-${comment.id}`,
+          id: `issue-${String(issue.number)}-${String(comment.id)}`,
           type: 'issue',
           status: successComment !== undefined ? 'success' : 'failure',
           timestamp: comment.created_at,
@@ -173,8 +134,8 @@ async function processIssueComments(issue: GitHubIssue): Promise<BotActivity[]> 
   return activities;
 }
 
-async function processPRComments(pr: GitHubPR): Promise<BotActivity[]> {
-  const activities: BotActivity[] = [];
+async function processPRComments(pr: GitHubPR): Promise<Activity[]> {
+  const activities: Activity[] = [];
   const comments = await fetchAllPages<GitHubComment>(pr.comments_url);
 
   for (let i = 0; i < comments.length; i++) {
@@ -184,11 +145,11 @@ async function processPRComments(pr: GitHubPR): Promise<BotActivity[]> {
       const nextComments = comments.slice(i + 1);
       const successComment = nextComments.find(isPRModificationSuccessComment);
       const failureComment = nextComments.find(isPRModificationFailureComment);
-
       const resultComment = successComment ?? failureComment;
+
       if (resultComment !== undefined) {
         activities.push({
-          id: `pr-${pr.number.toString()}-${comment.id}`,
+          id: `pr-${String(pr.number)}-${String(comment.id)}`,
           type: 'pr',
           status: successComment !== undefined ? 'success' : 'failure',
           timestamp: comment.created_at,
@@ -202,11 +163,11 @@ async function processPRComments(pr: GitHubPR): Promise<BotActivity[]> {
   return activities;
 }
 
-export async function fetchBotActivities(since?: string): Promise<BotActivity[]> {
+export async function fetchBotActivities(since?: string): Promise<Activity[]> {
   try {
-    const activities: BotActivity[] = [];
+    const activities: Activity[] = [];
     const baseUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}`;
-    
+
     // Fetch issues and PRs with comments
     const params = new URLSearchParams({
       state: 'all',
@@ -226,6 +187,7 @@ export async function fetchBotActivities(since?: string): Promise<BotActivity[]>
 
     // Fetch issues and PRs
     const items = await fetchAllPages<GitHubIssue>(`${baseUrl}/issues?${params.toString()}`);
+
     for (const item of items) {
       if (item.comments > 0) {
         if (item.pull_request === undefined) {
@@ -246,9 +208,7 @@ export async function fetchBotActivities(since?: string): Promise<BotActivity[]>
     }
 
     // Sort by timestamp in descending order
-    return activities.sort((a, b) => 
-      new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
-    );
+    return activities.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
   } catch (error) {
     console.error('Error fetching bot activities:', error);
     throw error;
