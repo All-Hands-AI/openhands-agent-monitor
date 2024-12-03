@@ -14,7 +14,8 @@ async function cacheGitHubData(): Promise<void> {
     const activities = await fetchBotActivities();
     
     // Create cache directory if it doesn't exist
-    const cacheDir = path.join(process.cwd(), 'public', 'cache');
+    const rootDir = path.resolve(process.cwd(), '..');
+    const cacheDir = path.join(rootDir, 'public', 'cache');
     await fs.mkdir(cacheDir, { recursive: true });
     
     // Write activities to cache file
