@@ -170,7 +170,7 @@ async function main() {
   try {
     await fetchBotActivities();
   } catch (error) {
-    process.stderr.write(`${error}\n`);
+    process.stderr.write(String(error) + '\n');
     process.exit(1);
   }
 }
@@ -262,10 +262,10 @@ export async function fetchBotActivities(since?: string): Promise<Activity[]> {
 
     return sortedActivities;
   } catch (error) {
-    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-    console.error('Error fetching bot activities:', errorMessage);
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    process.stderr.write('Error fetching bot activities: ' + errorMessage + '\n');
     const totalTime = (performance.now() - startTime) / 1000;
-    console.log(`Total execution time: ${totalTime.toFixed(2)}s (failed)`);
+    process.stderr.write('Total execution time: ' + totalTime.toFixed(2) + 's (failed)\n');
     throw new Error(errorMessage);
   }
 }
