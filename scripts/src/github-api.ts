@@ -181,7 +181,7 @@ export async function fetchBotActivities(since?: string): Promise<Activity[]> {
   try {
     if (!GITHUB_TOKEN || GITHUB_TOKEN === 'placeholder') {
       process.stderr.write('Error: GITHUB_TOKEN environment variable is not set or invalid\n');
-      throw new Error('Invalid GITHUB_TOKEN');
+      throw new Error(String('Invalid GITHUB_TOKEN'));
     }
     console.log('Starting bot activities fetch...');
     const activities: Activity[] = [];
@@ -208,13 +208,13 @@ export async function fetchBotActivities(since?: string): Promise<Activity[]> {
     console.log('Fetching issues and PRs...');
     const fetchStartTime = performance.now();
     const items = await fetchAllPages<GitHubIssue>(`${baseUrl}/issues?${params.toString()}`);
-    console.log(`Fetched ${items.length} items in ${((performance.now() - fetchStartTime) / 1000).toFixed(2)}s`);
+    console.log(`Fetched ${String(items.length)} items in ${((performance.now() - fetchStartTime) / 1000).toFixed(2)}s`);
 
     console.log('Processing items...');
     const processStartTime = performance.now();
     // Filter items that have comments
   const itemsWithComments = items.filter(item => item.comments > 0);
-  console.log(`Processing ${itemsWithComments.length} items with comments in parallel...`);
+  console.log(`Processing ${String(itemsWithComments.length)} items with comments in parallel...`);
 
   // Process items in parallel
   const batchSize = 10; // Process 10 items at a time to avoid rate limiting
@@ -222,7 +222,9 @@ export async function fetchBotActivities(since?: string): Promise<Activity[]> {
   
   for (let i = 0; i < itemsWithComments.length; i += batchSize) {
     const batch = itemsWithComments.slice(i, i + batchSize);
-    console.log(`Processing batch ${Math.floor(i/batchSize) + 1}/${Math.ceil(itemsWithComments.length/batchSize)}...`);
+    const batchNumber = Math.floor(i/batchSize) + 1;
+    const totalBatches = Math.ceil(itemsWithComments.length/batchSize);
+    console.log(`Processing batch ${String(batchNumber)}/${String(totalBatches)}...`);
     
     const batchResults = await Promise.all(
       batch.map(async item => {
@@ -253,7 +255,7 @@ export async function fetchBotActivities(since?: string): Promise<Activity[]> {
     console.log('Sorting activities...');
     const sortStartTime = performance.now();
     const sortedActivities = activities.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
-    console.log(`Sorted ${activities.length} activities in ${((performance.now() - sortStartTime) / 1000).toFixed(2)}s`);
+    console.log(`Sorted ${String(activities.length)} activities in ${((performance.now() - sortStartTime) / 1000).toFixed(2)}s`);
 
     const totalTime = (performance.now() - startTime) / 1000;
     console.log(`Total execution time: ${totalTime.toFixed(2)}s`);
