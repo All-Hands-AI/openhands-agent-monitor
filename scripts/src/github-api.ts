@@ -1,4 +1,4 @@
-import type { GitHubComment, GitHubIssue, GitHubPR, ApiResponse, Activity } from './types';
+import type { GitHubComment, GitHubIssue, GitHubPR, ApiResponse, Activity } from './types.js';
 import fetch from 'node-fetch';
 import { performance } from 'node:perf_hooks';
 
