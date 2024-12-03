@@ -162,4 +162,66 @@ describe('GitHub Service', () => {
     // Restore the original fetch
     vi.unstubAllGlobals();
   });
+
+  it('should fetch fresh data when cache is stale', async () => {
+    vi.useFakeTimers();
+    // Mock two consecutive fetch calls with different data
+    const mockFetch = vi.fn()
+      .mockImplementationOnce((url: string) => {
+        if (url === '/cache/bot-activities.json') {
+          return createMockResponse({
+            activities: [{
+              id: 'issue-1-2',
+              type: 'issue',
+              status: 'success',
+              timestamp: '2023-11-28T00:01:00Z',
+              url: 'https://github.com/All-Hands-AI/OpenHands/issues/1#comment-2',
+              description: 'A potential fix has been generated and a draft PR #2 has been created.'
+            }],
+            lastUpdated: new Date(Date.now() - 5000).toISOString() // 5 seconds ago
+          });
+        }
+        throw new Error(`Unexpected URL: ${url}`);
+      })
+      .mockImplementationOnce((url: string) => {
+        if (url === '/cache/bot-activities.json') {
+          return createMockResponse({
+            activities: [{
+              id: 'issue-1-2',
+              type: 'issue',
+              status: 'success',
+              timestamp: '2023-11-28T00:01:00Z',
+              url: 'https://github.com/All-Hands-AI/OpenHands/issues/1#comment-2',
+              description: 'A potential fix has been generated and a draft PR #2 has been created.'
+            }, {
+              id: 'issue-2-1',
+              type: 'issue',
+              status: 'success',
+              timestamp: '2023-11-28T00:02:00Z',
+              url: 'https://github.com/All-Hands-AI/OpenHands/issues/2#comment-1',
+              description: 'Another issue fixed'
+            }],
+            lastUpdated: new Date().toISOString()
+          });
+        }
+        throw new Error(`Unexpected URL: ${url}`);
+      });
+    vi.stubGlobal('fetch', mockFetch as unknown as typeof fetch);
+
+    // First fetch
+    const activities1 = await fetchBotActivities();
+    expect(activities1).toHaveLength(1);
+
+    // Wait 5 seconds
+    vi.advanceTimersByTime(5000);
+
+    // Second fetch should get new data
+    const activities2 = await fetchBotActivities();
+    expect(activities2).toHaveLength(2);
+    expect(mockFetch).toHaveBeenCalledTimes(2);
+
+    // Restore the original fetch and timers
+    vi.unstubAllGlobals();
+    vi.useRealTimers();
+  });
 });

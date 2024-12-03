@@ -34,6 +34,13 @@ function App(): React.JSX.Element {
 
   useEffect(() => {
     void loadActivities();
+
+    // Refresh data every second in development, every 5 minutes in production
+    const interval = setInterval(() => {
+      void loadActivities();
+    }, process.env.NODE_ENV === 'development' ? 1000 : 5 * 60 * 1000);
+
+    return () => clearInterval(interval);
   }, [loadActivities]);
 
   const handleFilterChange = (filter: FilterType): void => {
@@ -51,6 +58,10 @@ function App(): React.JSX.Element {
   };
 
   const handleRetry = (): void => {
+    void loadActivities();
+  };
+
+  const handleRefresh = (): void => {
     void loadActivities();
   };
 
@@ -75,14 +86,23 @@ function App(): React.JSX.Element {
       
       <section className="filters">
         <h2>Filters</h2>
-        <ActivityFilter
-          filter={state.filter}
-          onFilterChange={handleFilterChange}
-        />
-        <DateRangeFilter
-          dateRange={state.filter.dateRange}
-          onDateRangeChange={handleDateRangeChange}
-        />
+        <div className="filter-controls">
+          <ActivityFilter
+            filter={state.filter}
+            onFilterChange={handleFilterChange}
+          />
+          <DateRangeFilter
+            dateRange={state.filter.dateRange}
+            onDateRangeChange={handleDateRangeChange}
+          />
+          <button
+            className="refresh-button"
+            onClick={handleRefresh}
+            data-testid="refresh-button"
+          >
+            Refresh
+          </button>
+        </div>
       </section>
 
       {state.loading ? (

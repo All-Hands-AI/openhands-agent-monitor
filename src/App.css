@@ -52,6 +52,32 @@ section {
   border: 1px solid var(--border);
 }
 
+.filter-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.refresh-button {
+  padding: 8px 16px;
+  background-color: var(--hyperlink);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.refresh-button:hover {
+  opacity: 0.9;
+}
+
+.refresh-button:active {
+  opacity: 0.8;
+}
+
 .activity-filter {
   display: flex;
   gap: 1rem;
