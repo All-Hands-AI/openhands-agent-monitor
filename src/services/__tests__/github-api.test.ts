@@ -1,5 +1,5 @@
-import { isSuccessComment, isFailureComment } from '../github-api';
-import type { GitHubComment } from '../types';
+import { isSuccessComment, isFailureComment } from '../../../scripts/src/github-api';
+import type { GitHubComment } from '../../../scripts/src/types';
 
 describe('GitHub API Comment Detection', () => {
   const createBotComment = (body: string, type: string = 'Bot'): GitHubComment => ({
