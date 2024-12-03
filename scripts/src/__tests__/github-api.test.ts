@@ -1,4 +1,4 @@
-import { isSuccessComment, isFailureComment, isBotComment } from '../github-api';
+import { isSuccessComment, isFailureComment } from '../github-api';
 import type { GitHubComment } from '../types';
 
 describe('GitHub API Comment Detection', () => {

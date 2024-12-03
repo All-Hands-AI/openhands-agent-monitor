@@ -88,7 +88,7 @@ export function isSuccessComment(comment: GitHubComment): boolean {
     lowerBody.includes('openhands made the following changes to resolve the issues') ||
     lowerBody.includes('successfully fixed') ||
     lowerBody.includes('updated pull request');
-  fs.appendFileSync('github-api.log', `[${new Date().toISOString()}] COMMENT CHECK: Bot comment - Success: ${isSuccess}\nBody: ${comment.body}\n`);
+  fs.appendFileSync('github-api.log', `[${new Date().toISOString()}] COMMENT CHECK: Bot comment - Success: ${String(isSuccess)}\nBody: ${comment.body}\n`);
   return isSuccess;
 }
 
@@ -172,10 +172,10 @@ async function processPRComments(pr: GitHubPR): Promise<Activity[]> {
 
 // Only run main() if this file is being run directly
 if (require.main === module) {
-  const startTime = performance.now();
   async function main() {
     try {
-      await fetchBotActivities();
+      const activities = await fetchBotActivities();
+      process.stdout.write(JSON.stringify(activities, null, 2));
     } catch (error) {
       process.stderr.write(String(error) + '\n');
       process.exit(1);
