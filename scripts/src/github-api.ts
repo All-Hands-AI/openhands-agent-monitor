@@ -37,8 +37,8 @@ async function fetchWithAuth(url: string): Promise<ApiResponse> {
   return { data, hasNextPage, nextUrl };
 }
 
-async function fetchAllPages(url: string): Promise<any[]> {
-  const allItems: any[] = [];
+async function fetchAllPages<T>(url: string): Promise<T[]> {
+  const allItems: T[] = [];
   let currentUrl = url;
   let pageCount = 0;
 
@@ -47,7 +47,7 @@ async function fetchAllPages(url: string): Promise<any[]> {
     console.log(`Fetching page ${pageCount.toString()} from ${currentUrl}`);
     const response = await fetchWithAuth(currentUrl);
     console.log(`Got ${response.data.length.toString()} items`);
-    allItems.push(...response.data);
+    allItems.push(...(response.data as T[]));
     currentUrl = response.nextUrl ?? '';
   }
 
@@ -107,7 +107,7 @@ function isPRModificationFailureComment(comment: GitHubComment): boolean {
 
 async function processIssueComments(issue: GitHubIssue): Promise<Activity[]> {
   const activities: Activity[] = [];
-  const comments = await fetchAllPages(issue.comments_url) as GitHubComment[];
+  const comments = await fetchAllPages<GitHubComment>(issue.comments_url);
 
   for (let i = 0; i < comments.length; i++) {
     const comment = comments[i];
@@ -120,7 +120,7 @@ async function processIssueComments(issue: GitHubIssue): Promise<Activity[]> {
 
       if (resultComment !== undefined) {
         activities.push({
-          id: `issue-${issue.number.toString()}-${comment.id}`,
+          id: `issue-${String(issue.number)}-${String(comment.id)}`,
           type: 'issue',
           status: successComment !== undefined ? 'success' : 'failure',
           timestamp: comment.created_at,
@@ -136,7 +136,7 @@ async function processIssueComments(issue: GitHubIssue): Promise<Activity[]> {
 
 async function processPRComments(pr: GitHubPR): Promise<Activity[]> {
   const activities: Activity[] = [];
-  const comments = await fetchAllPages(pr.comments_url) as GitHubComment[];
+  const comments = await fetchAllPages<GitHubComment>(pr.comments_url);
 
   for (let i = 0; i < comments.length; i++) {
     const comment = comments[i];
@@ -149,7 +149,7 @@ async function processPRComments(pr: GitHubPR): Promise<Activity[]> {
 
       if (resultComment !== undefined) {
         activities.push({
-          id: `pr-${pr.number.toString()}-${comment.id}`,
+          id: `pr-${String(pr.number)}-${String(comment.id)}`,
           type: 'pr',
           status: successComment !== undefined ? 'success' : 'failure',
           timestamp: comment.created_at,
@@ -186,7 +186,7 @@ export async function fetchBotActivities(since?: string): Promise<Activity[]> {
     }
 
     // Fetch issues and PRs
-    const items = await fetchAllPages(`${baseUrl}/issues?${params.toString()}`) as GitHubIssue[];
+    const items = await fetchAllPages<GitHubIssue>(`${baseUrl}/issues?${params.toString()}`);
 
     for (const item of items) {
       if (item.comments > 0) {
