@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { isSuccessComment, isFailureComment, isPRModificationSuccessComment, isPRModificationFailureComment } from './github-api';
+import { isSuccessComment, isPRModificationFailureComment } from './github-api';
 import type { GitHubComment } from './types';
 
 describe('Comment detection', () => {
