@@ -7,6 +7,7 @@ export interface BotActivity {
   status: ActivityStatus;
   timestamp: string;
   url: string;
+  title: string;
   description: string;
 }
 

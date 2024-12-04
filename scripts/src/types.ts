@@ -11,6 +11,7 @@ export interface GitHubComment {
 
 export interface GitHubIssue {
   number: number;
+  title: string;
   html_url: string;
   comments_url: string;
   comments: number;
@@ -19,6 +20,7 @@ export interface GitHubIssue {
 
 export interface GitHubPR {
   number: number;
+  title: string;
   html_url: string;
   comments_url: string;
   comments: number;
@@ -36,5 +38,6 @@ export interface Activity {
   status: 'success' | 'failure';
   timestamp: string;
   url: string;
+  title: string;
   description: string;
 }

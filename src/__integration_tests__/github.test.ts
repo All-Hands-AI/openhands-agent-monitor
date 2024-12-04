@@ -56,6 +56,7 @@ describe('GitHub Service Integration Tests', () => {
       status: expect.stringMatching(/^(success|failure)$/),
       timestamp: expect.any(String),
       url: expect.stringMatching(/^https:\/\/github\.com\//),
+      title: expect.any(String),
       description: expect.any(String),
     };
 

@@ -16,6 +16,7 @@ describe('ActivityChart', () => {
       status: 'success',
       timestamp: '2023-11-28T12:00:00Z',
       url: 'https://github.com/example/1',
+      title: 'ISSUE success 11/28/2023, 12:00:00 PM -- Test Issue 1',
       description: 'Successfully resolved issue',
     },
     {
@@ -24,6 +25,7 @@ describe('ActivityChart', () => {
       status: 'failure',
       timestamp: '2023-11-28T13:00:00Z',
       url: 'https://github.com/example/2',
+      title: 'ISSUE failure 11/28/2023, 1:00:00 PM -- Test Issue 2',
       description: 'Failed to resolve issue',
     },
   ];
