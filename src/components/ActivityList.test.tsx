@@ -11,6 +11,7 @@ describe('ActivityList', () => {
       status: 'success',
       timestamp: '2023-11-28T12:00:00Z',
       url: 'https://github.com/example/1',
+      title: 'ISSUE success 11/28/2023, 12:00:00 PM -- Test Issue 1',
       description: 'Successfully resolved issue',
     },
     {
@@ -19,6 +20,7 @@ describe('ActivityList', () => {
       status: 'failure',
       timestamp: '2023-11-28T13:00:00Z',
       url: 'https://github.com/example/2',
+      title: 'PR failure 11/28/2023, 1:00:00 PM -- Test PR 1',
       description: 'Failed to modify PR',
     },
   ];
@@ -27,10 +29,8 @@ describe('ActivityList', () => {
     render(<ActivityList activities={mockActivities} />);
 
     // Check if activities are rendered
-    expect(screen.getByText('ISSUE')).toBeInTheDocument();
-    expect(screen.getByText('PR')).toBeInTheDocument();
-    expect(screen.getByText('success')).toBeInTheDocument();
-    expect(screen.getByText('failure')).toBeInTheDocument();
+    expect(screen.getByText('ISSUE success 11/28/2023, 12:00:00 PM -- Test Issue 1')).toBeInTheDocument();
+    expect(screen.getByText('PR failure 11/28/2023, 1:00:00 PM -- Test PR 1')).toBeInTheDocument();
     expect(screen.getByText('Successfully resolved issue')).toBeInTheDocument();
     expect(screen.getByText('Failed to modify PR')).toBeInTheDocument();
 
