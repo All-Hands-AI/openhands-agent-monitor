@@ -7,13 +7,31 @@ interface DateRangeFilterProps {
 }
 
 export function DateRangeFilter({ dateRange, onDateRangeChange }: DateRangeFilterProps): React.JSX.Element {
-  const [start, setStart] = useState(dateRange?.start ?? '');
-  const [end, setEnd] = useState(dateRange?.end ?? '');
+  const getDefaultDateRange = () => {
+    const end = new Date();
+    const start = new Date();
+    start.setDate(start.getDate() - 7);
+    return {
+      start: start.toISOString().split('T')[0],
+      end: end.toISOString().split('T')[0]
+    };
+  };
+
+  const defaultRange = getDefaultDateRange();
+  const [start, setStart] = useState(dateRange?.start ?? defaultRange.start);
+  const [end, setEnd] = useState(dateRange?.end ?? defaultRange.end);
 
   useEffect(() => {
-    setStart(dateRange?.start ?? '');
-    setEnd(dateRange?.end ?? '');
-  }, [dateRange]);
+    if (dateRange === undefined) {
+      const defaultRange = getDefaultDateRange();
+      setStart(defaultRange.start);
+      setEnd(defaultRange.end);
+      onDateRangeChange(defaultRange);
+    } else {
+      setStart(dateRange.start);
+      setEnd(dateRange.end);
+    }
+  }, [dateRange, onDateRangeChange]);
 
   const handleStartDateChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const newStart = event.target.value;
