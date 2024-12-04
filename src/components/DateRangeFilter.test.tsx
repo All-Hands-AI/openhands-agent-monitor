@@ -2,7 +2,7 @@ import { render, screen, fireEvent, act } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { DateRangeFilter } from './DateRangeFilter';
 import { DateRange } from '../types';
-import { hasDarkThemeColors, getComputedStyle } from '../test/testUtils';
+import { getComputedStyle } from '../test/testUtils';
 
 describe('DateRangeFilter', () => {
   const mockDateRange: DateRange = {
@@ -171,7 +171,7 @@ describe('DateRangeFilter', () => {
       );
 
       const filterGroups = document.querySelectorAll('.filter-group');
-      const firstGroup = filterGroups[0];
+      const firstGroup = filterGroups[0] as HTMLElement;
       
       // Check gap between filter groups
       expect(getComputedStyle(firstGroup, 'gap')).toBe('0.5rem');
@@ -200,8 +200,7 @@ describe('DateRangeFilter', () => {
         />
       );
 
-      const startInput = screen.getByLabelText<HTMLInputElement>('From:');
-      const styles = window.getComputedStyle(startInput);
+      screen.getByLabelText<HTMLInputElement>('From:');
       
       // Check if the calendar picker indicator style exists
       const styleRules = Array.from(document.styleSheets)

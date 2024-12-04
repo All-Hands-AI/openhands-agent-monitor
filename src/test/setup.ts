@@ -1,3 +1,5 @@
+import { vi } from 'vitest';
+
 // Mock CSS Modules
 const cssModule = new Proxy(
   {},

@@ -2,7 +2,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, beforeEach } from 'vitest';
 import { ActivityList } from './ActivityList';
 import { BotActivity } from '../types';
-import { hasDarkThemeColors, getComputedStyle } from '../test/testUtils';
+import { getComputedStyle } from '../test/testUtils';
 
 describe('ActivityList', () => {
   const createMockActivity = (id: string): BotActivity => ({
@@ -152,10 +152,10 @@ describe('ActivityList', () => {
       it('has proper spacing between pagination elements', () => {
         render(<ActivityList activities={activities} />);
 
-        const pagination = document.querySelector('.pagination');
+        const pagination = document.querySelector('.pagination') as HTMLElement;
         expect(pagination).not.toBeNull();
-        expect(getComputedStyle(pagination!, 'gap')).toBe('1rem');
-        expect(getComputedStyle(pagination!, 'margin-top')).toBe('2rem');
+        expect(getComputedStyle(pagination, 'gap')).toBe('1rem');
+        expect(getComputedStyle(pagination, 'margin-top')).toBe('2rem');
       });
 
       it('applies proper styles to disabled pagination buttons', () => {
