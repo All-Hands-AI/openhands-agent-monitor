@@ -167,7 +167,7 @@ async function processPRComments(pr: GitHubPR): Promise<Activity[]> {
           timestamp: resultComment.created_at,
           url: resultComment.html_url,
           title: `PR ${status} ${timestamp} -- ${pr.title}`,
-          description: pr.body?.slice(0, 500) + (pr.body && pr.body.length > 500 ? '...' : '') || 'No description provided',
+          description: pr.body ? (pr.body.slice(0, 500) + (pr.body.length > 500 ? '...' : '')) : 'No description provided',
         });
       }
     }
