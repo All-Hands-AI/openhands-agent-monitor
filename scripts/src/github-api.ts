@@ -126,13 +126,16 @@ async function processIssueComments(issue: GitHubIssue): Promise<Activity[]> {
       const resultComment = successComment ?? failureComment;
 
       if (resultComment !== undefined) {
+        const status = successComment !== undefined ? 'success' : 'failure';
+        const timestamp = new Date(resultComment.created_at).toLocaleString();
         activities.push({
           id: `issue-${String(issue.number)}-${String(comment.id)}`,
           type: 'issue',
-          status: successComment !== undefined ? 'success' : 'failure',
+          status,
           timestamp: resultComment.created_at,
           url: resultComment.html_url,
-          description: resultComment.body,
+          title: `ISSUE ${status} ${timestamp} -- ${issue.title}`,
+          description: resultComment.body.slice(0, 400) + (resultComment.body.length > 400 ? '...' : ''),
         });
       }
     }
@@ -155,13 +158,16 @@ async function processPRComments(pr: GitHubPR): Promise<Activity[]> {
       const resultComment = successComment ?? failureComment;
 
       if (resultComment !== undefined) {
+        const status = successComment !== undefined ? 'success' : 'failure';
+        const timestamp = new Date(resultComment.created_at).toLocaleString();
         activities.push({
           id: `pr-${String(pr.number)}-${String(comment.id)}`,
           type: 'pr',
-          status: successComment !== undefined ? 'success' : 'failure',
+          status,
           timestamp: resultComment.created_at,
           url: resultComment.html_url,
-          description: resultComment.body,
+          title: `PR ${status} ${timestamp} -- ${pr.title}`,
+          description: resultComment.body.slice(0, 400) + (resultComment.body.length > 400 ? '...' : ''),
         });
       }
     }
@@ -243,6 +249,7 @@ export async function fetchBotActivities(since?: string): Promise<Activity[]> {
           // Process PRs through the issue comments endpoint to catch all activity
           return processPRComments({
             number: item.number,
+            title: item.title,
             html_url: item.html_url,
             comments_url: item.comments_url,
             comments: item.comments
