@@ -34,21 +34,19 @@ export function ActivityList({ activities }: ActivityListProps): React.JSX.Eleme
         ))}
       </div>
       {totalPages > 1 && (
-        <div className="flex justify-center gap-2 mt-4">
+        <div className="pagination">
           <button
             onClick={() => { handlePageChange(currentPage - 1); }}
             disabled={currentPage === 1}
-            className="px-3 py-1 bg-gray-200 rounded disabled:opacity-50"
           >
             Previous
           </button>
-          <span className="px-3 py-1">
+          <span className="page-info">
             Page {currentPage} of {totalPages}
           </span>
           <button
             onClick={() => { handlePageChange(currentPage + 1); }}
             disabled={currentPage === totalPages}
-            className="px-3 py-1 bg-gray-200 rounded disabled:opacity-50"
           >
             Next
           </button>
