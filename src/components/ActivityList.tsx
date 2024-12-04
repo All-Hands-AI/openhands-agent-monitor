@@ -36,7 +36,7 @@ export function ActivityList({ activities }: ActivityListProps): React.JSX.Eleme
       {totalPages > 1 && (
         <div className="flex justify-center gap-2 mt-4">
           <button
-            onClick={() => handlePageChange(currentPage - 1)}
+            onClick={() => { handlePageChange(currentPage - 1); }}
             disabled={currentPage === 1}
             className="px-3 py-1 bg-gray-200 rounded disabled:opacity-50"
           >
@@ -46,7 +46,7 @@ export function ActivityList({ activities }: ActivityListProps): React.JSX.Eleme
             Page {currentPage} of {totalPages}
           </span>
           <button
-            onClick={() => handlePageChange(currentPage + 1)}
+            onClick={() => { handlePageChange(currentPage + 1); }}
             disabled={currentPage === totalPages}
             className="px-3 py-1 bg-gray-200 rounded disabled:opacity-50"
           >
