@@ -1,7 +1,8 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, beforeEach } from 'vitest';
 import { ActivityList } from './ActivityList';
 import { BotActivity } from '../types';
+import { hasDarkThemeColors, getComputedStyle } from '../test/testUtils';
 
 describe('ActivityList', () => {
   const createMockActivity = (id: string): BotActivity => ({
@@ -118,5 +119,94 @@ describe('ActivityList', () => {
     fireEvent.click(screen.getByText('Next'));
     expect(screen.getByText('Previous')).not.toBeDisabled();
     expect(screen.getByText('Next')).toBeDisabled();
+  });
+
+  describe('dark theme styling', () => {
+    beforeEach(() => {
+      // Set up CSS variables for dark theme
+      document.documentElement.style.setProperty('--bg-input', '#393939');
+      document.documentElement.style.setProperty('--text-editor-active', '#C4CBDA');
+      document.documentElement.style.setProperty('--border', '#3c3c4a');
+      document.documentElement.style.setProperty('--bg-editor-active', '#31343D');
+      document.documentElement.style.setProperty('--text-editor-base', '#9099AC');
+    });
+
+    describe('pagination styling', () => {
+      const activities = Array.from({ length: 25 }, (_, i) => createMockActivity(String(i + 1)));
+
+      it('applies dark theme styles to pagination buttons', () => {
+        render(<ActivityList activities={activities} />);
+
+        // Check if the style rules exist with correct variables
+        const styleRules = Array.from(document.styleSheets)
+          .flatMap(sheet => Array.from(sheet.cssRules))
+          .map(rule => rule.cssText)
+          .join('\n');
+        
+        expect(styleRules).toContain('.pagination button');
+        expect(styleRules).toContain('var(--bg-input)');
+        expect(styleRules).toContain('var(--text-editor-active)');
+        expect(styleRules).toContain('var(--border)');
+      });
+
+      it('has proper spacing between pagination elements', () => {
+        render(<ActivityList activities={activities} />);
+
+        const pagination = document.querySelector('.pagination');
+        expect(pagination).not.toBeNull();
+        expect(getComputedStyle(pagination!, 'gap')).toBe('1rem');
+        expect(getComputedStyle(pagination!, 'margin-top')).toBe('2rem');
+      });
+
+      it('applies proper styles to disabled pagination buttons', () => {
+        render(<ActivityList activities={activities} />);
+
+        const prevButton = screen.getByText('Previous');
+        expect(prevButton).toBeDisabled();
+        expect(getComputedStyle(prevButton, 'opacity')).toBe('0.5');
+        expect(getComputedStyle(prevButton, 'cursor')).toBe('not-allowed');
+      });
+
+      it('applies hover styles to enabled pagination buttons', () => {
+        render(<ActivityList activities={activities} />);
+
+        const nextButton = screen.getByText('Next');
+        expect(nextButton).not.toBeDisabled();
+
+        // Check if the hover style rule exists
+        const styleRules = Array.from(document.styleSheets)
+          .flatMap(sheet => Array.from(sheet.cssRules))
+          .map(rule => rule.cssText)
+          .join('\n');
+        
+        expect(styleRules).toContain('.pagination button:not(:disabled):hover');
+        expect(styleRules).toContain('var(--bg-editor-active)');
+      });
+
+      it('styles page info text correctly', () => {
+        render(<ActivityList activities={activities} />);
+
+        const pageInfo = screen.getByText('Page 1 of 2');
+        expect(pageInfo.classList.contains('page-info')).toBe(true);
+        
+        // Check if the style rule exists
+        const styleRules = Array.from(document.styleSheets)
+          .flatMap(sheet => Array.from(sheet.cssRules))
+          .map(rule => rule.cssText)
+          .join('\n');
+        
+        expect(styleRules).toContain('.pagination .page-info');
+        expect(styleRules).toContain('var(--text-editor-base)');
+        expect(styleRules).toContain('padding: 0.5rem 1rem');
+      });
+
+      it('has proper button padding and border radius', () => {
+        render(<ActivityList activities={activities} />);
+
+        const nextButton = screen.getByText('Next');
+        expect(getComputedStyle(nextButton, 'padding')).toBe('0.5rem 1rem');
+        expect(getComputedStyle(nextButton, 'border-radius')).toBe('4px');
+      });
+    });
   });
 });

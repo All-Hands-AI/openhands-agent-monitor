@@ -2,6 +2,7 @@ import { render, screen, fireEvent, act } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { DateRangeFilter } from './DateRangeFilter';
 import { DateRange } from '../types';
+import { hasDarkThemeColors, getComputedStyle } from '../test/testUtils';
 
 describe('DateRangeFilter', () => {
   const mockDateRange: DateRange = {
@@ -131,5 +132,85 @@ describe('DateRangeFilter', () => {
     expect(startInput.value).toBe('2024-01-01');
     expect(endInput.value).toBe('2024-01-31');
     expect(mockOnDateRangeChange).not.toHaveBeenCalled();
+  });
+
+  describe('dark theme styling', () => {
+    beforeEach(() => {
+      // Set up CSS variables for dark theme
+      document.documentElement.style.setProperty('--bg-input', '#393939');
+      document.documentElement.style.setProperty('--text-editor-active', '#C4CBDA');
+      document.documentElement.style.setProperty('--border', '#3c3c4a');
+    });
+
+    it('applies dark theme styles to date inputs', () => {
+      render(
+        <DateRangeFilter
+          dateRange={mockDateRange}
+          onDateRangeChange={mockOnDateRangeChange}
+        />
+      );
+
+      // Check if the style rules exist with correct variables
+      const styleRules = Array.from(document.styleSheets)
+        .flatMap(sheet => Array.from(sheet.cssRules))
+        .map(rule => rule.cssText)
+        .join('\n');
+      
+      expect(styleRules).toContain('.filter-group input');
+      expect(styleRules).toContain('var(--bg-input)');
+      expect(styleRules).toContain('var(--text-editor-active)');
+      expect(styleRules).toContain('var(--border)');
+    });
+
+    it('has proper spacing between filter groups', () => {
+      render(
+        <DateRangeFilter
+          dateRange={mockDateRange}
+          onDateRangeChange={mockOnDateRangeChange}
+        />
+      );
+
+      const filterGroups = document.querySelectorAll('.filter-group');
+      const firstGroup = filterGroups[0];
+      
+      // Check gap between filter groups
+      expect(getComputedStyle(firstGroup, 'gap')).toBe('0.5rem');
+      expect(getComputedStyle(firstGroup, 'margin')).toBe('0.5rem');
+    });
+
+    it('has proper input padding and border radius', () => {
+      render(
+        <DateRangeFilter
+          dateRange={mockDateRange}
+          onDateRangeChange={mockOnDateRangeChange}
+        />
+      );
+
+      const startInput = screen.getByLabelText<HTMLInputElement>('From:');
+      
+      expect(getComputedStyle(startInput, 'padding')).toBe('0.5rem');
+      expect(getComputedStyle(startInput, 'border-radius')).toBe('4px');
+    });
+
+    it('calendar picker indicator is visible in dark mode', () => {
+      render(
+        <DateRangeFilter
+          dateRange={mockDateRange}
+          onDateRangeChange={mockOnDateRangeChange}
+        />
+      );
+
+      const startInput = screen.getByLabelText<HTMLInputElement>('From:');
+      const styles = window.getComputedStyle(startInput);
+      
+      // Check if the calendar picker indicator style exists
+      const styleRules = Array.from(document.styleSheets)
+        .flatMap(sheet => Array.from(sheet.cssRules))
+        .map(rule => rule.cssText)
+        .join('\n');
+      
+      expect(styleRules).toContain('::-webkit-calendar-picker-indicator');
+      expect(styleRules).toContain('filter: invert(1)');
+    });
   });
 });

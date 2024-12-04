@@ -99,6 +99,25 @@ section {
   min-width: 120px;
 }
 
+.filter-group input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  cursor: pointer;
+}
+
+/* Calendar popup styling */
+input[type="date"]::-webkit-datetime-edit,
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-clear-button {
+  color: var(--text-editor-active);
+}
+
+input[type="date"]::-webkit-calendar-picker {
+  background-color: var(--bg-workspace);
+  color: var(--text-editor-active);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
+
 @media (max-width: 768px) {
   .activity-filter,
   .date-range-filter {
@@ -251,4 +270,37 @@ section {
 
 .error-message button:hover {
   opacity: 0.9;
+}
+
+/* Pagination styles */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.pagination button {
+  padding: 0.5rem 1rem;
+  background: var(--bg-input);
+  color: var(--text-editor-active);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pagination button:not(:disabled):hover {
+  background: var(--bg-editor-active);
+}
+
+.pagination .page-info {
+  color: var(--text-editor-base);
+  padding: 0.5rem 1rem;
 }
