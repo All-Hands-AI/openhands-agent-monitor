@@ -20,7 +20,7 @@ body {
 .app {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1rem;
 }
 
 .app-header {
@@ -28,6 +28,8 @@ body {
   align-items: center;
   gap: 1rem;
   margin-bottom: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .app-logo {
@@ -37,8 +39,20 @@ body {
 
 h1 {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   color: var(--text-editor-active);
+  font-size: clamp(1.5rem, 4vw, 2rem);
+}
+
+@media (max-width: 768px) {
+  .app {
+    padding: 0.5rem;
+  }
+  
+  .app-header {
+    flex-direction: column;
+    text-align: center;
+  }
 }
 
 section {
@@ -57,18 +71,21 @@ section {
   gap: 1rem;
   justify-content: center;
   margin-bottom: 1rem;
+  flex-wrap: wrap;
 }
 
 .date-range-filter {
   display: flex;
   gap: 1rem;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .filter-group {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  margin: 0.5rem;
 }
 
 .filter-group select,
@@ -79,6 +96,27 @@ section {
   font-size: 1rem;
   background: var(--bg-input);
   color: var(--text-editor-active);
+  min-width: 120px;
+}
+
+@media (max-width: 768px) {
+  .activity-filter,
+  .date-range-filter {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+
+  .filter-group {
+    margin: 0.25rem 0;
+    justify-content: space-between;
+  }
+
+  .filter-group select,
+  .filter-group input {
+    flex: 1;
+    margin-left: 0.5rem;
+  }
 }
 
 .chart-container {
@@ -87,9 +125,10 @@ section {
   gap: 2rem;
   justify-content: center;
   background: var(--bg-workspace);
-  padding: 1.5rem;
+  padding: 1rem;
   border-radius: 8px;
   border: 1px solid var(--border);
+  overflow-x: auto;
 }
 
 .activity-list {
@@ -103,6 +142,7 @@ section {
   border-radius: 8px;
   padding: 1rem;
   background: var(--bg-workspace);
+  word-break: break-word;
 }
 
 .activity-item.success {
@@ -117,6 +157,22 @@ section {
   display: flex;
   gap: 1rem;
   margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .chart-container {
+    padding: 0.5rem;
+    gap: 1rem;
+  }
+
+  .activity-item {
+    padding: 0.75rem;
+  }
+
+  .activity-header {
+    gap: 0.5rem;
+  }
 }
 
 .activity-type {
