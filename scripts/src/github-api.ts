@@ -206,10 +206,10 @@ export async function fetchBotActivities(since?: string): Promise<Activity[]> {
     if (since !== undefined && since !== '') {
       params.append('since', since);
     } else {
-      // Default to last 7 days if no since parameter
-      const sevenDaysAgo = new Date();
-      sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
-      params.append('since', sevenDaysAgo.toISOString());
+      // Default to last 30 days if no since parameter
+      const thirtyDaysAgo = new Date();
+      thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+      params.append('since', thirtyDaysAgo.toISOString());
     }
 
     // Fetch issues and PRs
