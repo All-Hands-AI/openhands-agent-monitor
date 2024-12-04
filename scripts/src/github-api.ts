@@ -135,7 +135,7 @@ async function processIssueComments(issue: GitHubIssue): Promise<Activity[]> {
           timestamp: resultComment.created_at,
           url: resultComment.html_url,
           title: `ISSUE ${status} ${timestamp} -- ${issue.title}`,
-          description: resultComment.body.slice(0, 400) + (resultComment.body.length > 400 ? '...' : ''),
+          description: issue.body.slice(0, 500) + (issue.body.length > 500 ? '...' : ''),
         });
       }
     }
@@ -167,7 +167,7 @@ async function processPRComments(pr: GitHubPR): Promise<Activity[]> {
           timestamp: resultComment.created_at,
           url: resultComment.html_url,
           title: `PR ${status} ${timestamp} -- ${pr.title}`,
-          description: resultComment.body.slice(0, 400) + (resultComment.body.length > 400 ? '...' : ''),
+          description: pr.body ? (pr.body.slice(0, 500) + (pr.body.length > 500 ? '...' : '')) : 'No description provided',
         });
       }
     }
@@ -252,7 +252,8 @@ export async function fetchBotActivities(since?: string): Promise<Activity[]> {
             title: item.title,
             html_url: item.html_url,
             comments_url: item.comments_url,
-            comments: item.comments
+            comments: item.comments,
+            body: item.body
           });
         }
       })

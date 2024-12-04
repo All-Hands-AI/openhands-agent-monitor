@@ -16,6 +16,7 @@ export interface GitHubIssue {
   comments_url: string;
   comments: number;
   pull_request?: unknown;
+  body: string;
 }
 
 export interface GitHubPR {
@@ -24,6 +25,7 @@ export interface GitHubPR {
   html_url: string;
   comments_url: string;
   comments: number;
+  body?: string;
 }
 
 export interface ApiResponse {
