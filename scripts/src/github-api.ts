@@ -8,7 +8,7 @@ const REPO_NAME = 'OpenHands';
 
 import fs from 'fs';
 
-async function fetchWithAuth(url: string): Promise<ApiResponse> {
+async function fetchWithAuth<T = unknown>(url: string): Promise<ApiResponse<T>> {
   // Log the request
   fs.appendFileSync('github-api.log', `\n[${new Date().toISOString()}] REQUEST: ${url}\n`);
   
@@ -56,9 +56,13 @@ async function fetchAllPages<T>(url: string): Promise<T[]> {
   while (currentUrl !== '') {
     pageCount++;
     console.log(`Fetching page ${pageCount.toString()} from ${currentUrl}`);
-    const response = await fetchWithAuth(currentUrl);
-    console.log(`Got ${String(response.data.length)} items`);
-    allItems.push(...(response.data as T[]));
+    const response = await fetchWithAuth<T>(currentUrl);
+    console.log(`Got ${Array.isArray(response.data) ? String(response.data.length) : '1'} items`);
+    if (Array.isArray(response.data)) {
+      allItems.push(...(response.data as T[]));
+    } else {
+      allItems.push(response.data as T);
+    }
     currentUrl = response.nextUrl ?? '';
   }
 
@@ -114,7 +118,7 @@ export function isPRModificationFailureComment(comment: GitHubComment): boolean 
 
 async function checkPRStatus(prUrl: string): Promise<IssueStatus> {
   try {
-    const response = await fetchWithAuth(prUrl);
+    const response = await fetchWithAuth<GitHubPRResponse>(prUrl);
     const pr = response.data as GitHubPRResponse;
     
     if (pr?.merged) {
