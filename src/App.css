@@ -172,6 +172,23 @@ input[type="date"]::-webkit-calendar-picker {
   border-left: 4px solid var(--danger);
 }
 
+/* Issue-specific status colors */
+.activity-item.no_pr {
+  border-left: 4px solid #ffffff;
+}
+
+.activity-item.pr_open {
+  border-left: 4px solid #4caf50;
+}
+
+.activity-item.pr_merged {
+  border-left: 4px solid #9c27b0;
+}
+
+.activity-item.pr_closed {
+  border-left: 4px solid #f44336;
+}
+
 .activity-header {
   display: flex;
   gap: 1rem;

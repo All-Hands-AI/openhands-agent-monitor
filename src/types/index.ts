@@ -1,5 +1,8 @@
 export type ActivityType = 'issue' | 'pr';
-export type ActivityStatus = 'success' | 'failure';
+export type PRStatus = 'no_pr' | 'pr_open' | 'pr_merged' | 'pr_closed';
+export type PRActivityStatus = 'success' | 'failure';
+export type IssueActivityStatus = PRStatus;
+export type ActivityStatus = PRActivityStatus | IssueActivityStatus;
 
 export interface BotActivity {
   id: string;
@@ -9,6 +12,7 @@ export interface BotActivity {
   url: string;
   title: string;
   description: string;
+  prUrl?: string;
 }
 
 export interface DateRange {

@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { ActivityList } from './ActivityList';
 import { BotActivity } from '../types';
 import { getComputedStyle } from '../test/testUtils';
@@ -121,6 +121,83 @@ describe('ActivityList', () => {
     expect(screen.getByText('Next')).toBeDisabled();
   });
 
+  describe('issue status styling', () => {
+    beforeEach(() => {
+      // Add CSS styles for testing
+      const style = document.createElement('style');
+      style.textContent = `
+        .activity-item.no_pr { border-left: 4px solid #ffffff; }
+        .activity-item.pr_open { border-left: 4px solid #4caf50; }
+        .activity-item.pr_merged { border-left: 4px solid #9c27b0; }
+        .activity-item.pr_closed { border-left: 4px solid #f44336; }
+      `;
+      document.head.appendChild(style);
+    });
+
+    afterEach(() => {
+      // Clean up styles
+      const styles = document.head.getElementsByTagName('style');
+      Array.from(styles).forEach((style) => { style.remove(); });
+    });
+
+    const issueStatuses = [
+      { status: 'no_pr', color: '#ffffff' },
+      { status: 'pr_open', color: '#4caf50' },
+      { status: 'pr_merged', color: '#9c27b0' },
+      { status: 'pr_closed', color: '#f44336' }
+    ];
+
+    issueStatuses.forEach(({ status, color }) => {
+      it(`applies correct border color for issue with ${status} status`, () => {
+        const activity: BotActivity = {
+          id: '1',
+          type: 'issue',
+          status: status as any,
+          timestamp: '2023-11-28T12:00:00Z',
+          url: 'https://github.com/example/1',
+          title: `Test Issue with ${status}`,
+          description: 'Test description',
+          prUrl: status === 'no_pr' ? undefined : 'https://github.com/example/pr/1'
+        };
+
+        render(<ActivityList activities={[activity]} />);
+        
+        const item = document.querySelector('.activity-item') as HTMLElement;
+        expect(item).not.toBeNull();
+        expect(item.classList.contains(status)).toBe(true);
+        
+        const styleRules = Array.from(document.styleSheets)
+          .flatMap(sheet => Array.from(sheet.cssRules))
+          .map(rule => rule.cssText)
+          .join('\n');
+        
+        expect(styleRules).toContain(`.activity-item.${status}`);
+        expect(styleRules).toContain(`border-left: 4px solid ${color}`);
+      });
+
+      if (status !== 'no_pr') {
+        it(`shows PR link for issue with ${status} status`, () => {
+          const activity: BotActivity = {
+            id: '1',
+            type: 'issue',
+            status: status as any,
+            timestamp: '2023-11-28T12:00:00Z',
+            url: 'https://github.com/example/1',
+            title: `Test Issue with ${status}`,
+            description: 'Test description',
+            prUrl: 'https://github.com/example/pr/1'
+          };
+
+          render(<ActivityList activities={[activity]} />);
+          
+          const prLink = screen.getByText('View PR');
+          expect(prLink).toBeInTheDocument();
+          expect(prLink).toHaveAttribute('href', 'https://github.com/example/pr/1');
+        });
+      }
+    });
+  });
+
   describe('dark theme styling', () => {
     beforeEach(() => {
       // Set up CSS variables for dark theme
@@ -129,6 +206,49 @@ describe('ActivityList', () => {
       document.documentElement.style.setProperty('--border', '#3c3c4a');
       document.documentElement.style.setProperty('--bg-editor-active', '#31343D');
       document.documentElement.style.setProperty('--text-editor-base', '#9099AC');
+
+      // Add CSS styles for testing
+      const style = document.createElement('style');
+      style.textContent = `
+        .pagination {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 1rem;
+          margin-top: 2rem;
+        }
+
+        .pagination button {
+          padding: 0.5rem 1rem;
+          background: var(--bg-input);
+          color: var(--text-editor-active);
+          border: 1px solid var(--border);
+          border-radius: 4px;
+          cursor: pointer;
+          transition: background-color 0.2s;
+        }
+
+        .pagination button:disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
+        }
+
+        .pagination button:not(:disabled):hover {
+          background: var(--bg-editor-active);
+        }
+
+        .pagination .page-info {
+          color: var(--text-editor-base);
+          padding: 0.5rem 1rem;
+        }
+      `;
+      document.head.appendChild(style);
+    });
+
+    afterEach(() => {
+      // Clean up styles
+      const styles = document.head.getElementsByTagName('style');
+      Array.from(styles).forEach((style) => { style.remove(); });
     });
 
     describe('pagination styling', () => {

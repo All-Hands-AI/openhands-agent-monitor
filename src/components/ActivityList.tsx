@@ -22,14 +22,24 @@ export function ActivityList({ activities }: ActivityListProps): React.JSX.Eleme
     <div>
       <div className="activity-list">
         {currentActivities.map((activity) => (
-          <div key={activity.id} className={`activity-item ${activity.status}`}>
+          <div key={activity.id} className={`activity-item ${activity.type === 'issue' ? activity.status : activity.status}`}>
             <div className="activity-header">
               <span className="activity-title">{activity.title}</span>
             </div>
             <div className="activity-description">{activity.description}</div>
-            <a href={activity.url} target="_blank" rel="noopener noreferrer">
-              View on GitHub
-            </a>
+            <div className="activity-links">
+              <a href={activity.url} target="_blank" rel="noopener noreferrer">
+                View on GitHub
+              </a>
+              {activity.prUrl && (
+                <>
+                  {' | '}
+                  <a href={activity.prUrl} target="_blank" rel="noopener noreferrer">
+                    View PR
+                  </a>
+                </>
+              )}
+            </div>
           </div>
         ))}
       </div>

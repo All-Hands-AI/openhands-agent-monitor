@@ -28,18 +28,27 @@ export interface GitHubPR {
   body?: string;
 }
 
-export interface ApiResponse {
-  data: any[];
+export interface GitHubPRResponse {
+  state: string;
+  merged: boolean;
+}
+
+export interface ApiResponse<T = unknown> {
+  data: T | T[];
   hasNextPage: boolean;
   nextUrl: string | null;
 }
 
+export type IssueStatus = 'no_pr' | 'pr_open' | 'pr_merged' | 'pr_closed';
+export type PRStatus = 'success' | 'failure';
+
 export interface Activity {
   id: string;
   type: 'issue' | 'pr';
-  status: 'success' | 'failure';
+  status: IssueStatus | PRStatus;
   timestamp: string;
   url: string;
   title: string;
   description: string;
+  prUrl?: string;
 }

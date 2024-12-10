@@ -58,6 +58,7 @@ describe('GitHub Service Integration Tests', () => {
       url: expect.stringMatching(/^https:\/\/github\.com\//),
       title: expect.any(String),
       description: expect.any(String),
+      prUrl: expect.any(String),
     };
 
     for (const activity of activities) {
