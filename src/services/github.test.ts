@@ -39,18 +39,13 @@ describe('GitHub Service', () => {
           activities: [{
             id: 'issue-1-2',
             type: 'issue',
-            status: 'success',
+            status: 'pr_open',
             timestamp: '2023-11-28T00:01:00Z',
             url: 'https://github.com/All-Hands-AI/OpenHands/issues/1#comment-2',
             prUrl: 'https://api.github.com/repos/All-Hands-AI/OpenHands/pulls/2',
             description: 'A potential fix has been generated and a draft PR #2 has been created. Please review the changes.'
           }],
           lastUpdated: '2023-11-28T00:01:00Z'
-        });
-      } else if (url === 'https://api.github.com/repos/All-Hands-AI/OpenHands/pulls/2') {
-        return createMockResponse({
-          state: 'open',
-          merged: false
         });
       }
       throw new Error(`Unexpected URL: ${url}`);
@@ -78,7 +73,7 @@ describe('GitHub Service', () => {
           activities: [{
             id: 'issue-1-2',
             type: 'issue',
-            status: 'failure',
+            status: 'no_pr',
             timestamp: '2023-11-28T00:01:00Z',
             url: 'https://github.com/All-Hands-AI/OpenHands/issues/1#comment-2',
             description: 'The workflow to fix this issue encountered an error. Openhands failed to create any code changes.'
@@ -143,7 +138,7 @@ describe('GitHub Service', () => {
           activities: [{
             id: 'issue-1-2',
             type: 'issue',
-            status: 'success',
+            status: 'no_pr',
             timestamp: '2023-11-28T00:01:00Z',
             url: 'https://github.com/All-Hands-AI/OpenHands/issues/1#comment-2',
             description: 'Working on the issue...'
@@ -173,18 +168,13 @@ describe('GitHub Service', () => {
           activities: [{
             id: 'issue-1-2',
             type: 'issue',
-            status: 'success',
+            status: 'pr_open',
             timestamp: '2023-11-28T00:01:00Z',
             url: 'https://github.com/All-Hands-AI/OpenHands/issues/1#comment-2',
             prUrl: 'https://api.github.com/repos/All-Hands-AI/OpenHands/pulls/2',
             description: 'Created PR #2'
           }],
           lastUpdated: '2023-11-28T00:01:00Z'
-        });
-      } else if (url === 'https://api.github.com/repos/All-Hands-AI/OpenHands/pulls/2') {
-        return createMockResponse({
-          state: 'open',
-          merged: false
         });
       }
       throw new Error(`Unexpected URL: ${url}`);
@@ -209,18 +199,13 @@ describe('GitHub Service', () => {
           activities: [{
             id: 'issue-1-2',
             type: 'issue',
-            status: 'success',
+            status: 'pr_merged',
             timestamp: '2023-11-28T00:01:00Z',
             url: 'https://github.com/All-Hands-AI/OpenHands/issues/1#comment-2',
             prUrl: 'https://api.github.com/repos/All-Hands-AI/OpenHands/pulls/2',
             description: 'Created PR #2'
           }],
           lastUpdated: '2023-11-28T00:01:00Z'
-        });
-      } else if (url === 'https://api.github.com/repos/All-Hands-AI/OpenHands/pulls/2') {
-        return createMockResponse({
-          state: 'closed',
-          merged: true
         });
       }
       throw new Error(`Unexpected URL: ${url}`);
@@ -245,18 +230,13 @@ describe('GitHub Service', () => {
           activities: [{
             id: 'issue-1-2',
             type: 'issue',
-            status: 'success',
+            status: 'pr_closed',
             timestamp: '2023-11-28T00:01:00Z',
             url: 'https://github.com/All-Hands-AI/OpenHands/issues/1#comment-2',
             prUrl: 'https://api.github.com/repos/All-Hands-AI/OpenHands/pulls/2',
             description: 'Created PR #2'
           }],
           lastUpdated: '2023-11-28T00:01:00Z'
-        });
-      } else if (url === 'https://api.github.com/repos/All-Hands-AI/OpenHands/pulls/2') {
-        return createMockResponse({
-          state: 'closed',
-          merged: false
         });
       }
       throw new Error(`Unexpected URL: ${url}`);
