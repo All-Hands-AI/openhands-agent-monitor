@@ -57,7 +57,7 @@ async function fetchAllPages<T>(url: string): Promise<T[]> {
     pageCount++;
     console.log(`Fetching page ${pageCount.toString()} from ${currentUrl}`);
     const response = await fetchWithAuth(currentUrl);
-    console.log(`Got ${response.data.length.toString()} items`);
+    console.log(`Got ${String(response.data.length)} items`);
     allItems.push(...(response.data as T[]));
     currentUrl = response.nextUrl ?? '';
   }
@@ -155,7 +155,7 @@ async function processIssueComments(issue: GitHubIssue): Promise<Activity[]> {
           let prNumber: string | undefined;
           
           // Try full PR URL format
-          const fullUrlMatch = successComment.body.match(/https:\/\/github\.com\/[^\/]+\/[^\/]+\/pull\/(\d+)/);
+          const fullUrlMatch = successComment.body.match(/https:\/\/github\.com\/[^/]+\/[^/]+\/pull\/(\d+)/);
           if (fullUrlMatch) {
             prNumber = fullUrlMatch[1];
           }

@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { ActivityList } from './ActivityList';
 import { BotActivity } from '../types';
 import { getComputedStyle } from '../test/testUtils';
@@ -137,7 +137,7 @@ describe('ActivityList', () => {
     afterEach(() => {
       // Clean up styles
       const styles = document.head.getElementsByTagName('style');
-      Array.from(styles).forEach(style => style.remove());
+      Array.from(styles).forEach((style) => { style.remove(); });
     });
 
     const issueStatuses = [
@@ -248,7 +248,7 @@ describe('ActivityList', () => {
     afterEach(() => {
       // Clean up styles
       const styles = document.head.getElementsByTagName('style');
-      Array.from(styles).forEach(style => style.remove());
+      Array.from(styles).forEach((style) => { style.remove(); });
     });
 
     describe('pagination styling', () => {

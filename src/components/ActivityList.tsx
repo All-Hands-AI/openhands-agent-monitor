@@ -1,4 +1,4 @@
-import { BotActivity, IssueActivityStatus } from '../types';
+import { BotActivity } from '../types';
 import { useState } from 'react';
 
 interface ActivityListProps {

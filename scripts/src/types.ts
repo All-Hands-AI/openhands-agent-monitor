@@ -34,7 +34,7 @@ export interface GitHubPRResponse {
 }
 
 export interface ApiResponse {
-  data: any[] | any;
+  data: unknown[];
   hasNextPage: boolean;
   nextUrl: string | null;
 }
