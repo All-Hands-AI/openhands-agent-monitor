@@ -16,7 +16,7 @@ interface VegaLiteProps {
   };
 }
 
-const mockVegaLite = vi.fn(() => <div data-testid="vega-lite-chart" />);
+const mockVegaLite = vi.fn();
 vi.mock('react-vega', () => ({
   VegaLite: (props: VegaLiteProps) => {
     mockVegaLite(props);
