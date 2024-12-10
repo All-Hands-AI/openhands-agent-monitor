@@ -1,12 +1,237 @@
 {
   "activities": [
     {
+      "id": "issue-5423-2531945738",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-12-10T15:12:26Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5423#issuecomment-2531962130",
+      "title": "ISSUE failure 12/10/2024, 3:12:26 PM -- [Bug]: When Performing browser operations, output messages are repeated",
+      "description": "### Is there an existing issue for the same bug?\r\n\r\n- [X] I have checked the existing issues.\r\n\r\n### Describe the bug and reproduction steps\r\n\r\nStart a new session and enter the prompt: `What is the area in square miles of the state of California?`\r\nThe response `Let me search for this information.` is repeated twice before the actual answer is received.\r\n\r\n### OpenHands Installation\r\n\r\nDocker command in README\r\n\r\n### OpenHands Version\r\n\r\n0.15.0\r\n\r\n### Operating System\r\n\r\nMacOS\r\n\r\n### Logs, Erro..."
+    },
+    {
+      "id": "issue-5423-2531932774",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-12-10T15:04:35Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5423#issuecomment-2531939912",
+      "title": "ISSUE failure 12/10/2024, 3:04:35 PM -- [Bug]: When Performing browser operations, output messages are repeated",
+      "description": "### Is there an existing issue for the same bug?\r\n\r\n- [X] I have checked the existing issues.\r\n\r\n### Describe the bug and reproduction steps\r\n\r\nStart a new session and enter the prompt: `What is the area in square miles of the state of California?`\r\nThe response `Let me search for this information.` is repeated twice before the actual answer is received.\r\n\r\n### OpenHands Installation\r\n\r\nDocker command in README\r\n\r\n### OpenHands Version\r\n\r\n0.15.0\r\n\r\n### Operating System\r\n\r\nMacOS\r\n\r\n### Logs, Erro..."
+    },
+    {
+      "id": "pr-5498-2530407818",
+      "type": "pr",
+      "status": "no_pr",
+      "timestamp": "2024-12-10T05:12:15Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/pull/5498#issuecomment-2530416981",
+      "title": "No PR 12/10/2024, 5:12:15 AM -- Fix issue #5492: [Bug]: Regression on Anthropic due to empty content hack for Bedrock",
+      "description": "This pull request fixes #5492.\n\nThe issue has been successfully resolved. The PR addresses the root cause by:\n\n1. Making the empty content removal logic provider-specific, only applying it to Bedrock\n2. Modifying the message serialization to pass the provider information through the pipeline\n3. Adding comprehensive test coverage to verify the behavior works correctly for both Bedrock and Anthropic providers\n\nThe changes directly fix the reported KeyError by ensuring the 'content' key remains pre..."
+    },
+    {
+      "id": "issue-5480-2529235979",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-12-10T04:12:42Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5480#issuecomment-2530257505",
+      "title": "ISSUE success 12/10/2024, 4:12:42 AM -- [Bug]: Cannot recover from \"Agent stuck in loop\"",
+      "description": "### Is there an existing issue for the same bug?\n\n- [X] I have checked the existing issues.\n\n### Describe the bug and reproduction steps\n\nOnce we stuck in \"agent stuck in loop\", we cannot send subsequent messages to the agent anymore.\r\n\r\n<img width=\"484\" alt=\"image\" src=\"https://github.com/user-attachments/assets/fe5edfea-f3fb-4453-8f36-093c39af993b\">\r\n\n\n### OpenHands Installation\n\nDocker command in README\n\n### OpenHands Version\n\n_No response_\n\n### Operating System\n\nNone\n\n### Logs, Errors, Scree..."
+    },
+    {
+      "id": "issue-5480-2530243035",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-12-10T04:12:42Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5480#issuecomment-2530257505",
+      "title": "ISSUE success 12/10/2024, 4:12:42 AM -- [Bug]: Cannot recover from \"Agent stuck in loop\"",
+      "description": "### Is there an existing issue for the same bug?\n\n- [X] I have checked the existing issues.\n\n### Describe the bug and reproduction steps\n\nOnce we stuck in \"agent stuck in loop\", we cannot send subsequent messages to the agent anymore.\r\n\r\n<img width=\"484\" alt=\"image\" src=\"https://github.com/user-attachments/assets/fe5edfea-f3fb-4453-8f36-093c39af993b\">\r\n\n\n### OpenHands Installation\n\nDocker command in README\n\n### OpenHands Version\n\n_No response_\n\n### Operating System\n\nNone\n\n### Logs, Errors, Scree..."
+    },
+    {
+      "id": "issue-5492-2530226892",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-12-10T04:07:25Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5492#issuecomment-2530244805",
+      "title": "ISSUE success 12/10/2024, 4:07:25 AM -- [Bug]: Regression on Anthropic due to empty content hack for Bedrock",
+      "description": "### Is there an existing issue for the same bug?\r\n\r\n- [X] I have checked the existing issues.\r\n\r\n### Describe the bug and reproduction steps\r\n\r\nThis fix https://github.com/All-Hands-AI/OpenHands/pull/4935 to special case empty content string for Bedrock is causing regression with Anthropic tool call that has empty output.\r\n\r\nThis is the bug:\r\n```\r\nmessage.py#_list_serializer\r\n        # pop content if it's empty\r\n        if not content or (\r\n            len(content) == 1\r\n            and content[..."
+    },
+    {
+      "id": "pr-5483-2529725095",
+      "type": "pr",
+      "status": "no_pr",
+      "timestamp": "2024-12-09T23:28:24Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/pull/5483#issuecomment-2529777556",
+      "title": "No PR 12/9/2024, 11:28:24 PM -- Fix issue #5478: Add color to the line next to \"Ran a XXX Command\" based on return value",
+      "description": "This pull request fixes #5478.\n\nThe issue has been successfully resolved. The AI implemented a complete solution that addresses the original request to visually indicate command execution success/failure through line colors. Specifically:\n\n1. Added necessary data structures (success property) in both frontend and backend\n2. Implemented color-coding logic:\n   - Green for successful commands (exit code 0)\n   - Red for failed commands (non-zero exit code)\n   - Gray for other messages (default)\n3. M..."
+    },
+    {
+      "id": "pr-5483-2529345378",
+      "type": "pr",
+      "status": "no_pr",
+      "timestamp": "2024-12-09T20:13:26Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/pull/5483#issuecomment-2529349069",
+      "title": "No PR 12/9/2024, 8:13:26 PM -- Fix issue #5478: Add color to the line next to \"Ran a XXX Command\" based on return value",
+      "description": "This pull request fixes #5478.\n\nThe issue has been successfully resolved. The AI implemented a complete solution that addresses the original request to visually indicate command execution success/failure through line colors. Specifically:\n\n1. Added necessary data structures (success property) in both frontend and backend\n2. Implemented color-coding logic:\n   - Green for successful commands (exit code 0)\n   - Red for failed commands (non-zero exit code)\n   - Gray for other messages (default)\n3. M..."
+    },
+    {
+      "id": "pr-5484-2529337741",
+      "type": "pr",
+      "status": "no_pr",
+      "timestamp": "2024-12-09T20:11:41Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/pull/5484#issuecomment-2529346060",
+      "title": "No PR 12/9/2024, 8:11:41 PM -- Remove Beta label from Browser tab",
+      "description": "This PR removes the Beta label from the Browser tab in the frontend interface.\n\n---\n\nTo run this PR locally, use the following command:\n```\ndocker run -it --rm   -p 3000:3000   -v /var/run/docker.sock:/var/run/docker.sock   --add-host host.docker.internal:host-gateway   -e SANDBOX_RUNTIME_CONTAINER_IMAGE=docker.all-hands.dev/all-hands-ai/runtime:0df0ea7-nikolaik   --name openhands-app-0df0ea7   docker.all-hands.dev/all-hands-ai/openhands:0df0ea7\n```"
+    },
+    {
+      "id": "issue-5478-2529207532",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-12-09T19:44:44Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5478#issuecomment-2529253200",
+      "title": "ISSUE success 12/9/2024, 7:44:44 PM -- Add color to the line next to \"Ran a XXX Command\" based on return value",
+      "description": "**What problem or use case are you trying to solve?**\r\n\r\nIn the interface, we have \"Ran a Bash Command\" or \"Ran a Jupyter Command\" with a line next to it.\r\n\r\n<img width=\"416\" alt=\"Screenshot 2024-12-09 at 2 30 39 PM\" src=\"https://github.com/user-attachments/assets/87aa4a2e-6984-4f26-8c94-5140b8049260\">\r\n\r\nIt would be nice to know if the command was successful or not.\r\n\r\n**Describe the UX of the solution you'd like**\r\n\r\nWe could change the color of the line depending on the return value. If the c..."
+    },
+    {
+      "id": "issue-5439-2529212562",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-12-09T19:37:51Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5439#issuecomment-2529227186",
+      "title": "ISSUE success 12/9/2024, 7:37:51 PM -- [Bug]: Scrollbar for the file goes out of screen",
+      "description": "### Is there an existing issue for the same bug?\r\n\r\n- [X] I have checked the existing issues.\r\n\r\n### Describe the bug and reproduction steps\r\n\r\nNot sure if this is because the file is really large but the scroll goes beyond what's the displayed on the screen.\r\n\r\n![Screenshot 2024-12-06 at 12 31 59 PM](https://github.com/user-attachments/assets/bcba1770-1689-456d-b082-b7f96b1fea13)\r\n\r\n\r\n### OpenHands Installation\r\n\r\nDocker command in README\r\n\r\n### OpenHands Version\r\n\r\nmain\r\n\r\n### Operating System..."
+    },
+    {
+      "id": "issue-5465-2529206198",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-12-09T19:34:14Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5465#issuecomment-2529214825",
+      "title": "ISSUE failure 12/9/2024, 7:34:14 PM -- [Bug]: [Resolver] PR (without a label?) fails workflow",
+      "description": "### Is there an existing issue for the same bug?\r\n\r\n- [X] I have checked the existing issues.\r\n\r\n### Describe the bug and reproduction steps\r\n\r\nI asked openhands-agent to do something, using the macro.\r\nhttps://github.com/All-Hands-AI/OpenHands/pull/5435#issuecomment-2525041512\r\n\r\nAction log:\r\n\r\n> Run if [[ \"\" == \"fix-me-experimental\" ]] ||\r\n  if [[ \"\" == \"fix-me-experimental\" ]] ||\r\n     ([[ \"issue_comment\" == \"issue_comment\" || \"issue_comment\" == \"pull_request_review_comment\" ]] &&\r\n      [[ \"..."
+    },
+    {
+      "id": "issue-5471-2529155965",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-12-09T19:19:50Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5471#issuecomment-2529162588",
+      "title": "ISSUE success 12/9/2024, 7:19:50 PM -- Resolver: LLM_MODEL should use \"variable\" instead of \"secret\" ",
+      "description": "**What problem or use case are you trying to solve?**\nCurrently it's impossible to see in the Resolver logs what LLM was used and it seems unnecessary to hide it. \n\n**Describe the UX of the solution you'd like**\nAny settings that aren't sensitive should use action \"variables\" instead of \"secrets\".\n\n**Do you have thoughts on the technical implementation?**\n\n**Describe alternatives you've considered**\n\n**Additional context**\n"
+    },
+    {
+      "id": "issue-5456-2525313465",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-12-07T21:32:49Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5456#issuecomment-2525317055",
+      "title": "ISSUE success 12/7/2024, 9:32:49 PM -- [Bug]: Too many detected issues in github resolver",
+      "description": "### Is there an existing issue for the same bug?\n\n- [X] I have checked the existing issues.\n\n### Describe the bug and reproduction steps\n\nThere are too many issues detected in the github resolver. For instance, running on this PR: https://github.com/All-Hands-AI/OpenHands/pull/5449\r\n\r\nFinds many issues that are not mentioned anywhere in the PR:\r\n```\r\n$ poetry run python openhands/resolver/resolve_issue.py --repo all-hands-ai/openhands --issue-type pr --issue-number 5432\r\n16:15:54 - openhands:INF..."
+    },
+    {
+      "id": "issue-5450-2525287781",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-12-07T19:37:04Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5450#issuecomment-2525288775",
+      "title": "ISSUE success 12/7/2024, 7:37:04 PM -- In openhands-resolver.yml, request code review from the person who initiated the workflow",
+      "description": "**What problem or use case are you trying to solve?**\r\n\r\nopenhands-resolver.yml often results in OpenHands opening a pull request on a repository, but these pull requests can become lost.\r\n\r\n**Describe the UX of the solution you'd like**\r\n\r\nWhen the Open Hands resolver initiates or updates a pull request, it should request review from the person who initiated the GitHub workflow. This will put the pr on the list of the person who initiated the workflow, making it less likely that they will miss ..."
+    },
+    {
+      "id": "issue-5448-2525284593",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-12-07T19:27:48Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5448#issuecomment-2525286456",
+      "title": "ISSUE success 12/7/2024, 7:27:48 PM -- When using the GitHub resolver on a PR, automatically pipe in failure info",
+      "description": "**What problem or use case are you trying to solve?**\r\n\r\nOne common use case of the GitHub resolver is to update a PR, and it is also frequent that the pr will have CI actions failing or merge conflicts. If we indicate to the agent that CI actions are failing or there are merge conflicts, we could improve the possibility that it will fix these while making any other changes.\r\n\r\n**Describe the UX of the solution you'd like**\r\n\r\nWhen they get help is over starts working on a PR, we make calls to t..."
+    },
+    {
+      "id": "pr-5435-2524954159",
+      "type": "pr",
+      "status": "no_pr",
+      "timestamp": "2024-12-07T08:03:00Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/pull/5435#issuecomment-2524997119",
+      "title": "No PR 12/7/2024, 8:03:00 AM -- Fix issue #4706: [Feature]: Give descriptive name to downloaded zip file",
+      "description": "**End-user friendly description of the problem this fixes or functionality that this introduces**\r\n\r\n- [ ] Include this change in the Release Notes. If checked, you must provide an **end-user friendly** description for your change below\r\n\r\n---\r\n**Give a summary of what the PR does, explaining any non-trivial design decisions**\r\n\r\nThe issue has not been successfully resolved. The last message shows that the test command failed with exit code 1, indicating that the unit tests are failing. This sug..."
+    },
+    {
+      "id": "pr-5435-2524996237",
+      "type": "pr",
+      "status": "no_pr",
+      "timestamp": "2024-12-07T08:03:00Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/pull/5435#issuecomment-2524997119",
+      "title": "No PR 12/7/2024, 8:03:00 AM -- Fix issue #4706: [Feature]: Give descriptive name to downloaded zip file",
+      "description": "**End-user friendly description of the problem this fixes or functionality that this introduces**\r\n\r\n- [ ] Include this change in the Release Notes. If checked, you must provide an **end-user friendly** description for your change below\r\n\r\n---\r\n**Give a summary of what the PR does, explaining any non-trivial design decisions**\r\n\r\nThe issue has not been successfully resolved. The last message shows that the test command failed with exit code 1, indicating that the unit tests are failing. This sug..."
+    },
+    {
+      "id": "issue-5445-2524954999",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-12-07T06:01:26Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5445#issuecomment-2524956314",
+      "title": "ISSUE success 12/7/2024, 6:01:26 AM -- [Bug]: Assigning label on PR doesn't kickstart resolver",
+      "description": "### Is there an existing issue for the same bug?\n\n- [X] I have checked the existing issues.\n\n### Describe the bug and reproduction steps\n\nTried adding `fix-me`/`fix-me-experimental` label to #5342 but it didn't kickstart the resolver\n\n### OpenHands Installation\n\nOther\n\n### OpenHands Version\n\nlatest,main\n\n### Operating System\n\nNone\n\n### Logs, Errors, Screenshots, and Additional Context\n\n_No response_"
+    },
+    {
+      "id": "issue-4706-2522125016",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-12-06T16:29:03Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4706#issuecomment-2523682063",
+      "title": "ISSUE failure 12/6/2024, 4:29:03 PM -- [Feature]: Give descriptive name to downloaded zip file",
+      "description": "**What problem or use case are you trying to solve?**\r\n\r\nCurrently, when we use the frontend feature to download a zip file, it is always called `workspace.zip`. If you do this over and over again, you get a lot of files called `workspace.zip` and it's a little bit annoying to keep track of which is which.\r\n\r\n**Describe the UX of the solution you'd like**\r\n\r\nIt would be nice if this file was given a descriptive name.\r\n\r\n**Do you have thoughts on the technical implementation?**\r\n\r\nWhen the \"downl..."
+    },
+    {
+      "id": "issue-4706-2523586809",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-12-06T16:29:03Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4706#issuecomment-2523682063",
+      "title": "ISSUE failure 12/6/2024, 4:29:03 PM -- [Feature]: Give descriptive name to downloaded zip file",
+      "description": "**What problem or use case are you trying to solve?**\r\n\r\nCurrently, when we use the frontend feature to download a zip file, it is always called `workspace.zip`. If you do this over and over again, you get a lot of files called `workspace.zip` and it's a little bit annoying to keep track of which is which.\r\n\r\n**Describe the UX of the solution you'd like**\r\n\r\nIt would be nice if this file was given a descriptive name.\r\n\r\n**Do you have thoughts on the technical implementation?**\r\n\r\nWhen the \"downl..."
+    },
+    {
+      "id": "issue-5359-2516062933",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-12-04T03:58:51Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5359#issuecomment-2516134796",
+      "title": "ISSUE failure 12/4/2024, 3:58:51 AM -- [Resolver] The LLM uses a non-optimal way to install openhands",
+      "description": "**What problem or use case are you trying to solve?**\r\n\r\nCheck the openhands resolver functionality.\r\nWhen the openhands resolver is running:\r\n\r\nI see these days the LLM:\r\n- trying to run pytest\r\n- finds out it's not installed, so it runs `poetry install`\r\n- it has in the prompt the info that it should set up the project with `make build`, but that doesn't seem to happen\r\n\r\nThe problem is that `poetry install` installs all optional dependencies like `torch`, `nvidia-cuda*` etc.\r\n\r\nBy default, `m..."
+    },
+    {
+      "id": "issue-5359-2516126395",
+      "type": "issue",
+      "status": "failure",
+      "timestamp": "2024-12-04T03:58:51Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5359#issuecomment-2516134796",
+      "title": "ISSUE failure 12/4/2024, 3:58:51 AM -- [Resolver] The LLM uses a non-optimal way to install openhands",
+      "description": "**What problem or use case are you trying to solve?**\r\n\r\nCheck the openhands resolver functionality.\r\nWhen the openhands resolver is running:\r\n\r\nI see these days the LLM:\r\n- trying to run pytest\r\n- finds out it's not installed, so it runs `poetry install`\r\n- it has in the prompt the info that it should set up the project with `make build`, but that doesn't seem to happen\r\n\r\nThe problem is that `poetry install` installs all optional dependencies like `torch`, `nvidia-cuda*` etc.\r\n\r\nBy default, `m..."
+    },
+    {
+      "id": "issue-5383-2516059755",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-12-04T03:24:40Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5383#issuecomment-2516089046",
+      "title": "ISSUE success 12/4/2024, 3:24:40 AM -- [Bug]: LLM Cost is added to the `metrics` twice",
+      "description": "### Is there an existing issue for the same bug?\r\n\r\n- [X] I have checked the existing issues.\r\n\r\n### Describe the bug and reproduction steps\r\n\r\nIn the file `openhands/llm/llm.py`, when the LLM completion is invoked, the method `_completion_cost` will be called twice.\r\n\r\nOne is when preparing to store the log data for this completion:\r\nhttps://github.com/All-Hands-AI/OpenHands/blob/2f11634ccaeb3aa38893a994d53ff280bbf485d0/openhands/llm/llm.py#L231-L238\r\n\r\nThe other one is when calling the final c..."
+    },
+    {
+      "id": "issue-5383-2516080771",
+      "type": "issue",
+      "status": "success",
+      "timestamp": "2024-12-04T03:24:40Z",
+      "url": "https://github.com/All-Hands-AI/OpenHands/issues/5383#issuecomment-2516089046",
+      "title": "ISSUE success 12/4/2024, 3:24:40 AM -- [Bug]: LLM Cost is added to the `metrics` twice",
+      "description": "### Is there an existing issue for the same bug?\r\n\r\n- [X] I have checked the existing issues.\r\n\r\n### Describe the bug and reproduction steps\r\n\r\nIn the file `openhands/llm/llm.py`, when the LLM completion is invoked, the method `_completion_cost` will be called twice.\r\n\r\nOne is when preparing to store the log data for this completion:\r\nhttps://github.com/All-Hands-AI/OpenHands/blob/2f11634ccaeb3aa38893a994d53ff280bbf485d0/openhands/llm/llm.py#L231-L238\r\n\r\nThe other one is when calling the final c..."
+    },
+    {
       "id": "pr-5308-2514893031",
       "type": "pr",
-      "status": "failure",
+      "status": "no_pr",
       "timestamp": "2024-12-03T15:40:06Z",
       "url": "https://github.com/All-Hands-AI/OpenHands/pull/5308#issuecomment-2514913053",
-      "title": "PR failure 12/3/2024, 3:40:06 PM -- Fix issue #5112: [Bug]: \"Push to GitHub\" shows up even if there's no repo connected",
+      "title": "No PR 12/3/2024, 3:40:06 PM -- Fix issue #5112: [Bug]: \"Push to GitHub\" shows up even if there's no repo connected",
       "description": "This pull request fixes #5112.\n\nThe issue has been successfully resolved. The PR addresses the core problem by fixing the logic for when the \"Push to GitHub\" button should be displayed. The key changes were:\n\n1. Adding a new `hasConnectedRepo` prop that specifically checks for an actual connected repository (via `githubData`)\n2. Modifying the display logic to require both GitHub connection AND a connected repository\n3. This ensures the button only appears when functionally useful (when there's a..."
     },
     {
@@ -48,19 +273,19 @@
     {
       "id": "pr-5351-2510419049",
       "type": "pr",
-      "status": "failure",
+      "status": "no_pr",
       "timestamp": "2024-12-02T02:15:50Z",
       "url": "https://github.com/All-Hands-AI/OpenHands/pull/5351#issuecomment-2510421088",
-      "title": "PR failure 12/2/2024, 2:15:50 AM -- [Resolver][Bug]: Fix success list to str representation bug",
+      "title": "No PR 12/2/2024, 2:15:50 AM -- [Resolver][Bug]: Fix success list to str representation bug",
       "description": "**End-user friendly description of the problem this fixes or functionality that this introduces**\r\n\r\n- [ ] Include this change in the Release Notes. If checked, you must provide an **end-user friendly** description for your change below\r\n\r\n---\r\n**Give a summary of what the PR does, explaining any non-trivial design decisions**\r\n\r\nInstead of using `json.dumps` we were utilizing `\"\\n\".join()` to serialize success explanations. This caused downstream problems when attempting deserialize them using ..."
     },
     {
       "id": "pr-5351-2510413009",
       "type": "pr",
-      "status": "failure",
+      "status": "no_pr",
       "timestamp": "2024-12-02T02:10:08Z",
       "url": "https://github.com/All-Hands-AI/OpenHands/pull/5351#issuecomment-2510415815",
-      "title": "PR failure 12/2/2024, 2:10:08 AM -- [Resolver][Bug]: Fix success list to str representation bug",
+      "title": "No PR 12/2/2024, 2:10:08 AM -- [Resolver][Bug]: Fix success list to str representation bug",
       "description": "**End-user friendly description of the problem this fixes or functionality that this introduces**\r\n\r\n- [ ] Include this change in the Release Notes. If checked, you must provide an **end-user friendly** description for your change below\r\n\r\n---\r\n**Give a summary of what the PR does, explaining any non-trivial design decisions**\r\n\r\nInstead of using `json.dumps` we were utilizing `\"\\n\".join()` to serialize success explanations. This caused downstream problems when attempting deserialize them using ..."
     },
     {
@@ -84,10 +309,10 @@
     {
       "id": "pr-5340-2509797873",
       "type": "pr",
-      "status": "failure",
+      "status": "no_pr",
       "timestamp": "2024-12-01T14:46:02Z",
       "url": "https://github.com/All-Hands-AI/OpenHands/pull/5340#issuecomment-2509800029",
-      "title": "PR failure 12/1/2024, 2:46:02 PM -- Replace browsergym with browsergym-core to reduce dependencies",
+      "title": "No PR 12/1/2024, 2:46:02 PM -- Replace browsergym with browsergym-core to reduce dependencies",
       "description": "This PR replaces the dependency on `browsergym` with `browsergym-core` to reduce unneeded dependencies. The full `browsergym` package includes many additional dependencies that are not needed for our use case.\n\nChanges:\n- Changed dependency from `browsergym` to `browsergym-core` in pyproject.toml\n- Updated poetry.lock to remove unneeded dependencies\n\nAll tests pass successfully, confirming that the core browsergym functionality works as expected.\n\n---\n\nTo run this PR locally, use the following c..."
     },
     {
@@ -102,55 +327,55 @@
     {
       "id": "pr-5284-2501338361",
       "type": "pr",
-      "status": "failure",
+      "status": "no_pr",
       "timestamp": "2024-12-01T01:19:17Z",
       "url": "https://github.com/All-Hands-AI/OpenHands/pull/5284#issuecomment-2509509888",
-      "title": "PR failure 12/1/2024, 1:19:17 AM -- feat: Add LocalRuntime and rename EventStreamRuntime to DockerRuntime",
+      "title": "No PR 12/1/2024, 1:19:17 AM -- feat: Add LocalRuntime and rename EventStreamRuntime to DockerRuntime",
       "description": "This PR adds a new LocalRuntime implementation and renames EventStreamRuntime to LocalDockerRuntime for better clarity.\r\n\r\n### Changes\r\n\r\n- Add new LocalRuntime implementation that runs action_execution_server directly on the host machine\r\n- Rename EventStreamRuntime to LocalDockerRuntime for better clarity\r\n- Move runtime implementations to dedicated directories (local/ and docker/)\r\n- Update documentation to reflect runtime changes and add LocalRuntime description\r\n\r\n### Benefits\r\n\r\n- Provides..."
     },
     {
       "id": "pr-5284-2507055044",
       "type": "pr",
-      "status": "failure",
+      "status": "no_pr",
       "timestamp": "2024-12-01T01:19:17Z",
       "url": "https://github.com/All-Hands-AI/OpenHands/pull/5284#issuecomment-2509509888",
-      "title": "PR failure 12/1/2024, 1:19:17 AM -- feat: Add LocalRuntime and rename EventStreamRuntime to DockerRuntime",
+      "title": "No PR 12/1/2024, 1:19:17 AM -- feat: Add LocalRuntime and rename EventStreamRuntime to DockerRuntime",
       "description": "This PR adds a new LocalRuntime implementation and renames EventStreamRuntime to LocalDockerRuntime for better clarity.\r\n\r\n### Changes\r\n\r\n- Add new LocalRuntime implementation that runs action_execution_server directly on the host machine\r\n- Rename EventStreamRuntime to LocalDockerRuntime for better clarity\r\n- Move runtime implementations to dedicated directories (local/ and docker/)\r\n- Update documentation to reflect runtime changes and add LocalRuntime description\r\n\r\n### Benefits\r\n\r\n- Provides..."
     },
     {
       "id": "pr-5284-2508709941",
       "type": "pr",
-      "status": "failure",
+      "status": "no_pr",
       "timestamp": "2024-12-01T01:19:17Z",
       "url": "https://github.com/All-Hands-AI/OpenHands/pull/5284#issuecomment-2509509888",
-      "title": "PR failure 12/1/2024, 1:19:17 AM -- feat: Add LocalRuntime and rename EventStreamRuntime to DockerRuntime",
+      "title": "No PR 12/1/2024, 1:19:17 AM -- feat: Add LocalRuntime and rename EventStreamRuntime to DockerRuntime",
       "description": "This PR adds a new LocalRuntime implementation and renames EventStreamRuntime to LocalDockerRuntime for better clarity.\r\n\r\n### Changes\r\n\r\n- Add new LocalRuntime implementation that runs action_execution_server directly on the host machine\r\n- Rename EventStreamRuntime to LocalDockerRuntime for better clarity\r\n- Move runtime implementations to dedicated directories (local/ and docker/)\r\n- Update documentation to reflect runtime changes and add LocalRuntime description\r\n\r\n### Benefits\r\n\r\n- Provides..."
     },
     {
       "id": "pr-5284-2509025424",
       "type": "pr",
-      "status": "failure",
+      "status": "no_pr",
       "timestamp": "2024-12-01T01:19:17Z",
       "url": "https://github.com/All-Hands-AI/OpenHands/pull/5284#issuecomment-2509509888",
-      "title": "PR failure 12/1/2024, 1:19:17 AM -- feat: Add LocalRuntime and rename EventStreamRuntime to DockerRuntime",
+      "title": "No PR 12/1/2024, 1:19:17 AM -- feat: Add LocalRuntime and rename EventStreamRuntime to DockerRuntime",
       "description": "This PR adds a new LocalRuntime implementation and renames EventStreamRuntime to LocalDockerRuntime for better clarity.\r\n\r\n### Changes\r\n\r\n- Add new LocalRuntime implementation that runs action_execution_server directly on the host machine\r\n- Rename EventStreamRuntime to LocalDockerRuntime for better clarity\r\n- Move runtime implementations to dedicated directories (local/ and docker/)\r\n- Update documentation to reflect runtime changes and add LocalRuntime description\r\n\r\n### Benefits\r\n\r\n- Provides..."
     },
     {
       "id": "pr-5284-2509489022",
       "type": "pr",
-      "status": "failure",
+      "status": "no_pr",
       "timestamp": "2024-12-01T01:19:17Z",
       "url": "https://github.com/All-Hands-AI/OpenHands/pull/5284#issuecomment-2509509888",
-      "title": "PR failure 12/1/2024, 1:19:17 AM -- feat: Add LocalRuntime and rename EventStreamRuntime to DockerRuntime",
+      "title": "No PR 12/1/2024, 1:19:17 AM -- feat: Add LocalRuntime and rename EventStreamRuntime to DockerRuntime",
       "description": "This PR adds a new LocalRuntime implementation and renames EventStreamRuntime to LocalDockerRuntime for better clarity.\r\n\r\n### Changes\r\n\r\n- Add new LocalRuntime implementation that runs action_execution_server directly on the host machine\r\n- Rename EventStreamRuntime to LocalDockerRuntime for better clarity\r\n- Move runtime implementations to dedicated directories (local/ and docker/)\r\n- Update documentation to reflect runtime changes and add LocalRuntime description\r\n\r\n### Benefits\r\n\r\n- Provides..."
     },
     {
       "id": "pr-5332-2509492299",
       "type": "pr",
-      "status": "failure",
+      "status": "no_pr",
       "timestamp": "2024-12-01T00:42:28Z",
       "url": "https://github.com/All-Hands-AI/OpenHands/pull/5332#issuecomment-2509498863",
-      "title": "PR failure 12/1/2024, 12:42:28 AM -- Fix issue #4864: [Bug]:     make start-backend results in NotImplementedError: Non-relative patterns are unsupported",
+      "title": "No PR 12/1/2024, 12:42:28 AM -- Fix issue #4864: [Bug]:     make start-backend results in NotImplementedError: Non-relative patterns are unsupported",
       "description": "This pull request fixes #4864.\n\nThe issue has been successfully resolved with a simple but effective fix. The original error was caused by using absolute paths with uvicorn's `--reload-exclude` option, which isn't supported by Python's `pathlib.glob()`. \n\nThe solution implemented was to modify the Makefile's `start-backend` target to use a relative path `\"./workspace\"` instead of `$(shell pwd)/workspace`. This change resolved the `NotImplementedError` that was preventing the backend from startin..."
     },
     {
@@ -273,10 +498,10 @@
     {
       "id": "pr-5181-2498266323",
       "type": "pr",
-      "status": "failure",
+      "status": "no_pr",
       "timestamp": "2024-11-25T15:09:04Z",
       "url": "https://github.com/All-Hands-AI/OpenHands/pull/5181#issuecomment-2498282366",
-      "title": "PR failure 11/25/2024, 3:09:04 PM -- Fix issue #5179: [frontend]: Push to Github button should only push branch, but not creating a PR",
+      "title": "No PR 11/25/2024, 3:09:04 PM -- Fix issue #5179: [frontend]: Push to Github button should only push branch, but not creating a PR",
       "description": "This pull request fixes #5179.\r\n\r\nThe PR has successfully resolved the original issue by implementing the requested split functionality for GitHub interactions. Specifically:\r\n\r\n1. The original single \"Push to GitHub\" button that automatically created PRs has been separated into two distinct buttons:\r\n   - A \"Push to GitHub\" button that only pushes changes to the remote branch\r\n   - A \"Push & Create PR\" button that handles both pushing and PR creation\r\n\r\n2. The implementation includes proper tes..."
     },
     {
@@ -318,91 +543,91 @@
     {
       "id": "pr-5223-2495669033",
       "type": "pr",
-      "status": "failure",
+      "status": "no_pr",
       "timestamp": "2024-11-23T22:13:14Z",
       "url": "https://github.com/All-Hands-AI/OpenHands/pull/5223#issuecomment-2495670128",
-      "title": "PR failure 11/23/2024, 10:13:14 PM -- Fix issue #5222: [Refactor]: Refactor the evaluation directory",
+      "title": "No PR 11/23/2024, 10:13:14 PM -- Fix issue #5222: [Refactor]: Refactor the evaluation directory",
       "description": "This PR fixes #5222 by reorganizing the evaluation directory structure to improve clarity and maintainability.\n\n### Changes\n- Created `evaluation/benchmarks/` directory to house all ML literature benchmarks\n- Kept utility directories (`utils`, `integration_tests`, `regression`, `static`) directly under `evaluation/`\n- Updated paths in documentation and GitHub workflows to reflect the new structure\n- Added missing benchmarks to evaluation/README.md:\n  - Commit0 and DiscoveryBench under Software E..."
     },
     {
       "id": "pr-5223-2495661882",
       "type": "pr",
-      "status": "failure",
+      "status": "no_pr",
       "timestamp": "2024-11-23T21:44:23Z",
       "url": "https://github.com/All-Hands-AI/OpenHands/pull/5223#issuecomment-2495663256",
-      "title": "PR failure 11/23/2024, 9:44:23 PM -- Fix issue #5222: [Refactor]: Refactor the evaluation directory",
+      "title": "No PR 11/23/2024, 9:44:23 PM -- Fix issue #5222: [Refactor]: Refactor the evaluation directory",
       "description": "This PR fixes #5222 by reorganizing the evaluation directory structure to improve clarity and maintainability.\n\n### Changes\n- Created `evaluation/benchmarks/` directory to house all ML literature benchmarks\n- Kept utility directories (`utils`, `integration_tests`, `regression`, `static`) directly under `evaluation/`\n- Updated paths in documentation and GitHub workflows to reflect the new structure\n- Added missing benchmarks to evaluation/README.md:\n  - Commit0 and DiscoveryBench under Software E..."
     },
     {
       "id": "pr-5223-2495653665",
       "type": "pr",
-      "status": "failure",
+      "status": "no_pr",
       "timestamp": "2024-11-23T21:03:26Z",
       "url": "https://github.com/All-Hands-AI/OpenHands/pull/5223#issuecomment-2495654249",
-      "title": "PR failure 11/23/2024, 9:03:26 PM -- Fix issue #5222: [Refactor]: Refactor the evaluation directory",
+      "title": "No PR 11/23/2024, 9:03:26 PM -- Fix issue #5222: [Refactor]: Refactor the evaluation directory",
       "description": "This PR fixes #5222 by reorganizing the evaluation directory structure to improve clarity and maintainability.\n\n### Changes\n- Created `evaluation/benchmarks/` directory to house all ML literature benchmarks\n- Kept utility directories (`utils`, `integration_tests`, `regression`, `static`) directly under `evaluation/`\n- Updated paths in documentation and GitHub workflows to reflect the new structure\n- Added missing benchmarks to evaluation/README.md:\n  - Commit0 and DiscoveryBench under Software E..."
     },
     {
       "id": "pr-5181-2494828301",
       "type": "pr",
-      "status": "failure",
+      "status": "no_pr",
       "timestamp": "2024-11-23T20:32:25Z",
       "url": "https://github.com/All-Hands-AI/OpenHands/pull/5181#issuecomment-2495646774",
-      "title": "PR failure 11/23/2024, 8:32:25 PM -- Fix issue #5179: [frontend]: Push to Github button should only push branch, but not creating a PR",
+      "title": "No PR 11/23/2024, 8:32:25 PM -- Fix issue #5179: [frontend]: Push to Github button should only push branch, but not creating a PR",
       "description": "This pull request fixes #5179.\r\n\r\nThe PR has successfully resolved the original issue by implementing the requested split functionality for GitHub interactions. Specifically:\r\n\r\n1. The original single \"Push to GitHub\" button that automatically created PRs has been separated into two distinct buttons:\r\n   - A \"Push to GitHub\" button that only pushes changes to the remote branch\r\n   - A \"Push & Create PR\" button that handles both pushing and PR creation\r\n\r\n2. The implementation includes proper tes..."
     },
     {
       "id": "pr-5181-2495645768",
       "type": "pr",
-      "status": "failure",
+      "status": "no_pr",
       "timestamp": "2024-11-23T20:32:25Z",
       "url": "https://github.com/All-Hands-AI/OpenHands/pull/5181#issuecomment-2495646774",
-      "title": "PR failure 11/23/2024, 8:32:25 PM -- Fix issue #5179: [frontend]: Push to Github button should only push branch, but not creating a PR",
+      "title": "No PR 11/23/2024, 8:32:25 PM -- Fix issue #5179: [frontend]: Push to Github button should only push branch, but not creating a PR",
       "description": "This pull request fixes #5179.\r\n\r\nThe PR has successfully resolved the original issue by implementing the requested split functionality for GitHub interactions. Specifically:\r\n\r\n1. The original single \"Push to GitHub\" button that automatically created PRs has been separated into two distinct buttons:\r\n   - A \"Push to GitHub\" button that only pushes changes to the remote branch\r\n   - A \"Push & Create PR\" button that handles both pushing and PR creation\r\n\r\n2. The implementation includes proper tes..."
     },
     {
       "id": "pr-5223-2495638282",
       "type": "pr",
-      "status": "failure",
+      "status": "no_pr",
       "timestamp": "2024-11-23T20:08:06Z",
       "url": "https://github.com/All-Hands-AI/OpenHands/pull/5223#issuecomment-2495640581",
-      "title": "PR failure 11/23/2024, 8:08:06 PM -- Fix issue #5222: [Refactor]: Refactor the evaluation directory",
+      "title": "No PR 11/23/2024, 8:08:06 PM -- Fix issue #5222: [Refactor]: Refactor the evaluation directory",
       "description": "This PR fixes #5222 by reorganizing the evaluation directory structure to improve clarity and maintainability.\n\n### Changes\n- Created `evaluation/benchmarks/` directory to house all ML literature benchmarks\n- Kept utility directories (`utils`, `integration_tests`, `regression`, `static`) directly under `evaluation/`\n- Updated paths in documentation and GitHub workflows to reflect the new structure\n- Added missing benchmarks to evaluation/README.md:\n  - Commit0 and DiscoveryBench under Software E..."
     },
     {
       "id": "pr-5223-2495627157",
       "type": "pr",
-      "status": "failure",
+      "status": "no_pr",
       "timestamp": "2024-11-23T19:35:27Z",
       "url": "https://github.com/All-Hands-AI/OpenHands/pull/5223#issuecomment-2495631720",
-      "title": "PR failure 11/23/2024, 7:35:27 PM -- Fix issue #5222: [Refactor]: Refactor the evaluation directory",
+      "title": "No PR 11/23/2024, 7:35:27 PM -- Fix issue #5222: [Refactor]: Refactor the evaluation directory",
       "description": "This PR fixes #5222 by reorganizing the evaluation directory structure to improve clarity and maintainability.\n\n### Changes\n- Created `evaluation/benchmarks/` directory to house all ML literature benchmarks\n- Kept utility directories (`utils`, `integration_tests`, `regression`, `static`) directly under `evaluation/`\n- Updated paths in documentation and GitHub workflows to reflect the new structure\n- Added missing benchmarks to evaluation/README.md:\n  - Commit0 and DiscoveryBench under Software E..."
     },
     {
       "id": "pr-5223-2495630894",
       "type": "pr",
-      "status": "failure",
+      "status": "no_pr",
       "timestamp": "2024-11-23T19:35:27Z",
       "url": "https://github.com/All-Hands-AI/OpenHands/pull/5223#issuecomment-2495631720",
-      "title": "PR failure 11/23/2024, 7:35:27 PM -- Fix issue #5222: [Refactor]: Refactor the evaluation directory",
+      "title": "No PR 11/23/2024, 7:35:27 PM -- Fix issue #5222: [Refactor]: Refactor the evaluation directory",
       "description": "This PR fixes #5222 by reorganizing the evaluation directory structure to improve clarity and maintainability.\n\n### Changes\n- Created `evaluation/benchmarks/` directory to house all ML literature benchmarks\n- Kept utility directories (`utils`, `integration_tests`, `regression`, `static`) directly under `evaluation/`\n- Updated paths in documentation and GitHub workflows to reflect the new structure\n- Added missing benchmarks to evaluation/README.md:\n  - Commit0 and DiscoveryBench under Software E..."
     },
     {
       "id": "pr-5223-2495621958",
       "type": "pr",
-      "status": "failure",
+      "status": "no_pr",
       "timestamp": "2024-11-23T19:02:46Z",
       "url": "https://github.com/All-Hands-AI/OpenHands/pull/5223#issuecomment-2495622826",
-      "title": "PR failure 11/23/2024, 7:02:46 PM -- Fix issue #5222: [Refactor]: Refactor the evaluation directory",
+      "title": "No PR 11/23/2024, 7:02:46 PM -- Fix issue #5222: [Refactor]: Refactor the evaluation directory",
       "description": "This PR fixes #5222 by reorganizing the evaluation directory structure to improve clarity and maintainability.\n\n### Changes\n- Created `evaluation/benchmarks/` directory to house all ML literature benchmarks\n- Kept utility directories (`utils`, `integration_tests`, `regression`, `static`) directly under `evaluation/`\n- Updated paths in documentation and GitHub workflows to reflect the new structure\n- Added missing benchmarks to evaluation/README.md:\n  - Commit0 and DiscoveryBench under Software E..."
     },
     {
       "id": "pr-5226-2495596128",
       "type": "pr",
-      "status": "failure",
+      "status": "no_pr",
       "timestamp": "2024-11-23T18:36:05Z",
       "url": "https://github.com/All-Hands-AI/OpenHands/pull/5226#issuecomment-2495609874",
-      "title": "PR failure 11/23/2024, 6:36:05 PM -- Fix issue #5186: [Bug]: Fix up inline code styles in chat window",
+      "title": "No PR 11/23/2024, 6:36:05 PM -- Fix issue #5186: [Bug]: Fix up inline code styles in chat window",
       "description": "This pull request fixes #5186.\n\nThe issue has been successfully resolved. The AI agent made specific improvements to the inline code styling that directly address the reported concerns about font size and visual appearance:\n\n1. Font size was adjusted upward (from 85% to 90%) to address the sizing concern\n2. Background and text colors were modified using appropriate theme variables to improve visibility and contrast\n3. Added a border to make code blocks more distinct\n4. Fine-tuned the border radi..."
     },
     {
@@ -453,10 +678,10 @@
     {
       "id": "pr-5181-2494759158",
       "type": "pr",
-      "status": "failure",
+      "status": "no_pr",
       "timestamp": "2024-11-22T20:45:41Z",
       "url": "https://github.com/All-Hands-AI/OpenHands/pull/5181#issuecomment-2494766867",
-      "title": "PR failure 11/22/2024, 8:45:41 PM -- Fix issue #5179: [frontend]: Push to Github button should only push branch, but not creating a PR",
+      "title": "No PR 11/22/2024, 8:45:41 PM -- Fix issue #5179: [frontend]: Push to Github button should only push branch, but not creating a PR",
       "description": "This pull request fixes #5179.\r\n\r\nThe PR has successfully resolved the original issue by implementing the requested split functionality for GitHub interactions. Specifically:\r\n\r\n1. The original single \"Push to GitHub\" button that automatically created PRs has been separated into two distinct buttons:\r\n   - A \"Push to GitHub\" button that only pushes changes to the remote branch\r\n   - A \"Push & Create PR\" button that handles both pushing and PR creation\r\n\r\n2. The implementation includes proper tes..."
     },
     {
@@ -471,19 +696,19 @@
     {
       "id": "pr-5181-2492011778",
       "type": "pr",
-      "status": "failure",
+      "status": "no_pr",
       "timestamp": "2024-11-21T18:52:40Z",
       "url": "https://github.com/All-Hands-AI/OpenHands/pull/5181#issuecomment-2492019403",
-      "title": "PR failure 11/21/2024, 6:52:40 PM -- Fix issue #5179: [frontend]: Push to Github button should only push branch, but not creating a PR",
+      "title": "No PR 11/21/2024, 6:52:40 PM -- Fix issue #5179: [frontend]: Push to Github button should only push branch, but not creating a PR",
       "description": "This pull request fixes #5179.\r\n\r\nThe PR has successfully resolved the original issue by implementing the requested split functionality for GitHub interactions. Specifically:\r\n\r\n1. The original single \"Push to GitHub\" button that automatically created PRs has been separated into two distinct buttons:\r\n   - A \"Push to GitHub\" button that only pushes changes to the remote branch\r\n   - A \"Push & Create PR\" button that handles both pushing and PR creation\r\n\r\n2. The implementation includes proper tes..."
     },
     {
       "id": "pr-5181-2492013164",
       "type": "pr",
-      "status": "failure",
+      "status": "no_pr",
       "timestamp": "2024-11-21T18:52:40Z",
       "url": "https://github.com/All-Hands-AI/OpenHands/pull/5181#issuecomment-2492019403",
-      "title": "PR failure 11/21/2024, 6:52:40 PM -- Fix issue #5179: [frontend]: Push to Github button should only push branch, but not creating a PR",
+      "title": "No PR 11/21/2024, 6:52:40 PM -- Fix issue #5179: [frontend]: Push to Github button should only push branch, but not creating a PR",
       "description": "This pull request fixes #5179.\r\n\r\nThe PR has successfully resolved the original issue by implementing the requested split functionality for GitHub interactions. Specifically:\r\n\r\n1. The original single \"Push to GitHub\" button that automatically created PRs has been separated into two distinct buttons:\r\n   - A \"Push to GitHub\" button that only pushes changes to the remote branch\r\n   - A \"Push & Create PR\" button that handles both pushing and PR creation\r\n\r\n2. The implementation includes proper tes..."
     },
     {
@@ -498,10 +723,10 @@
     {
       "id": "pr-5161-2489972680",
       "type": "pr",
-      "status": "failure",
+      "status": "no_pr",
       "timestamp": "2024-11-21T03:12:07Z",
       "url": "https://github.com/All-Hands-AI/OpenHands/pull/5161#issuecomment-2489977539",
-      "title": "PR failure 11/21/2024, 3:12:07 AM -- docs: Add note about organizational token policies",
+      "title": "No PR 11/21/2024, 3:12:07 AM -- docs: Add note about organizational token policies",
       "description": "Added a note in the resolver README about the need to configure organizational token policies when working with organizational repositories. This helps users understand that they may need to set up additional permissions at the organization level before personal access tokens will work.\n\n---\n\nTo run this PR locally, use the following command:\n```\ndocker run -it --rm   -p 3000:3000   -v /var/run/docker.sock:/var/run/docker.sock   --add-host host.docker.internal:host-gateway   -e SANDBOX_RUNTIME_C..."
     },
     {
@@ -516,10 +741,10 @@
     {
       "id": "pr-5161-2489953192",
       "type": "pr",
-      "status": "failure",
+      "status": "no_pr",
       "timestamp": "2024-11-21T02:54:05Z",
       "url": "https://github.com/All-Hands-AI/OpenHands/pull/5161#issuecomment-2489960941",
-      "title": "PR failure 11/21/2024, 2:54:05 AM -- docs: Add note about organizational token policies",
+      "title": "No PR 11/21/2024, 2:54:05 AM -- docs: Add note about organizational token policies",
       "description": "Added a note in the resolver README about the need to configure organizational token policies when working with organizational repositories. This helps users understand that they may need to set up additional permissions at the organization level before personal access tokens will work.\n\n---\n\nTo run this PR locally, use the following command:\n```\ndocker run -it --rm   -p 3000:3000   -v /var/run/docker.sock:/var/run/docker.sock   --add-host host.docker.internal:host-gateway   -e SANDBOX_RUNTIME_C..."
     },
     {
@@ -543,10 +768,10 @@
     {
       "id": "pr-5118-2485559424",
       "type": "pr",
-      "status": "failure",
+      "status": "no_pr",
       "timestamp": "2024-11-19T12:31:05Z",
       "url": "https://github.com/All-Hands-AI/OpenHands/pull/5118#issuecomment-2485587713",
-      "title": "PR failure 11/19/2024, 12:31:05 PM -- Fix issue #5112: [Bug]: \"Push to GitHub\" shows up even if there's no repo connected",
+      "title": "No PR 11/19/2024, 12:31:05 PM -- Fix issue #5112: [Bug]: \"Push to GitHub\" shows up even if there's no repo connected",
       "description": "This pull request fixes #5112.\n\nThe issue has been successfully resolved through a targeted fix to the GitHub button visibility logic. The core problem was that the button was appearing solely based on GitHub login status, when it should only appear when both conditions are met: the user is logged into GitHub AND there is a repository connected to the current project.\n\nThe solution implemented:\n1. Added a check for both `rootLoaderData?.ghToken` (GitHub login status) and `selectedRepository` (co..."
     },
     {
@@ -561,19 +786,19 @@
     {
       "id": "pr-5098-2484140200",
       "type": "pr",
-      "status": "failure",
+      "status": "no_pr",
       "timestamp": "2024-11-18T21:22:49Z",
       "url": "https://github.com/All-Hands-AI/OpenHands/pull/5098#issuecomment-2484158442",
-      "title": "PR failure 11/18/2024, 9:22:49 PM -- build(deps-dev): bump the eslint group in /frontend with 6 updates",
+      "title": "No PR 11/18/2024, 9:22:49 PM -- build(deps-dev): bump the eslint group in /frontend with 6 updates",
       "description": "Bumps the eslint group in /frontend with 6 updates:\n\n| Package | From | To |\n| --- | --- | --- |\n| [@typescript-eslint/eslint-plugin](https://github.com/typescript-eslint/typescript-eslint/tree/HEAD/packages/eslint-plugin) | `7.18.0` | `8.14.0` |\n| [@typescript-eslint/parser](https://github.com/typescript-eslint/typescript-eslint/tree/HEAD/packages/parser) | `7.18.0` | `8.14.0` |\n| [eslint](https://github.com/eslint/eslint) | `8.57.1` | `9.15.0` |\n| [eslint-plugin-jsx-a11y](https://github.com/js..."
     },
     {
       "id": "pr-5098-2484151455",
       "type": "pr",
-      "status": "failure",
+      "status": "no_pr",
       "timestamp": "2024-11-18T21:22:49Z",
       "url": "https://github.com/All-Hands-AI/OpenHands/pull/5098#issuecomment-2484158442",
-      "title": "PR failure 11/18/2024, 9:22:49 PM -- build(deps-dev): bump the eslint group in /frontend with 6 updates",
+      "title": "No PR 11/18/2024, 9:22:49 PM -- build(deps-dev): bump the eslint group in /frontend with 6 updates",
       "description": "Bumps the eslint group in /frontend with 6 updates:\n\n| Package | From | To |\n| --- | --- | --- |\n| [@typescript-eslint/eslint-plugin](https://github.com/typescript-eslint/typescript-eslint/tree/HEAD/packages/eslint-plugin) | `7.18.0` | `8.14.0` |\n| [@typescript-eslint/parser](https://github.com/typescript-eslint/typescript-eslint/tree/HEAD/packages/parser) | `7.18.0` | `8.14.0` |\n| [eslint](https://github.com/eslint/eslint) | `8.57.1` | `9.15.0` |\n| [eslint-plugin-jsx-a11y](https://github.com/js..."
     },
     {
@@ -606,37 +831,37 @@
     {
       "id": "pr-5058-2480377226",
       "type": "pr",
-      "status": "failure",
+      "status": "no_pr",
       "timestamp": "2024-11-16T04:08:10Z",
       "url": "https://github.com/All-Hands-AI/OpenHands/pull/5058#issuecomment-2480385683",
-      "title": "PR failure 11/16/2024, 4:08:10 AM -- Add API endpoints for resolver functionality",
+      "title": "No PR 11/16/2024, 4:08:10 AM -- Add API endpoints for resolver functionality",
       "description": "This is a draft of trying to implement the github resolution functionality in `listen.py`.\r\n\r\nThe main change in this PR is that it creates an API endpoint `resolve_issue()` in `listen.py` for calling the github resolver.\r\nThe input to this function is governed by the data model in `openhands/server/data_models/issue_models.py`.\r\n\r\nOne big question I have is that this endpoint could take 20 minutes to run, which isn't typically a good way to create an endpoint. Do you have a suggestion for the b..."
     },
     {
       "id": "pr-5058-2479699433",
       "type": "pr",
-      "status": "failure",
+      "status": "no_pr",
       "timestamp": "2024-11-16T03:02:36Z",
       "url": "https://github.com/All-Hands-AI/OpenHands/pull/5058#issuecomment-2480359186",
-      "title": "PR failure 11/16/2024, 3:02:36 AM -- Add API endpoints for resolver functionality",
+      "title": "No PR 11/16/2024, 3:02:36 AM -- Add API endpoints for resolver functionality",
       "description": "This is a draft of trying to implement the github resolution functionality in `listen.py`.\r\n\r\nThe main change in this PR is that it creates an API endpoint `resolve_issue()` in `listen.py` for calling the github resolver.\r\nThe input to this function is governed by the data model in `openhands/server/data_models/issue_models.py`.\r\n\r\nOne big question I have is that this endpoint could take 20 minutes to run, which isn't typically a good way to create an endpoint. Do you have a suggestion for the b..."
     },
     {
       "id": "pr-5058-2480341534",
       "type": "pr",
-      "status": "failure",
+      "status": "no_pr",
       "timestamp": "2024-11-16T03:02:36Z",
       "url": "https://github.com/All-Hands-AI/OpenHands/pull/5058#issuecomment-2480359186",
-      "title": "PR failure 11/16/2024, 3:02:36 AM -- Add API endpoints for resolver functionality",
+      "title": "No PR 11/16/2024, 3:02:36 AM -- Add API endpoints for resolver functionality",
       "description": "This is a draft of trying to implement the github resolution functionality in `listen.py`.\r\n\r\nThe main change in this PR is that it creates an API endpoint `resolve_issue()` in `listen.py` for calling the github resolver.\r\nThe input to this function is governed by the data model in `openhands/server/data_models/issue_models.py`.\r\n\r\nOne big question I have is that this endpoint could take 20 minutes to run, which isn't typically a good way to create an endpoint. Do you have a suggestion for the b..."
     },
     {
       "id": "pr-5058-2480353687",
       "type": "pr",
-      "status": "failure",
+      "status": "no_pr",
       "timestamp": "2024-11-16T03:02:36Z",
       "url": "https://github.com/All-Hands-AI/OpenHands/pull/5058#issuecomment-2480359186",
-      "title": "PR failure 11/16/2024, 3:02:36 AM -- Add API endpoints for resolver functionality",
+      "title": "No PR 11/16/2024, 3:02:36 AM -- Add API endpoints for resolver functionality",
       "description": "This is a draft of trying to implement the github resolution functionality in `listen.py`.\r\n\r\nThe main change in this PR is that it creates an API endpoint `resolve_issue()` in `listen.py` for calling the github resolver.\r\nThe input to this function is governed by the data model in `openhands/server/data_models/issue_models.py`.\r\n\r\nOne big question I have is that this endpoint could take 20 minutes to run, which isn't typically a good way to create an endpoint. Do you have a suggestion for the b..."
     },
     {
@@ -723,28 +948,28 @@
     {
       "id": "pr-4822-2462369723",
       "type": "pr",
-      "status": "failure",
+      "status": "no_pr",
       "timestamp": "2024-11-13T00:31:35Z",
       "url": "https://github.com/All-Hands-AI/OpenHands/pull/4822#issuecomment-2472018021",
-      "title": "PR failure 11/13/2024, 12:31:35 AM -- Fix issue #4820: [Bug]: litellm doesn't support function calling model from OpenRouter. bug cause codeactagent couldn't interact with  internet solely without ask  browser agent  for  help  ",
+      "title": "No PR 11/13/2024, 12:31:35 AM -- Fix issue #4820: [Bug]: litellm doesn't support function calling model from OpenRouter. bug cause codeactagent couldn't interact with  internet solely without ask  browser agent  for  help  ",
       "description": "This pull request fixes #4820.\n\nThe PR successfully resolved the issue by adding 'claude-3.5-sonnet' to the `FUNCTION_CALLING_SUPPORTED_MODELS` list in `/workspace/openhands/llm/llm.py`. This was a straightforward fix that enables function calling support for the OpenRouter model anthropic/claude-3.5-sonnet, which was previously unsupported. The change allows codeactagent to interact with the internet directly without requiring assistance from the browser agent, which was the core issue reported..."
     },
     {
       "id": "pr-4822-2462412429",
       "type": "pr",
-      "status": "failure",
+      "status": "no_pr",
       "timestamp": "2024-11-13T00:31:35Z",
       "url": "https://github.com/All-Hands-AI/OpenHands/pull/4822#issuecomment-2472018021",
-      "title": "PR failure 11/13/2024, 12:31:35 AM -- Fix issue #4820: [Bug]: litellm doesn't support function calling model from OpenRouter. bug cause codeactagent couldn't interact with  internet solely without ask  browser agent  for  help  ",
+      "title": "No PR 11/13/2024, 12:31:35 AM -- Fix issue #4820: [Bug]: litellm doesn't support function calling model from OpenRouter. bug cause codeactagent couldn't interact with  internet solely without ask  browser agent  for  help  ",
       "description": "This pull request fixes #4820.\n\nThe PR successfully resolved the issue by adding 'claude-3.5-sonnet' to the `FUNCTION_CALLING_SUPPORTED_MODELS` list in `/workspace/openhands/llm/llm.py`. This was a straightforward fix that enables function calling support for the OpenRouter model anthropic/claude-3.5-sonnet, which was previously unsupported. The change allows codeactagent to interact with the internet directly without requiring assistance from the browser agent, which was the core issue reported..."
     },
     {
       "id": "pr-4822-2472012916",
       "type": "pr",
-      "status": "failure",
+      "status": "no_pr",
       "timestamp": "2024-11-13T00:31:35Z",
       "url": "https://github.com/All-Hands-AI/OpenHands/pull/4822#issuecomment-2472018021",
-      "title": "PR failure 11/13/2024, 12:31:35 AM -- Fix issue #4820: [Bug]: litellm doesn't support function calling model from OpenRouter. bug cause codeactagent couldn't interact with  internet solely without ask  browser agent  for  help  ",
+      "title": "No PR 11/13/2024, 12:31:35 AM -- Fix issue #4820: [Bug]: litellm doesn't support function calling model from OpenRouter. bug cause codeactagent couldn't interact with  internet solely without ask  browser agent  for  help  ",
       "description": "This pull request fixes #4820.\n\nThe PR successfully resolved the issue by adding 'claude-3.5-sonnet' to the `FUNCTION_CALLING_SUPPORTED_MODELS` list in `/workspace/openhands/llm/llm.py`. This was a straightforward fix that enables function calling support for the OpenRouter model anthropic/claude-3.5-sonnet, which was previously unsupported. The change allows codeactagent to interact with the internet directly without requiring assistance from the browser agent, which was the core issue reported..."
     },
     {
@@ -876,28 +1101,28 @@
     {
       "id": "pr-4658-2462596367",
       "type": "pr",
-      "status": "failure",
+      "status": "no_pr",
       "timestamp": "2024-11-09T15:36:02Z",
       "url": "https://github.com/All-Hands-AI/OpenHands/pull/4658#issuecomment-2466260243",
-      "title": "PR failure 11/9/2024, 3:36:02 PM -- Fix issue #4653: [Bug]: AI Provider Configuration UI is showing Sonnet 20241022 twice",
+      "title": "No PR 11/9/2024, 3:36:02 PM -- Fix issue #4653: [Bug]: AI Provider Configuration UI is showing Sonnet 20241022 twice",
       "description": "This pull request fixes #4653.\n\nThe issue of the duplicate sonnet model in the dropdown menu has been successfully resolved by removing the redundant entry `claude-3-5-sonnet-20240620` from `VERIFIED_MODELS`, since it was already present in `VERIFIED_ANTHROPIC_MODELS`. This simple configuration change prevents the model from appearing twice in the UI dropdown menu.\n\nAutomatic fix generated by [OpenHands](https://github.com/All-Hands-AI/OpenHands/) 🙌\n\n---\n\nTo run this PR locally, use the followi..."
     },
     {
       "id": "pr-4658-2466258250",
       "type": "pr",
-      "status": "failure",
+      "status": "no_pr",
       "timestamp": "2024-11-09T15:36:02Z",
       "url": "https://github.com/All-Hands-AI/OpenHands/pull/4658#issuecomment-2466260243",
-      "title": "PR failure 11/9/2024, 3:36:02 PM -- Fix issue #4653: [Bug]: AI Provider Configuration UI is showing Sonnet 20241022 twice",
+      "title": "No PR 11/9/2024, 3:36:02 PM -- Fix issue #4653: [Bug]: AI Provider Configuration UI is showing Sonnet 20241022 twice",
       "description": "This pull request fixes #4653.\n\nThe issue of the duplicate sonnet model in the dropdown menu has been successfully resolved by removing the redundant entry `claude-3-5-sonnet-20240620` from `VERIFIED_MODELS`, since it was already present in `VERIFIED_ANTHROPIC_MODELS`. This simple configuration change prevents the model from appearing twice in the UI dropdown menu.\n\nAutomatic fix generated by [OpenHands](https://github.com/All-Hands-AI/OpenHands/) 🙌\n\n---\n\nTo run this PR locally, use the followi..."
     },
     {
       "id": "pr-4658-2466259051",
       "type": "pr",
-      "status": "failure",
+      "status": "no_pr",
       "timestamp": "2024-11-09T15:36:02Z",
       "url": "https://github.com/All-Hands-AI/OpenHands/pull/4658#issuecomment-2466260243",
-      "title": "PR failure 11/9/2024, 3:36:02 PM -- Fix issue #4653: [Bug]: AI Provider Configuration UI is showing Sonnet 20241022 twice",
+      "title": "No PR 11/9/2024, 3:36:02 PM -- Fix issue #4653: [Bug]: AI Provider Configuration UI is showing Sonnet 20241022 twice",
       "description": "This pull request fixes #4653.\n\nThe issue of the duplicate sonnet model in the dropdown menu has been successfully resolved by removing the redundant entry `claude-3-5-sonnet-20240620` from `VERIFIED_MODELS`, since it was already present in `VERIFIED_ANTHROPIC_MODELS`. This simple configuration change prevents the model from appearing twice in the UI dropdown menu.\n\nAutomatic fix generated by [OpenHands](https://github.com/All-Hands-AI/OpenHands/) 🙌\n\n---\n\nTo run this PR locally, use the followi..."
     },
     {
@@ -910,60 +1135,6 @@
       "description": "### Is there an existing issue for the same bug?\n\n- [X] I have checked the existing issues.\n\n### Describe the bug and reproduction steps\n\nOpenHands frontend UI still displays text after the message have been sent (hitting enter). We should clean-up the ChatInput box after sent.\r\n\r\n<img width=\"385\" alt=\"image\" src=\"https://github.com/user-attachments/assets/03b5c405-205d-445c-a205-bf462869f09b\">\r\n\n\n### OpenHands Installation\n\nDocker command in README\n\n### OpenHands Version\n\n_No response_\n\n### Ope..."
     },
     {
-      "id": "issue-4859-2466076412",
-      "type": "issue",
-      "status": "success",
-      "timestamp": "2024-11-09T06:34:43Z",
-      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4859#issuecomment-2466078293",
-      "title": "ISSUE success 11/9/2024, 6:34:43 AM -- [Bug]: Regression on copy-paste text into the chat prompt input box",
-      "description": "### Is there an existing issue for the same bug?\n\n- [X] I have checked the existing issues.\n\n### Describe the bug and reproduction steps\n\nThis is a regression from https://github.com/All-Hands-AI/OpenHands/pull/4762\r\n\r\nCopy pasting normal text into the input prompt box no longer works.\n\n### OpenHands Installation\n\nDocker command in README\n\n### OpenHands Version\n\n_No response_\n\n### Operating System\n\nNone\n\n### Logs, Errors, Screenshots, and Additional Context\n\n_No response_"
-    },
-    {
-      "id": "pr-4832-2463488085",
-      "type": "pr",
-      "status": "failure",
-      "timestamp": "2024-11-08T00:39:48Z",
-      "url": "https://github.com/All-Hands-AI/OpenHands/pull/4832#issuecomment-2463501166",
-      "title": "PR failure 11/8/2024, 12:39:48 AM -- Fix issue #4830: [Bug]: Copy-paste into the \"What do you want to build?\" bar doesn't work",
-      "description": "This pull request fixes #4830.\n\nThe issue has been successfully resolved. The AI identified and fixed the core problem where text pasting wasn't working in the chat input bar. The solution involved:\n\nAutomatic fix generated by [OpenHands](https://github.com/All-Hands-AI/OpenHands/) 🙌\n\n---\n\nTo run this PR locally, use the following command:\n```\ndocker run -it --rm   -p 3000:3000   -v /var/run/docker.sock:/var/run/docker.sock   --add-host host.docker.internal:host-gateway   -e SANDBOX_RUNTIME_CON..."
-    },
-    {
-      "id": "pr-4832-2463499887",
-      "type": "pr",
-      "status": "failure",
-      "timestamp": "2024-11-08T00:39:48Z",
-      "url": "https://github.com/All-Hands-AI/OpenHands/pull/4832#issuecomment-2463501166",
-      "title": "PR failure 11/8/2024, 12:39:48 AM -- Fix issue #4830: [Bug]: Copy-paste into the \"What do you want to build?\" bar doesn't work",
-      "description": "This pull request fixes #4830.\n\nThe issue has been successfully resolved. The AI identified and fixed the core problem where text pasting wasn't working in the chat input bar. The solution involved:\n\nAutomatic fix generated by [OpenHands](https://github.com/All-Hands-AI/OpenHands/) 🙌\n\n---\n\nTo run this PR locally, use the following command:\n```\ndocker run -it --rm   -p 3000:3000   -v /var/run/docker.sock:/var/run/docker.sock   --add-host host.docker.internal:host-gateway   -e SANDBOX_RUNTIME_CON..."
-    },
-    {
-      "id": "pr-4832-2463206932",
-      "type": "pr",
-      "status": "failure",
-      "timestamp": "2024-11-07T21:09:09Z",
-      "url": "https://github.com/All-Hands-AI/OpenHands/pull/4832#issuecomment-2463219661",
-      "title": "PR failure 11/7/2024, 9:09:09 PM -- Fix issue #4830: [Bug]: Copy-paste into the \"What do you want to build?\" bar doesn't work",
-      "description": "This pull request fixes #4830.\n\nThe issue has been successfully resolved. The AI identified and fixed the core problem where text pasting wasn't working in the chat input bar. The solution involved:\n\nAutomatic fix generated by [OpenHands](https://github.com/All-Hands-AI/OpenHands/) 🙌\n\n---\n\nTo run this PR locally, use the following command:\n```\ndocker run -it --rm   -p 3000:3000   -v /var/run/docker.sock:/var/run/docker.sock   --add-host host.docker.internal:host-gateway   -e SANDBOX_RUNTIME_CON..."
-    },
-    {
-      "id": "pr-4832-2463186386",
-      "type": "pr",
-      "status": "failure",
-      "timestamp": "2024-11-07T20:57:06Z",
-      "url": "https://github.com/All-Hands-AI/OpenHands/pull/4832#issuecomment-2463195686",
-      "title": "PR failure 11/7/2024, 8:57:06 PM -- Fix issue #4830: [Bug]: Copy-paste into the \"What do you want to build?\" bar doesn't work",
-      "description": "This pull request fixes #4830.\n\nThe issue has been successfully resolved. The AI identified and fixed the core problem where text pasting wasn't working in the chat input bar. The solution involved:\n\nAutomatic fix generated by [OpenHands](https://github.com/All-Hands-AI/OpenHands/) 🙌\n\n---\n\nTo run this PR locally, use the following command:\n```\ndocker run -it --rm   -p 3000:3000   -v /var/run/docker.sock:/var/run/docker.sock   --add-host host.docker.internal:host-gateway   -e SANDBOX_RUNTIME_CON..."
-    },
-    {
-      "id": "issue-4830-2462887353",
-      "type": "issue",
-      "status": "success",
-      "timestamp": "2024-11-07T18:06:04Z",
-      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4830#issuecomment-2462906319",
-      "title": "ISSUE success 11/7/2024, 6:06:04 PM -- [Bug]: Copy-paste into the \"What do you want to build?\" bar doesn't work",
-      "description": "### Is there an existing issue for the same bug?\n\n- [X] I have checked the existing issues.\n\n### Describe the bug and reproduction steps\n\nCurrently, copy-pasting into the \"What do you want to build?\" bar in the chat screen does not result in any content being pasted. I tried both Cmd-V and using \"Edit -> Copy\".\r\n\r\nIt'd be good if we could write a frontend test to reproduce the bug and then fix it.\n\n### OpenHands Installation\n\napp.all-hands.dev\n\n### OpenHands Version\n\n_No response_\n\n### Operating..."
-    },
-    {
       "id": "issue-4828-2462874019",
       "type": "issue",
       "status": "success",
@@ -971,15 +1142,6 @@
       "url": "https://github.com/All-Hands-AI/OpenHands/issues/4828#issuecomment-2462891889",
       "title": "ISSUE success 11/7/2024, 5:58:14 PM -- [Bug]: Chat interface empty state flickers for a brief moment until messages load",
       "description": "### Is there an existing issue for the same bug?\n\n- [X] I have checked the existing issues.\n\n### Describe the bug and reproduction steps\n\nIf there are messages that are yet to be received by the socket, the empty state UI is shown for a brief moment, resulting in an unpleasant flicker\n\n### OpenHands Installation\n\nDocker command in README\n\n### OpenHands Version\n\nmain\n\n### Operating System\n\nNone\n\n### Logs, Errors, Screenshots, and Additional Context\n\nWe should probably wait until socket is green"
-    },
-    {
-      "id": "issue-4827-2462853914",
-      "type": "issue",
-      "status": "failure",
-      "timestamp": "2024-11-07T17:43:29Z",
-      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4827#issuecomment-2462864570",
-      "title": "ISSUE failure 11/7/2024, 5:43:29 PM -- [Bug]: Workspace's vertical bar doesn't align",
-      "description": "### Is there an existing issue for the same bug?\n\n- [X] I have checked the existing issues.\n\n### Describe the bug and reproduction steps\n\nSee screenshot - the vertical bar doesn't align\r\n\r\n<img width=\"748\" alt=\"image\" src=\"https://github.com/user-attachments/assets/5c747560-7d5e-4524-a478-d81282821cb4\">\r\n\n\n### OpenHands Installation\n\nDevelopment workflow\n\n### OpenHands Version\n\nmain\n\n### Operating System\n\nLinux\n\n### Logs, Errors, Screenshots, and Additional Context\n\n_No response_"
     },
     {
       "id": "issue-4820-2462320610",
@@ -1000,15 +1162,6 @@
       "description": "### Is there an existing issue for the same bug?\n\n- [X] I have checked the existing issues.\n\n### Describe the bug and reproduction steps\n\nCurrently, in headless command line mode, logs of what the agents are doing is not printed out. This should be fixed.\r\n\r\nTo do so, it'd be good to first look at the documentation for headless mode, and then find a good place to add a subscription to the event stream like the following:\r\n\r\n```\r\n    async def on_event(evt):\r\n        logger.info(evt)\r\n    runtime..."
     },
     {
-      "id": "issue-4583-2461220194",
-      "type": "issue",
-      "status": "failure",
-      "timestamp": "2024-11-07T03:10:07Z",
-      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4583#issuecomment-2461227875",
-      "title": "ISSUE failure 11/7/2024, 3:10:07 AM -- [Bug]: Unable to pull the full SWE-Bench test set",
-      "description": "### Is there an existing issue for the same bug?\n\n- [X] I have checked the existing issues.\n\n### Describe the bug and reproduction steps\n\nWhen trying to pull the full test set using:\r\n\r\n`evaluation/swe_bench/scripts/docker/pull_all_eval_docker.sh instance full`\r\n\r\nIt fails with this error:\r\n\r\n```\r\nUsing namespace: xingyaoww\r\nPulling docker images for [instance] level\r\nPattern: sweb.base\\|sweb.env\\|sweb.eval\r\nImage file: evaluation/swe_bench/scripts/docker/all-swebench-full-instance-images.txt\r\nP..."
-    },
-    {
       "id": "issue-4809-2461146053",
       "type": "issue",
       "status": "failure",
@@ -1016,15 +1169,6 @@
       "url": "https://github.com/All-Hands-AI/OpenHands/issues/4809#issuecomment-2461152418",
       "title": "ISSUE failure 11/7/2024, 1:50:59 AM -- [Bug]: Model does not support image upload when using `litellm_proxy/`",
       "description": "### Is there an existing issue for the same bug?\r\n\r\n- [X] I have checked the existing issues.\r\n\r\n### Describe the bug and reproduction steps\r\n\r\nI got the following error when using model `litellm_proxy/claude-3-5-sonnet-20241022` through a LiteLLM proxy. It supposed to support vision inputs.\r\n\r\n<img width=\"819\" alt=\"image\" src=\"https://github.com/user-attachments/assets/4c258708-0167-4c29-a647-f25b6a4b4327\">\r\n\r\nIn L345-L348 openhands/llm/llm.py, maybe we should also check for `litellm.support_vi..."
-    },
-    {
-      "id": "issue-4776-2460483938",
-      "type": "issue",
-      "status": "success",
-      "timestamp": "2024-11-06T18:30:08Z",
-      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4776#issuecomment-2460494787",
-      "title": "ISSUE success 11/6/2024, 6:30:08 PM -- [Bug]: Files are not uploaded to the environment (SWE-Bench)",
-      "description": "### Is there an existing issue for the same bug?\r\n\r\n- [X] I have checked the existing issues.\r\n\r\n### Describe the bug and reproduction steps\r\n\r\nRun the default execution pipeline for [swe-bench](https://github.com/All-Hands-AI/OpenHands/tree/main/evaluation/swe_bench) and then the agent will try to access the workspace and after failing to do so it will try to clone the repository.\r\nI used the new Claude 3.5\r\n\r\n\r\n### OpenHands Installation\r\n\r\nDevelopment workflow\r\n\r\n### OpenHands Version\r\n\r\nmain..."
     },
     {
       "id": "issue-4783-2459414843",
@@ -1036,24 +1180,6 @@
       "description": "### Is there an existing issue for the same bug?\n\n- [X] I have checked the existing issues.\n\n### Describe the bug and reproduction steps\n\n1. Manually run command in the client terminal (e.g., `pwd`)\r\n2. Error is thrown\n\n### OpenHands Installation\n\nDocker command in README\n\n### OpenHands Version\n\nmain\n\n### Operating System\n\nNone\n\n### Logs, Errors, Screenshots, and Additional Context\n\n<img width=\"395\" alt=\"image\" src=\"https://github.com/user-attachments/assets/9afa3669-863f-4d16-97ff-9e5f21fffd3e\"..."
     },
     {
-      "id": "issue-4780-2459082234",
-      "type": "issue",
-      "status": "success",
-      "timestamp": "2024-11-06T09:22:27Z",
-      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4780#issuecomment-2459099164",
-      "title": "ISSUE success 11/6/2024, 9:22:27 AM -- [Bug]: Initial query is not cleared after submission",
-      "description": "### Is there an existing issue for the same bug?\n\n- [X] I have checked the existing issues.\n\n### Describe the bug and reproduction steps\n\n1. Enter query in home screen\r\n2. Go back to `/` and select a project or repo\r\n3. [Automatically redirect to `/app`]\r\n4. See the initial query from 1 is in-place of the suggestions\n\n### OpenHands Installation\n\nDocker command in README\n\n### OpenHands Version\n\nmain\n\n### Operating System\n\nNone\n\n### Logs, Errors, Screenshots, and Additional Context\n\n_No response_"
-    },
-    {
-      "id": "issue-4774-2458457708",
-      "type": "issue",
-      "status": "success",
-      "timestamp": "2024-11-06T00:29:48Z",
-      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4774#issuecomment-2458466968",
-      "title": "ISSUE success 11/6/2024, 12:29:48 AM -- [Bug]: \"Import Project\" button does not work as expected",
-      "description": "### Is there an existing issue for the same bug?\n\n- [X] I have checked the existing issues.\n\n### Describe the bug and reproduction steps\n\nThe \"Upload a .zip\" button under \"Import Project\" does not seem to be working as expected. Specifically, it immediately forwards you to the app page without allowing you to enter a prompt.\r\n\r\nhttps://github.com/user-attachments/assets/9a34c53c-2d7c-454f-a76f-964a4d04c0d4\r\n\r\nThe expected behavior would be that the zip is just stored, and then you only move to t..."
-    },
-    {
       "id": "issue-4769-2458390348",
       "type": "issue",
       "status": "failure",
@@ -1061,33 +1187,6 @@
       "url": "https://github.com/All-Hands-AI/OpenHands/issues/4769#issuecomment-2458397249",
       "title": "ISSUE failure 11/5/2024, 11:24:47 PM -- [Bug]: Markdown numbering is rendered weird",
       "description": "### Is there an existing issue for the same bug?\n\n- [X] I have checked the existing issues.\n\n### Describe the bug and reproduction steps\n\nThe agent is likely sending separate messages with \"1.\" \"2.\" \"3.\"\r\n\r\nMarkdown is weird in that it will render any number as \"1.\", i.e.\r\n\r\n```md\r\n42.\r\n86.\r\n93.\r\n```\r\n\r\nwill render as\r\n```\r\n1.\r\n2.\r\n3.\r\n```\r\n\r\nI bet we can turn this behavior off\r\n\r\n<img width=\"195\" alt=\"Screenshot 2024-11-05 at 6 12 59 PM\" src=\"https://github.com/user-attachments/assets/01ce1628-..."
-    },
-    {
-      "id": "issue-4756-2457412719",
-      "type": "issue",
-      "status": "success",
-      "timestamp": "2024-11-05T15:08:27Z",
-      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4756#issuecomment-2457424701",
-      "title": "ISSUE success 11/5/2024, 3:08:27 PM -- [Documentation] When GITHUB_TOKEN is provided automatically through the UI",
-      "description": "**What problem or use case are you trying to solve?**\r\n\r\nI don't know when the `GITHUB_TOKEN` is provided to the agent through the UI, and I don't believe this is documented anywhere. \r\n\r\nIt would be good to have this documented in the documentation. Does anyone have an idea under what conditions the GITHUB_TOKEN is provided?"
-    },
-    {
-      "id": "issue-4739-2455626705",
-      "type": "issue",
-      "status": "failure",
-      "timestamp": "2024-11-04T20:27:16Z",
-      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4739#issuecomment-2455636174",
-      "title": "ISSUE failure 11/4/2024, 8:27:16 PM -- [Bug]: The agent doesn't know its name",
-      "description": "### Is there an existing issue for the same bug?\n\n- [X] I have checked the existing issues.\n\n### Describe the bug and reproduction steps\n\nWhen asking the agent to push to github, it will often do the following, because it doesn't know what its name is supposed to be. We should probably tell the agent that its name is \"OpenHands Agent\" and email os \"openhands@all-hands.dev\" by default, but have this be configurable.\r\n\r\n```\r\ngit config --global credential.helper store && git config --global user.e..."
-    },
-    {
-      "id": "issue-4735-2455118002",
-      "type": "issue",
-      "status": "success",
-      "timestamp": "2024-11-04T16:16:48Z",
-      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4735#issuecomment-2455135871",
-      "title": "ISSUE success 11/4/2024, 4:16:48 PM -- Update msw mocks",
-      "description": "Update the handlers (`frontend/src/mocks/handlers.ts`) to list on port `3001` instead of `3000`. Also, add a handler to intercept and ignore PostHog post requests:\r\n\r\n```ts\r\n  http.post(\"https://us.i.posthog.com/e\", async () =>\r\n    HttpResponse.json(null, { status: 200 }),\r\n  ),\r\n```"
     },
     {
       "id": "issue-4700-2452787161",
@@ -1106,24 +1205,6 @@
       "url": "https://github.com/All-Hands-AI/OpenHands/issues/4701#issuecomment-2452790060",
       "title": "ISSUE success 11/2/2024, 1:40:47 AM -- [Bug]: Too many calls to /authenticate",
       "description": "### Is there an existing issue for the same bug?\n\n- [X] I have checked the existing issues.\n\n### Describe the bug and reproduction steps\n\nWe need to make an initial call to /authenticate to check if the user is logged in when the page loads. However, we are currently calling /authenticate repeatedly throughout a user's session. We should stop this so it's only called once\r\n\r\nThe fix should be in ./frontend/src\n\n### OpenHands Installation\n\nDocker command in README\n\n### OpenHands Version\n\nmain\n\n##..."
-    },
-    {
-      "id": "issue-4653-2449967126",
-      "type": "issue",
-      "status": "success",
-      "timestamp": "2024-10-31T14:18:48Z",
-      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4653#issuecomment-2449987243",
-      "title": "ISSUE success 10/31/2024, 2:18:48 PM -- [Bug]: AI Provider Configuration UI is showing Sonnet 20241022 twice",
-      "description": "### Is there an existing issue for the same bug?\n\n- [X] I have checked the existing issues.\n\n### Describe the bug and reproduction steps\n\n![image](https://github.com/user-attachments/assets/5c97692f-b447-4c60-82af-a50d82df7347)\r\nlooks like the latest sonnet model got added to the dropdown menu twice\r\nshould be a easy fix.\n\n### OpenHands Installation\n\nDocker command in README\n\n### OpenHands Version\n\n_No response_\n\n### Operating System\n\nNone\n\n### Logs, Errors, Screenshots, and Additional Context\n\n..."
-    },
-    {
-      "id": "issue-4466-2421336774",
-      "type": "issue",
-      "status": "success",
-      "timestamp": "2024-10-18T04:47:49Z",
-      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4466#issuecomment-2421359261",
-      "title": "ISSUE success 10/18/2024, 4:47:49 AM -- Update `npm` scripts for cross-platform compatibility with PowerShell and Unix shells",
-      "description": "Our current `npm` scripts for development (`dev` and `dev:mock`) are written in a way that works on Unix-like shells but may not work on Windows PowerShell due to differences in how environment variables are set.\r\n\r\nThe issue arises from setting environment variables inline (e.g., `VITE_MOCK_API=false`), which isn't compatible with PowerShell.\r\n\r\nSUGGESTED FIX:\r\nUse the [cross-env](https://www.npmjs.com/package/cross-env) package to ensure that environment variables are set in a way that's compa..."
     },
     {
       "id": "issue-4254-2397848351",
@@ -1178,15 +1259,6 @@
       "url": "https://github.com/All-Hands-AI/OpenHands/issues/4024#issuecomment-2392654740",
       "title": "ISSUE success 10/4/2024, 2:11:25 AM -- [Usability] Improving CLI interface for OpenHands with `oh launch here` and `oh launch here --remote`",
       "description": "**What problem or use case are you trying to solve?**\r\n\r\nI hope to start OpenHands wherever I want it to work. But now we have to manually maintain a lengthy docker run script and change `WORKSPACE_BASE` every time, or have to `make run` in a directory and modify `config.toml` to set the right workspace directory.\r\n\r\n**Describe the UX of the solution you'd like**\r\n\r\nFor example, I am in a folder `xyz/`, and instead of launching a lengthy docker run command, the experience i hope to have is:\r\n1. ..."
-    },
-    {
-      "id": "issue-4196-2391879959",
-      "type": "issue",
-      "status": "failure",
-      "timestamp": "2024-10-03T16:58:24Z",
-      "url": "https://github.com/All-Hands-AI/OpenHands/issues/4196#issuecomment-2391896319",
-      "title": "ISSUE failure 10/3/2024, 4:58:24 PM -- [Feature request]: Allow LiteLLM to track cost when accessing models from LiteLLM Proxy",
-      "description": "**What problem or use case are you trying to solve?**\r\n\r\nCurrently, litellm cannot track cost when invoking a model from a LiteLLM proxy.\r\n\r\n**Describe the UX of the solution you'd like**\r\n\r\n**Do you have thoughts on the technical implementation?**\r\n\r\nLiteLLM .completion call's response will have an `x-litellm-response-cost` in the response header when calling models from an LLM proxy.\r\n\r\nWe should modify openhands/llm/llm.py so that we first check if the response header is present, if so, we sk..."
     },
     {
       "id": "issue-4184-2390457010",
@@ -1250,16 +1322,7 @@
       "url": "https://github.com/All-Hands-AI/OpenHands/issues/4127#issuecomment-2384311921",
       "title": "ISSUE success 9/30/2024, 10:50:58 PM -- [Bug]: Disable cache on web application's index.html",
       "description": "### Is there an existing issue for the same bug?\n\n- [X] I have checked the troubleshooting document at https://docs.all-hands.dev/modules/usage/troubleshooting\n- [X] I have checked the existing issues.\n\n### Describe the bug\n\nFor the root path `/` and `/index.html`, we need to make sure that there is no caching set up. Otherwise the frontend breaks on update.\r\n\r\nThis will involve editing openhands/server/listen.py, specifically the part that serves the web app at the bottom of the file\n\n### Curre..."
-    },
-    {
-      "id": "issue-3913-2384055144",
-      "type": "issue",
-      "status": "failure",
-      "timestamp": "2024-09-30T20:17:09Z",
-      "url": "https://github.com/All-Hands-AI/OpenHands/issues/3913#issuecomment-2384069818",
-      "title": "ISSUE failure 9/30/2024, 8:17:09 PM -- Show rate limit issues in the UI",
-      "description": "**What problem or use case are you trying to solve?**\r\n\r\nI'm getting rate limited by Anthropic. But it just looks like the agent is kinda stuck while it cools down.\r\n\r\n**Describe the UX of the solution you'd like**\r\n\r\nI'd like the indicator to turn yellow, and show a relevant message about rate limits\r\n\r\n<img width=\"257\" alt=\"Screenshot 2024-09-17 at 10 41 33 AM\" src=\"https://github.com/user-attachments/assets/4637f867-30ea-466d-add2-6803ed616cd3\">\r\n\r\n\r\n**Do you have thoughts on the technical im..."
     }
   ],
-  "lastUpdated": "2024-12-04T01:17:11.574Z"
+  "lastUpdated": "2024-12-10T19:06:54.287Z"
 }

@@ -8,7 +8,7 @@ const REPO_NAME = 'OpenHands';
 
 import fs from 'fs';
 
-async function fetchWithAuth(url: string): Promise<ApiResponse> {
+async function fetchWithAuth<T = any[]>(url: string): Promise<ApiResponse<T>> {
   // Log the request
   fs.appendFileSync('github-api.log', `\n[${new Date().toISOString()}] REQUEST: ${url}\n`);
   
@@ -150,8 +150,8 @@ async function processPRComments(pr: GitHubPR): Promise<Activity[]> {
 
   // Fetch PR details to get state and merged status
   const baseUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}`;
-  const prResponse = await fetchWithAuth(`${baseUrl}/pulls/${pr.number}`);
-  const prDetails = prResponse.data;
+  const prResponse = await fetchWithAuth<{ state: string; merged: boolean }>(`${baseUrl}/pulls/${pr.number}`);
+  const prDetails = prResponse.data as { state: string; merged: boolean };
 
   for (let i = 0; i < comments.length; i++) {
     const comment = comments[i];

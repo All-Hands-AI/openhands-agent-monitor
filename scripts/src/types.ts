@@ -30,8 +30,8 @@ export interface GitHubPR {
   merged?: boolean;
 }
 
-export interface ApiResponse {
-  data: any[];
+export interface ApiResponse<T = any[]> {
+  data: T;
   hasNextPage: boolean;
   nextUrl: string | null;
 }

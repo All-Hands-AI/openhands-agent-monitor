@@ -19,7 +19,7 @@ describe('PR status handling', () => {
   let fetch: ReturnType<typeof vi.fn>;
 
   beforeEach(async () => {
-    fetch = vi.mocked(await import('node-fetch')).default;
+    fetch = (await import('node-fetch')).default as unknown as ReturnType<typeof vi.fn>;
     fetch.mockReset();
     process.env.GITHUB_TOKEN = 'test-token';
   });
