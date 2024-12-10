@@ -25,8 +25,10 @@ vi.mock('react-vega', () => ({
 }));
 
 function getLastVegaLiteProps(): VegaLiteProps {
-  expect(mockVegaLite.mock.calls.length).toBeGreaterThan(0);
-  return mockVegaLite.mock.calls[mockVegaLite.mock.calls.length - 1][0];
+  expect(mockVegaLite).toHaveBeenCalled();
+  const lastCall = mockVegaLite.mock.calls[mockVegaLite.mock.calls.length - 1][0];
+  expect(lastCall).toBeDefined();
+  return lastCall;
 }
 
 describe('ActivityChart', () => {
