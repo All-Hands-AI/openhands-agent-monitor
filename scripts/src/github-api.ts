@@ -1,4 +1,4 @@
-import type { GitHubComment, GitHubIssue, GitHubPR, ApiResponse, Activity } from './types';
+import type { GitHubComment, GitHubIssue, GitHubPR, GitHubPRResponse, ApiResponse, Activity, IssueStatus, PRStatus } from './types';
 import fetch from 'node-fetch';
 import { performance } from 'perf_hooks';
 
@@ -112,6 +112,24 @@ export function isPRModificationFailureComment(comment: GitHubComment): boolean 
   return isFailureComment(comment);
 }
 
+async function checkPRStatus(prUrl: string): Promise<IssueStatus> {
+  try {
+    const response = await fetchWithAuth(prUrl);
+    const pr = response.data as GitHubPRResponse;
+    
+    if (pr?.merged) {
+      return 'pr_merged';
+    } else if (pr?.state === 'closed') {
+      return 'pr_closed';
+    } else {
+      return 'pr_open';
+    }
+  } catch (error) {
+    console.error('Error checking PR status:', error);
+    return 'no_pr';
+  }
+}
+
 async function processIssueComments(issue: GitHubIssue): Promise<Activity[]> {
   const activities: Activity[] = [];
   const comments = await fetchAllPages<GitHubComment>(issue.comments_url);
@@ -126,8 +144,45 @@ async function processIssueComments(issue: GitHubIssue): Promise<Activity[]> {
       const resultComment = successComment ?? failureComment;
 
       if (resultComment !== undefined) {
-        const status = successComment !== undefined ? 'success' : 'failure';
         const timestamp = new Date(resultComment.created_at).toLocaleString();
+
+        // Extract PR URL from success comment if available
+        let prUrl: string | undefined;
+        let status: IssueStatus = 'no_pr';
+
+        if (successComment) {
+          // Try different PR reference formats
+          let prNumber: string | undefined;
+          
+          // Try full PR URL format
+          const fullUrlMatch = successComment.body.match(/https:\/\/github\.com\/[^\/]+\/[^\/]+\/pull\/(\d+)/);
+          if (fullUrlMatch) {
+            prNumber = fullUrlMatch[1];
+          }
+          
+          // Try pull/123 format
+          if (!prNumber) {
+            const pullMatch = successComment.body.match(/pull\/(\d+)/);
+            if (pullMatch) {
+              prNumber = pullMatch[1];
+            }
+          }
+          
+          // Try #123 format when it refers to a PR
+          if (!prNumber) {
+            const hashMatch = successComment.body.match(/PR #(\d+)/i);
+            if (hashMatch) {
+              prNumber = hashMatch[1];
+            }
+          }
+
+          if (prNumber) {
+            prUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/pulls/${prNumber}`;
+            // Check PR status
+            status = await checkPRStatus(prUrl);
+          }
+        }
+
         activities.push({
           id: `issue-${String(issue.number)}-${String(comment.id)}`,
           type: 'issue',
@@ -136,6 +191,7 @@ async function processIssueComments(issue: GitHubIssue): Promise<Activity[]> {
           url: resultComment.html_url,
           title: `ISSUE ${status} ${timestamp} -- ${issue.title}`,
           description: issue.body.slice(0, 500) + (issue.body.length > 500 ? '...' : ''),
+          prUrl,
         });
       }
     }
@@ -158,7 +214,7 @@ async function processPRComments(pr: GitHubPR): Promise<Activity[]> {
       const resultComment = successComment ?? failureComment;
 
       if (resultComment !== undefined) {
-        const status = successComment !== undefined ? 'success' : 'failure';
+        const status: PRStatus = successComment !== undefined ? 'success' : 'failure';
         const timestamp = new Date(resultComment.created_at).toLocaleString();
         activities.push({
           id: `pr-${String(pr.number)}-${String(comment.id)}`,
@@ -212,10 +268,10 @@ export async function fetchBotActivities(since?: string): Promise<Activity[]> {
     if (since !== undefined && since !== '') {
       params.append('since', since);
     } else {
-      // Default to last 30 days if no since parameter
-      const thirtyDaysAgo = new Date();
-      thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
-      params.append('since', thirtyDaysAgo.toISOString());
+      // Default to last 7 days if no since parameter
+      const sevenDaysAgo = new Date();
+      sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+      params.append('since', sevenDaysAgo.toISOString());
     }
 
     // Fetch issues and PRs

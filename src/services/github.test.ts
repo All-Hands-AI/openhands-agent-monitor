@@ -31,7 +31,7 @@ describe('GitHub Service', () => {
     } as Response);
   }
 
-  it('should detect openhands-agent comments in issues', async () => {
+  it('should detect openhands-agent comments in issues with PR', async () => {
     // Mock cache response for issue success
     const mockFetch = vi.fn().mockImplementation((url: string) => {
       if (url === '/cache/bot-activities.json') {
@@ -42,9 +42,15 @@ describe('GitHub Service', () => {
             status: 'success',
             timestamp: '2023-11-28T00:01:00Z',
             url: 'https://github.com/All-Hands-AI/OpenHands/issues/1#comment-2',
+            prUrl: 'https://api.github.com/repos/All-Hands-AI/OpenHands/pulls/2',
             description: 'A potential fix has been generated and a draft PR #2 has been created. Please review the changes.'
           }],
           lastUpdated: '2023-11-28T00:01:00Z'
+        });
+      } else if (url === 'https://api.github.com/repos/All-Hands-AI/OpenHands/pulls/2') {
+        return createMockResponse({
+          state: 'open',
+          merged: false
         });
       }
       throw new Error(`Unexpected URL: ${url}`);
@@ -56,7 +62,7 @@ describe('GitHub Service', () => {
     expect(activities).toHaveLength(1);
     expect(activities[0]).toMatchObject<Partial<BotActivity>>({
       type: 'issue',
-      status: 'success',
+      status: 'pr_open',
       id: expect.stringContaining('issue-1') as string,
     });
 
@@ -64,7 +70,7 @@ describe('GitHub Service', () => {
     vi.unstubAllGlobals();
   });
 
-  it('should detect openhands-agent failure comments in issues', async () => {
+  it('should detect openhands-agent failure comments in issues without PR', async () => {
     // Mock cache response for issue failure
     const mockFetch = vi.fn().mockImplementation((url: string) => {
       if (url === '/cache/bot-activities.json') {
@@ -89,7 +95,7 @@ describe('GitHub Service', () => {
     expect(activities).toHaveLength(1);
     expect(activities[0]).toMatchObject<Partial<BotActivity>>({
       type: 'issue',
-      status: 'failure',
+      status: 'no_pr',
       id: expect.stringContaining('issue-1') as string,
     });
 
@@ -127,6 +133,144 @@ describe('GitHub Service', () => {
     });
 
     // Restore the original fetch
+    vi.unstubAllGlobals();
+  });
+
+  it('should handle issue with no PR', async () => {
+    const mockFetch = vi.fn().mockImplementation((url: string) => {
+      if (url === '/cache/bot-activities.json') {
+        return createMockResponse({
+          activities: [{
+            id: 'issue-1-2',
+            type: 'issue',
+            status: 'success',
+            timestamp: '2023-11-28T00:01:00Z',
+            url: 'https://github.com/All-Hands-AI/OpenHands/issues/1#comment-2',
+            description: 'Working on the issue...'
+          }],
+          lastUpdated: '2023-11-28T00:01:00Z'
+        });
+      }
+      throw new Error(`Unexpected URL: ${url}`);
+    });
+    vi.stubGlobal('fetch', mockFetch as unknown as typeof fetch);
+
+    const activities = await fetchBotActivities();
+    
+    expect(activities).toHaveLength(1);
+    expect(activities[0]).toMatchObject<Partial<BotActivity>>({
+      type: 'issue',
+      status: 'no_pr',
+    });
+
+    vi.unstubAllGlobals();
+  });
+
+  it('should handle issue with open PR', async () => {
+    const mockFetch = vi.fn().mockImplementation((url: string) => {
+      if (url === '/cache/bot-activities.json') {
+        return createMockResponse({
+          activities: [{
+            id: 'issue-1-2',
+            type: 'issue',
+            status: 'success',
+            timestamp: '2023-11-28T00:01:00Z',
+            url: 'https://github.com/All-Hands-AI/OpenHands/issues/1#comment-2',
+            prUrl: 'https://api.github.com/repos/All-Hands-AI/OpenHands/pulls/2',
+            description: 'Created PR #2'
+          }],
+          lastUpdated: '2023-11-28T00:01:00Z'
+        });
+      } else if (url === 'https://api.github.com/repos/All-Hands-AI/OpenHands/pulls/2') {
+        return createMockResponse({
+          state: 'open',
+          merged: false
+        });
+      }
+      throw new Error(`Unexpected URL: ${url}`);
+    });
+    vi.stubGlobal('fetch', mockFetch as unknown as typeof fetch);
+
+    const activities = await fetchBotActivities();
+    
+    expect(activities).toHaveLength(1);
+    expect(activities[0]).toMatchObject<Partial<BotActivity>>({
+      type: 'issue',
+      status: 'pr_open',
+    });
+
+    vi.unstubAllGlobals();
+  });
+
+  it('should handle issue with merged PR', async () => {
+    const mockFetch = vi.fn().mockImplementation((url: string) => {
+      if (url === '/cache/bot-activities.json') {
+        return createMockResponse({
+          activities: [{
+            id: 'issue-1-2',
+            type: 'issue',
+            status: 'success',
+            timestamp: '2023-11-28T00:01:00Z',
+            url: 'https://github.com/All-Hands-AI/OpenHands/issues/1#comment-2',
+            prUrl: 'https://api.github.com/repos/All-Hands-AI/OpenHands/pulls/2',
+            description: 'Created PR #2'
+          }],
+          lastUpdated: '2023-11-28T00:01:00Z'
+        });
+      } else if (url === 'https://api.github.com/repos/All-Hands-AI/OpenHands/pulls/2') {
+        return createMockResponse({
+          state: 'closed',
+          merged: true
+        });
+      }
+      throw new Error(`Unexpected URL: ${url}`);
+    });
+    vi.stubGlobal('fetch', mockFetch as unknown as typeof fetch);
+
+    const activities = await fetchBotActivities();
+    
+    expect(activities).toHaveLength(1);
+    expect(activities[0]).toMatchObject<Partial<BotActivity>>({
+      type: 'issue',
+      status: 'pr_merged',
+    });
+
+    vi.unstubAllGlobals();
+  });
+
+  it('should handle issue with closed PR', async () => {
+    const mockFetch = vi.fn().mockImplementation((url: string) => {
+      if (url === '/cache/bot-activities.json') {
+        return createMockResponse({
+          activities: [{
+            id: 'issue-1-2',
+            type: 'issue',
+            status: 'success',
+            timestamp: '2023-11-28T00:01:00Z',
+            url: 'https://github.com/All-Hands-AI/OpenHands/issues/1#comment-2',
+            prUrl: 'https://api.github.com/repos/All-Hands-AI/OpenHands/pulls/2',
+            description: 'Created PR #2'
+          }],
+          lastUpdated: '2023-11-28T00:01:00Z'
+        });
+      } else if (url === 'https://api.github.com/repos/All-Hands-AI/OpenHands/pulls/2') {
+        return createMockResponse({
+          state: 'closed',
+          merged: false
+        });
+      }
+      throw new Error(`Unexpected URL: ${url}`);
+    });
+    vi.stubGlobal('fetch', mockFetch as unknown as typeof fetch);
+
+    const activities = await fetchBotActivities();
+    
+    expect(activities).toHaveLength(1);
+    expect(activities[0]).toMatchObject<Partial<BotActivity>>({
+      type: 'issue',
+      status: 'pr_closed',
+    });
+
     vi.unstubAllGlobals();
   });
 

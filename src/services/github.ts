@@ -1,4 +1,25 @@
-import { BotActivity } from '../types';
+import { BotActivity, IssueActivityStatus } from '../types';
+
+async function checkPRStatus(prUrl: string): Promise<IssueActivityStatus> {
+  try {
+    const response = await fetch(prUrl);
+    if (!response.ok) {
+      return 'no_pr';
+    }
+    const pr = await response.json();
+    
+    if (pr.merged) {
+      return 'pr_merged';
+    } else if (pr.state === 'closed') {
+      return 'pr_closed';
+    } else {
+      return 'pr_open';
+    }
+  } catch (error) {
+    console.error('Error checking PR status:', error);
+    return 'no_pr';
+  }
+}
 
 export async function fetchBotActivities(since?: string): Promise<BotActivity[]> {
   try {
@@ -18,8 +39,21 @@ export async function fetchBotActivities(since?: string): Promise<BotActivity[]>
       );
     }
 
+    // Process issue activities to determine PR status
+    const processedActivities = await Promise.all(activities.map(async activity => {
+      if (activity.type === 'issue') {
+        if (activity.prUrl) {
+          const prStatus = await checkPRStatus(activity.prUrl);
+          return { ...activity, status: prStatus };
+        } else {
+          return { ...activity, status: 'no_pr' as IssueActivityStatus };
+        }
+      }
+      return activity;
+    }));
+
     // Sort by timestamp in descending order
-    return activities.sort((a, b) => 
+    return processedActivities.sort((a, b) => 
       new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
     );
   } catch (error) {
