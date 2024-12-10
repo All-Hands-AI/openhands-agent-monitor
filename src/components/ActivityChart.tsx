@@ -112,7 +112,10 @@ export function ActivityChart({ activities, type }: ActivityChartProps): React.J
         field: 'status',
         type: 'nominal',
         title: 'Status',
-        scale: {
+        scale: type === 'issue' ? {
+          domain: ['no_pr', 'pr_open', 'pr_merged', 'pr_closed'],
+          range: ['#ffffff', '#4caf50', '#9c27b0', '#f44336']  // White, Green, Purple, Red
+        } : {
           domain: ['success', 'failure'],
           range: ['#22c55e', '#ef4444']  // Green for success, Red for failure
         },

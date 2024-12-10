@@ -59,9 +59,9 @@ async function fetchAllPages<T>(url: string): Promise<T[]> {
     const response = await fetchWithAuth<T>(currentUrl);
     console.log(`Got ${Array.isArray(response.data) ? String(response.data.length) : '1'} items`);
     if (Array.isArray(response.data)) {
-      allItems.push(...(response.data as T[]));
+      allItems.push(...response.data);
     } else {
-      allItems.push(response.data as T);
+      allItems.push(response.data);
     }
     currentUrl = response.nextUrl ?? '';
   }
