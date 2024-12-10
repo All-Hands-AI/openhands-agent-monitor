@@ -22,7 +22,7 @@ export function ActivityList({ activities }: ActivityListProps): React.JSX.Eleme
     <div>
       <div className="activity-list">
         {currentActivities.map((activity) => (
-          <div key={activity.id} className={`activity-item ${activity.status}`}>
+          <div key={activity.id} data-testid="activity-item" className={`activity-item ${activity.status}`}>
             <div className="activity-header">
               <span className="activity-title">{activity.title}</span>
             </div>

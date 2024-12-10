@@ -18,21 +18,39 @@ describe('ActivityList', () => {
   const mockActivities: BotActivity[] = [
     {
       id: '1',
-      type: 'issue',
-      status: 'success',
-      timestamp: '2023-11-28T12:00:00Z',
+      type: 'pr',
+      status: 'no_pr',
+      timestamp: '2024-01-01T12:00:00Z',
       url: 'https://github.com/example/1',
-      title: 'ISSUE success 11/28/2023, 12:00:00 PM -- Test Issue 1',
-      description: 'Successfully resolved issue',
+      title: 'No PR opened',
+      description: 'No PR was created',
     },
     {
       id: '2',
       type: 'pr',
-      status: 'failure',
-      timestamp: '2023-11-28T13:00:00Z',
+      status: 'pr_open',
+      timestamp: '2024-01-02T12:00:00Z',
       url: 'https://github.com/example/2',
-      title: 'PR failure 11/28/2023, 1:00:00 PM -- Test PR 1',
-      description: 'Failed to modify PR',
+      title: 'PR opened',
+      description: 'PR is open',
+    },
+    {
+      id: '3',
+      type: 'pr',
+      status: 'pr_merged',
+      timestamp: '2024-01-03T12:00:00Z',
+      url: 'https://github.com/example/3',
+      title: 'PR merged',
+      description: 'PR was merged',
+    },
+    {
+      id: '4',
+      type: 'pr',
+      status: 'pr_closed',
+      timestamp: '2024-01-04T12:00:00Z',
+      url: 'https://github.com/example/4',
+      title: 'PR closed',
+      description: 'PR was closed without merging',
     },
   ];
 
@@ -40,16 +58,30 @@ describe('ActivityList', () => {
     render(<ActivityList activities={mockActivities} />);
 
     // Check if activities are rendered
-    expect(screen.getByText('ISSUE success 11/28/2023, 12:00:00 PM -- Test Issue 1')).toBeInTheDocument();
-    expect(screen.getByText('PR failure 11/28/2023, 1:00:00 PM -- Test PR 1')).toBeInTheDocument();
-    expect(screen.getByText('Successfully resolved issue')).toBeInTheDocument();
-    expect(screen.getByText('Failed to modify PR')).toBeInTheDocument();
+    expect(screen.getByText('No PR opened')).toBeInTheDocument();
+    expect(screen.getByText('PR opened')).toBeInTheDocument();
+    expect(screen.getByText('PR merged')).toBeInTheDocument();
+    expect(screen.getByText('PR closed')).toBeInTheDocument();
 
     // Check if links are rendered correctly
     const links = screen.getAllByText('View on GitHub');
-    expect(links).toHaveLength(2);
+    expect(links).toHaveLength(4);
     expect(links[0]).toHaveAttribute('href', 'https://github.com/example/1');
     expect(links[1]).toHaveAttribute('href', 'https://github.com/example/2');
+    expect(links[2]).toHaveAttribute('href', 'https://github.com/example/3');
+    expect(links[3]).toHaveAttribute('href', 'https://github.com/example/4');
+  });
+
+  it('applies correct status classes to activities', () => {
+    render(<ActivityList activities={mockActivities} />);
+    
+    const items = screen.getAllByTestId('activity-item');
+    expect(items).toHaveLength(4);
+
+    expect(items[0]).toHaveClass('activity-item', 'no_pr');
+    expect(items[1]).toHaveClass('activity-item', 'pr_open');
+    expect(items[2]).toHaveClass('activity-item', 'pr_merged');
+    expect(items[3]).toHaveClass('activity-item', 'pr_closed');
   });
 
   it('renders empty state correctly', () => {

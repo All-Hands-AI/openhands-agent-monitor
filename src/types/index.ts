@@ -1,5 +1,5 @@
 export type ActivityType = 'issue' | 'pr';
-export type ActivityStatus = 'success' | 'failure';
+export type ActivityStatus = 'success' | 'failure' | 'no_pr' | 'pr_open' | 'pr_merged' | 'pr_closed';
 
 export interface BotActivity {
   id: string;

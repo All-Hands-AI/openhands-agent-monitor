@@ -164,6 +164,23 @@ input[type="date"]::-webkit-calendar-picker {
   word-break: break-word;
 }
 
+.activity-item.no_pr {
+  border-left: 4px solid #ffffff;
+}
+
+.activity-item.pr_open {
+  border-left: 4px solid #22c55e;
+}
+
+.activity-item.pr_merged {
+  border-left: 4px solid #a855f7;
+}
+
+.activity-item.pr_closed {
+  border-left: 4px solid #ef4444;
+}
+
+/* Legacy status styles */
 .activity-item.success {
   border-left: 4px solid #4caf50;
 }

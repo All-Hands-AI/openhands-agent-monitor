@@ -1,6 +1,16 @@
-import { describe, it, expect } from 'vitest';
-import { isSuccessComment, isPRModificationFailureComment } from './github-api';
-import type { GitHubComment } from './types';
+import { describe, it, expect, vi } from 'vitest';
+import { isSuccessComment, isPRModificationFailureComment, fetchBotActivities } from './github-api';
+import type { GitHubComment, GitHubPR } from './types';
+
+// Mock node-fetch
+vi.mock('node-fetch', () => ({
+  default: vi.fn()
+}));
+
+// Mock fs
+vi.mock('fs', () => ({
+  appendFileSync: vi.fn()
+}));
 
 describe('Comment detection', () => {
   it('should detect issue success comment', () => {
