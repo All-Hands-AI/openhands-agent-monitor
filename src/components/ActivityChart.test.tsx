@@ -4,13 +4,30 @@ import { ActivityChart } from './ActivityChart';
 import { BotActivity } from '../types';
 
 // Mock VegaLite component and capture the spec prop
+interface VegaLiteProps {
+  spec: {
+    data: { values: any[] };
+    encoding: {
+      color: { scale: { domain: string[]; range: string[] } };
+      x: any;
+      y: any;
+    };
+    title: { text: string; color: string };
+  };
+}
+
 const mockVegaLite = vi.fn(() => <div data-testid="vega-lite-chart" />);
 vi.mock('react-vega', () => ({
-  VegaLite: (props: unknown) => {
+  VegaLite: (props: VegaLiteProps) => {
     mockVegaLite(props);
     return <div data-testid="vega-lite-chart" />;
   },
 }));
+
+function getLastVegaLiteProps(): VegaLiteProps {
+  expect(mockVegaLite.mock.calls.length).toBeGreaterThan(0);
+  return mockVegaLite.mock.calls[mockVegaLite.mock.calls.length - 1][0];
+}
 
 describe('ActivityChart', () => {
   const mockActivities: BotActivity[] = [
@@ -83,7 +100,7 @@ describe('ActivityChart', () => {
 
   it('filters activities by type', () => {
     render(<ActivityChart activities={mockActivities} type="issue" />);
-    const lastCall = mockVegaLite.mock.lastCall[0];
+    const lastCall = getLastVegaLiteProps();
     const chartData = lastCall.spec.data.values;
 
     // Should only include issue activities
@@ -95,7 +112,7 @@ describe('ActivityChart', () => {
 
   it('configures issue color scale correctly', () => {
     render(<ActivityChart activities={mockActivities} type="issue" />);
-    const lastCall = mockVegaLite.mock.lastCall[0];
+    const lastCall = getLastVegaLiteProps();
     const colorScale = lastCall.spec.encoding.color.scale;
 
     expect(colorScale.domain).toEqual(['no_pr', 'pr_open', 'pr_merged', 'pr_closed']);
@@ -104,7 +121,7 @@ describe('ActivityChart', () => {
 
   it('configures PR color scale correctly', () => {
     render(<ActivityChart activities={mockActivities} type="pr" />);
-    const lastCall = mockVegaLite.mock.lastCall[0];
+    const lastCall = getLastVegaLiteProps();
     const colorScale = lastCall.spec.encoding.color.scale;
 
     expect(colorScale.domain).toEqual(['success', 'failure']);
@@ -113,7 +130,7 @@ describe('ActivityChart', () => {
 
   it('configures chart axes correctly', () => {
     render(<ActivityChart activities={mockActivities} type="issue" />);
-    const lastCall = mockVegaLite.mock.lastCall[0];
+    const lastCall = getLastVegaLiteProps();
     const { x, y } = lastCall.spec.encoding;
 
     expect(x.field).toBe('date');
@@ -139,7 +156,7 @@ describe('ActivityChart', () => {
 
   it('configures chart title correctly', () => {
     render(<ActivityChart activities={mockActivities} type="issue" />);
-    const lastCall = mockVegaLite.mock.lastCall[0];
+    const lastCall = getLastVegaLiteProps();
     const { title } = lastCall.spec;
 
     expect(title).toEqual({
