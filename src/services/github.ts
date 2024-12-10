@@ -1,4 +1,4 @@
-import { BotActivity, IssueActivityStatus } from '../types';
+import { BotActivity } from '../types';
 
 // PR status is now included in the cached data, no need to fetch it
 
