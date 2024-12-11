@@ -1,6 +1,7 @@
 export type ActivityType = 'issue' | 'pr';
 export type PRStatus = 'no_pr' | 'pr_open' | 'pr_merged' | 'pr_closed';
 export type PRActivityStatus = 'success' | 'failure';
+// This type is used in the ActivityStatus union type below
 export type IssueActivityStatus = PRStatus;
 export type ActivityStatus = PRActivityStatus | IssueActivityStatus;
 
