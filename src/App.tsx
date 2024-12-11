@@ -3,6 +3,7 @@ import { ActivityList } from './components/ActivityList';
 import { ActivityFilter } from './components/ActivityFilter';
 import { DateRangeFilter } from './components/DateRangeFilter';
 import { ActivityChart } from './components/ActivityChart';
+import { ActivityPieChart } from './components/ActivityPieChart';
 import { LoadingSpinner } from './components/LoadingSpinner';
 import { ErrorMessage } from './components/ErrorMessage';
 import { ActivityFilter as FilterType, DateRange, AppState } from './types';
@@ -99,6 +100,10 @@ function App(): React.JSX.Element {
             <div className="chart-container">
               <ActivityChart activities={filteredActivities} type="issue" />
               <ActivityChart activities={filteredActivities} type="pr" />
+            </div>
+            <div className="chart-container">
+              <ActivityPieChart activities={filteredActivities} type="issue" />
+              <ActivityPieChart activities={filteredActivities} type="pr" />
             </div>
           </section>
 
