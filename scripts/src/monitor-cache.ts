@@ -29,8 +29,8 @@ async function checkCacheStatus(): Promise<void> {
     console.log('-------------------');
     console.log(`Status: ${statusData.status}`);
     console.log(`Last Successful Update: ${statusData.lastSuccessfulUpdate || 'Never'}`);
-    console.log(`Hours Since Last Update: ${hoursSinceUpdate.toFixed(2)}`);
-    console.log(`Activities in Cache: ${cacheData.activities?.length || 0}`);
+    console.log(`Hours Since Last Update: ${String(hoursSinceUpdate.toFixed(2))}`);
+    console.log(`Activities in Cache: ${String(cacheData.activities?.length || 0)}`);
     
     if (statusData.error) {
       console.error('Last Error:', statusData.error);
@@ -38,7 +38,7 @@ async function checkCacheStatus(): Promise<void> {
     
     // Alert if cache is stale
     if (hoursSinceUpdate > 12) {
-      throw new Error(`Cache is stale! Last update was ${hoursSinceUpdate.toFixed(2)} hours ago`);
+      throw new Error(`Cache is stale! Last update was ${String(hoursSinceUpdate.toFixed(2))} hours ago`);
     }
     
     // Alert if no activities
