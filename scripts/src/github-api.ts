@@ -8,44 +8,75 @@ const REPO_NAME = 'OpenHands';
 
 import fs from 'fs';
 
-async function fetchWithAuth<T = unknown>(url: string): Promise<ApiResponse<T>> {
+const MAX_RETRIES = 3;
+const RETRY_DELAY = 1000; // 1 second
+
+async function sleep(ms: number) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function fetchWithAuth<T = unknown>(url: string, retries = MAX_RETRIES): Promise<ApiResponse<T>> {
   // Log the request
   fs.appendFileSync('github-api.log', `\n[${new Date().toISOString()}] REQUEST: ${url}\n`);
   
-  const response = await fetch(url, {
-    headers: {
-      'Authorization': `Bearer ${GITHUB_TOKEN}`,
-      'Accept': 'application/vnd.github.v3+json',
-    },
-  });
+  try {
+    const response = await fetch(url, {
+      headers: {
+        'Authorization': `Bearer ${GITHUB_TOKEN}`,
+        'Accept': 'application/vnd.github.v3+json',
+        'User-Agent': 'OpenHands-Agent-Monitor'
+      },
+    });
 
-  if (!response.ok) {
-    const errorBody = await response.text();
-    fs.appendFileSync('github-api.log', `[${new Date().toISOString()}] ERROR: ${String(response.status)} ${String(response.statusText)}\n${String(errorBody)}\n`);
-    throw new Error(`GitHub API error: ${String(response.status)} ${String(response.statusText)}\n${String(errorBody)}`);
-  }
+    // Check for rate limiting
+    if (response.status === 403 && response.headers.get('x-ratelimit-remaining') === '0') {
+      const resetTime = parseInt(response.headers.get('x-ratelimit-reset') || '0') * 1000;
+      const waitTime = Math.max(0, resetTime - Date.now());
+      console.log(`Rate limited. Waiting ${String(waitTime)}ms before retrying...`);
+      fs.appendFileSync('github-api.log', `[${new Date().toISOString()}] RATE LIMIT: Waiting ${String(waitTime)}ms before retry\n`);
+      await sleep(waitTime);
+      return await fetchWithAuth(url, retries);
+    }
 
-  // Parse Link header for pagination
-  const linkHeader = response.headers.get('Link') ?? '';
-  let hasNextPage = false;
-  let nextUrl: string | null = null;
+    if (!response.ok) {
+      const errorBody = await response.text();
+      fs.appendFileSync('github-api.log', `[${new Date().toISOString()}] ERROR: ${String(response.status)} ${String(response.statusText)}\n${String(errorBody)}\n`);
+      
+      if (retries > 0) {
+        console.log(`Request failed. Retrying in ${String(RETRY_DELAY)}ms... (${String(retries)} retries left)`);
+        fs.appendFileSync('github-api.log', `[${new Date().toISOString()}] RETRY: ${String(retries)} attempts remaining\n`);
+        await sleep(RETRY_DELAY);
+        return await fetchWithAuth(url, retries - 1);
+      }
+      
+      throw new Error(`GitHub API error: ${String(response.status)} ${String(response.statusText)}\n${String(errorBody)}`);
+    }
 
-  if (linkHeader !== '') {
-    const links = linkHeader.split(',');
-    for (const link of links) {
-      const [url, rel] = link.split(';');
-      if (rel?.includes('rel="next"')) {
-        hasNextPage = true;
-        nextUrl = url?.trim()?.slice(1, -1) ?? null; // Remove < and >
-        break;
+    // Parse Link header for pagination
+    const linkHeader = response.headers.get('Link') ?? '';
+    let hasNextPage = false;
+    let nextUrl: string | null = null;
+
+    if (linkHeader !== '') {
+      const links = linkHeader.split(',');
+      for (const link of links) {
+        const [url, rel] = link.split(';');
+        if (rel?.includes('rel="next"')) {
+          hasNextPage = true;
+          nextUrl = url?.trim()?.slice(1, -1) ?? null; // Remove < and >
+          break;
+        }
       }
     }
-  }
 
-  const data = await response.json();
-  // Log the response
-  fs.appendFileSync('github-api.log', `[${new Date().toISOString()}] RESPONSE: ${JSON.stringify(data, null, 2)}\n`);
-  return { data, hasNextPage, nextUrl };
+    const data = await response.json();
+    // Log the response
+    fs.appendFileSync('github-api.log', `[${new Date().toISOString()}] RESPONSE: ${JSON.stringify(data, null, 2)}\n`);
+    return { data, hasNextPage, nextUrl };
+  } catch (error) {
+    fs.appendFileSync('github-api.log', `[${new Date().toISOString()}] ERROR: ${String(error)}\n`);
+    throw error;
+  }
 }
 
 async function fetchAllPages<T>(url: string): Promise<T[]> {
