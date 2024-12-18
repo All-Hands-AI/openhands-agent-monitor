@@ -16,7 +16,9 @@
     "test:coverage": "vitest run --coverage --exclude '**/__integration_tests__/**'",
     "test:integration": "vitest run '**/__integration_tests__/**'",
     "typecheck": "tsc --noEmit",
-    "cache-data": "node scripts/cache-github-data.js"
+    "cache-data": "node scripts/cache-github-data.js",
+    "monitor:cache": "cd scripts && npx tsc && node dist/monitor-cache.js",
+    "build:cache:safe": "npm run build:cache || (echo 'Cache build failed, checking status...' && npm run monitor:cache)"
   },
   "dependencies": {
     "@nextui-org/react": "^2.4.8",

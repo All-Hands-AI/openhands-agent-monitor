@@ -8,22 +8,50 @@ const REPO_NAME = 'OpenHands';
 
 import fs from 'fs';
 
-async function fetchWithAuth<T = unknown>(url: string): Promise<ApiResponse<T>> {
+const MAX_RETRIES = 3;
+const RETRY_DELAY = 1000; // 1 second
+const RATE_LIMIT_DELAY = 60000; // 1 minute
+
+async function sleep(ms: number) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function fetchWithAuth<T = unknown>(url: string, retries = MAX_RETRIES): Promise<ApiResponse<T>> {
   // Log the request
   fs.appendFileSync('github-api.log', `\n[${new Date().toISOString()}] REQUEST: ${url}\n`);
   
-  const response = await fetch(url, {
-    headers: {
-      'Authorization': `Bearer ${GITHUB_TOKEN}`,
-      'Accept': 'application/vnd.github.v3+json',
-    },
-  });
+  try {
+    const response = await fetch(url, {
+      headers: {
+        'Authorization': `Bearer ${GITHUB_TOKEN}`,
+        'Accept': 'application/vnd.github.v3+json',
+        'User-Agent': 'OpenHands-Agent-Monitor'
+      },
+    });
 
-  if (!response.ok) {
-    const errorBody = await response.text();
-    fs.appendFileSync('github-api.log', `[${new Date().toISOString()}] ERROR: ${String(response.status)} ${String(response.statusText)}\n${String(errorBody)}\n`);
-    throw new Error(`GitHub API error: ${String(response.status)} ${String(response.statusText)}\n${String(errorBody)}`);
-  }
+    // Check for rate limiting
+    if (response.status === 403 && response.headers.get('x-ratelimit-remaining') === '0') {
+      const resetTime = parseInt(response.headers.get('x-ratelimit-reset') || '0') * 1000;
+      const waitTime = Math.max(0, resetTime - Date.now());
+      console.log(`Rate limited. Waiting ${waitTime}ms before retrying...`);
+      fs.appendFileSync('github-api.log', `[${new Date().toISOString()}] RATE LIMIT: Waiting ${waitTime}ms before retry\n`);
+      await sleep(waitTime);
+      return fetchWithAuth(url, retries);
+    }
+
+    if (!response.ok) {
+      const errorBody = await response.text();
+      fs.appendFileSync('github-api.log', `[${new Date().toISOString()}] ERROR: ${String(response.status)} ${String(response.statusText)}\n${String(errorBody)}\n`);
+      
+      if (retries > 0) {
+        console.log(`Request failed. Retrying in ${RETRY_DELAY}ms... (${retries} retries left)`);
+        fs.appendFileSync('github-api.log', `[${new Date().toISOString()}] RETRY: ${retries} attempts remaining\n`);
+        await sleep(RETRY_DELAY);
+        return fetchWithAuth(url, retries - 1);
+      }
+      
+      throw new Error(`GitHub API error: ${String(response.status)} ${String(response.statusText)}\n${String(errorBody)}`);
+    }
 
   // Parse Link header for pagination
   const linkHeader = response.headers.get('Link') ?? '';
