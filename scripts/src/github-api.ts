@@ -284,9 +284,43 @@ if (require.main === module) {
 export async function fetchBotActivities(since?: string): Promise<Activity[]> {
   const startTime = performance.now();
   try {
-    if (!GITHUB_TOKEN || GITHUB_TOKEN === 'placeholder') {
+    // Validate GitHub token
+    if (!GITHUB_TOKEN || GITHUB_TOKEN === 'placeholder' || GITHUB_TOKEN === '$GITHUB_TOKEN') {
       process.stderr.write('Error: GITHUB_TOKEN environment variable is not set or invalid\n');
-      throw new Error(String('Invalid GITHUB_TOKEN'));
+      process.stderr.write('Please follow the GitHub Token Configuration guide in the README.md\n');
+      throw new Error('Invalid GITHUB_TOKEN');
+    }
+
+    // Verify token has required scopes
+    try {
+      const response = await fetch('https://api.github.com/user', {
+        headers: {
+          'Authorization': `Bearer ${GITHUB_TOKEN}`,
+          'Accept': 'application/vnd.github.v3+json',
+          'User-Agent': 'OpenHands-Agent-Monitor'
+        }
+      });
+
+      if (!response.ok) {
+        process.stderr.write('Error: GitHub token validation failed\n');
+        process.stderr.write(`Status: ${response.status} ${response.statusText}\n`);
+        throw new Error('GitHub token validation failed');
+      }
+
+      const scopes = response.headers.get('x-oauth-scopes')?.split(',').map(s => s.trim()) ?? [];
+      const requiredScopes = ['repo'];
+      const missingScopes = requiredScopes.filter(scope => !scopes.includes(scope));
+
+      if (missingScopes.length > 0) {
+        process.stderr.write(`Error: GitHub token is missing required scopes: ${missingScopes.join(', ')}\n`);
+        process.stderr.write('Please follow the GitHub Token Configuration guide in the README.md\n');
+        throw new Error('Insufficient GitHub token scopes');
+      }
+    } catch (error) {
+      if (error instanceof Error) {
+        throw error;
+      }
+      throw new Error('GitHub token validation failed');
     }
     console.log('Starting bot activities fetch...');
     const activities: Activity[] = [];

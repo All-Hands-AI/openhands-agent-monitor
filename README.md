@@ -34,6 +34,44 @@ A web application to monitor and visualize the activity of the OpenHands GitHub 
   - `repo` scope for accessing repository data
   - `read:org` scope if monitoring repositories in an organization
 
+## GitHub Token Configuration
+
+The bot requires a GitHub Personal Access Token (PAT) to function properly. Here's how to set it up:
+
+1. Create a new GitHub PAT:
+   - Go to GitHub Settings > Developer settings > Personal access tokens > Tokens (classic)
+   - Click "Generate new token (classic)"
+   - Give it a descriptive name (e.g., "OpenHands Bot Token")
+   - Select the required scopes:
+     - `repo` (full control of private repositories)
+     - `read:org` (if monitoring organization repositories)
+   - Click "Generate token"
+   - Copy the token immediately (you won't see it again)
+
+2. Configure the token:
+   - For local development:
+     ```bash
+     # Create/edit .env file
+     echo "GITHUB_TOKEN=your_token_here" > .env
+     echo "VITE_GITHUB_TOKEN=your_token_here" >> .env
+     ```
+   - For production:
+     - Set `GITHUB_TOKEN` in your CI/CD environment
+     - Set `VITE_GITHUB_TOKEN` in your hosting environment
+
+3. Token Security:
+   - Never commit the token to version control
+   - Use environment variables in CI/CD pipelines
+   - Rotate tokens periodically
+   - Use repository-specific tokens when possible
+   - Consider using GitHub Apps for production deployments
+
+4. Verify token setup:
+   ```bash
+   # Test token configuration
+   npm run test:integration
+   ```
+
 ## Environment Variables
 
 The application uses environment variables for configuration:
