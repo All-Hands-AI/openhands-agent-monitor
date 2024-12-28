@@ -9,13 +9,11 @@ export default async function handler(req, res) {
       return res.status(405).json({ error: 'Method not allowed' });
     }
 
-    // For GET requests, skip authorization check
-    if (req.method === 'POST') {
-      const { authorization } = req.headers;
-      if (authorization !== `Bearer ${process.env.CRON_SECRET}`) {
-        console.warn('Unauthorized access attempt');
-        return res.status(401).json({ error: 'Unauthorized' });
-      }
+    // Check authorization for both GET and POST requests
+    const { authorization } = req.headers;
+    if (authorization !== `Bearer ${process.env.CRON_SECRET}`) {
+      console.warn('Unauthorized access attempt');
+      return res.status(401).json({ error: 'Unauthorized' });
     }
 
     console.log('Fetching bot activities...');
