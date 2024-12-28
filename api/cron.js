@@ -4,12 +4,12 @@ export default async function handler(req, res) {
   console.log('Cron job started:', new Date().toISOString());
   
   try {
-    if (req.method !== 'POST' && req.method !== 'GET') {
+    if (req.method !== 'GET') {
       console.log('Invalid method:', req.method);
       return res.status(405).json({ error: 'Method not allowed' });
     }
 
-    // Check authorization for both GET and POST requests
+    // Check authorization for GET requests
     const { authorization } = req.headers;
     if (authorization !== `Bearer ${process.env.CRON_SECRET}`) {
       console.warn('Unauthorized access attempt');
